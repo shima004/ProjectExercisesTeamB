@@ -1,0 +1,207 @@
+openapi: 3.0.0
+info:
+  title: slot
+  version: '1.0'
+  description: |-
+    requiredAuth.POST  :  /coin
+
+    requiredAuth.GET  :  /user -
+    requiredAuth.PUT  :  /user
+
+    /login の際にJWT-TOKENが渡されるのでそれをヘッダーに含めて上記のAPIにアクセスしてください
+servers:
+  - url: 'http://localhost:8080'
+paths:
+  /user:
+    post:
+      summary: 'ユーザの作成'
+      operationId: post-user
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+                  format: date
+              required:
+                - name
+                - email
+                - password
+        description: Post the necessary fields for the API to create a new user.
+      description: ユーザの作成
+    get:
+      summary: 'ユーザの情報の取得'
+      operationId: get-user
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  coin:
+                    type: integer
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: 'Bearer [token]'
+      description: ユーザの情報の取得
+    put:
+      summary: 'ユーザの情報の更新'
+      operationId: put-user
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: 'Bearer [token]'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+  /coin:
+    post:
+      summary: 'ユーザのコインの登録'
+      operationId: post-coin
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                total:
+                  type: string
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: 'Bearer [token]'
+      description: ''
+  /login:
+    post:
+      summary: 'ユーザのログイン'
+      operationId: post-login
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      parameters: []
+  /setting:
+    get:
+      summary: 'ユーザの設定の取得'
+      tags: []
+      responses:
+        '200':
+          description: |-
+            ex) path = "test_1.png:test_2.png:test_3.png"
+            path = path.split(":")
+            console.log(path)
+              ["test_1.png", "test_2.png", "test_3.png"]
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  setting:
+                    type: string
+      operationId: get-setting
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: 'Bearer [token]'
+    post:
+      summary: 'ユーザの設定の登録'
+      operationId: post-setting
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: 'Bearer [token]'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                path:
+                  type: string
+        description: 'ex) path = "test_1.png:test_2.png"'
+components:
+  schemas: {}
