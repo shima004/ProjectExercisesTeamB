@@ -1,0 +1,22 @@
+{{ define "index"}}
+<!DOCTYPE html>
+<html lang="ja-jp">
+  {{ template "header" . }}
+  <body>
+    {{ template "navibar" . }}
+    <div class="container">
+      <!-- create 5 button -->
+      <div class="row">
+        <div class="col-sm-4">
+          <a href="" class="btn btn-primary">1</a>
+        </div>
+        <div class="col-sm-4">
+          <a href="" class="btn btn-primary">2</a>
+        </div>
+        <div class="col-sm-4">
+          <a href="" class="btn btn-primary">3</a>
+        </div>
+    </div>
+  </body>
+</html>
+{{ end }}

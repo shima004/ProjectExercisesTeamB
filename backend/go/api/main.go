@@ -3,6 +3,8 @@ package main
 import (
 	"ProjectExercises/TeamB/apifunc"
 	"fmt"
+	"html/template"
+	"io"
 	"log"
 	"net/http"
 	"os"
@@ -25,18 +27,15 @@ func (cv *CustomValidator) Validate(i interface{}) error {
 	return nil
 }
 
-func main() {
-	e := echo.New()
-	e.Validator = &CustomValidator{validator: validator.New()}
-	e.Static("/static/img", "./static/img")
+type Template struct {
+  templates *template.Template
+}
 
-	e.Use(middleware.Logger())
-	e.Use(middleware.Recover())
-	e.Use(middleware.CORS())
-	e.Use(middleware.BodyDump(func(c echo.Context, reqBody, resBody []byte) {
-		fmt.Fprintf(os.Stderr, "Request: %v\n", string(reqBody))
-	}))
+func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Context) error {
+  return t.templates.ExecuteTemplate(w, name, data)
+}
 
+func initUrl(e *echo.Echo) {
 	requiredAuth := e.Group("")
 
 	requiredAuth.Use(middleware.JWTWithConfig(middleware.JWTConfig{
@@ -56,8 +55,28 @@ func main() {
 	// http://localhost:8080/login : POST apifunc->login.go->LoginPost()
 	e.POST("/login", apifunc.LoginPost)
 
-	// http://localhost:8080/images : GET apifunc->images.go->imagesGet()
-	e.GET("/images", apifunc.ImageGet)
+	e.GET("/index", apifunc.GetIndex)
+}
+
+func main() {
+	e := echo.New()
+	e.Validator = &CustomValidator{validator: validator.New()}
+	e.Static("/static/img", "./static/img")
+
+	e.Use(middleware.Logger())
+	e.Use(middleware.Recover())
+	e.Use(middleware.CORS())
+	e.Use(middleware.BodyDump(func(c echo.Context, reqBody, resBody []byte) {
+		fmt.Fprintf(os.Stderr, "Request: %v\n", string(reqBody))
+	}))
+
+	t := &Template{
+    templates: template.Must(template.ParseGlob("views/*.html")),
+  }
+
+	e.Renderer = t
+
+	initUrl(e)
 
 	// 8080番ポートで待ち受け
 	e.Logger.Fatal(e.Start(":8080"))
