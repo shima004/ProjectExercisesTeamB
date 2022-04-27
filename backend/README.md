@@ -1,9 +1,11 @@
-# GOAPIサーバーとMYSQLサーバーの起動の仕方
-**./backend/go/apiディレクトリ内にgo.env**
+# GOAPI サーバーと MYSQL サーバーの起動の仕方
 
-**./backendディレクトリ内に.envをおいてください**
+## **./backend ディレクトリ内に.env をおいてください**
 
-backendディレクトリ内で以下のコマンドを実行します。
+---
+
+backend ディレクトリ内で以下のコマンドを実行します。
+
 ```console
 $ docker-compose build
 $ docker-compose up
