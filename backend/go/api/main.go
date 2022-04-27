@@ -42,6 +42,7 @@ func initUrl(e *echo.Echo) {
 		SigningKey: []byte("secret"),
 	}))
 
+	// api routes
 	// http://localhost:8080/coin : GET apifunc->coin.go->CoinPost()
 	requiredAuth.POST("/coin", apifunc.CoinPost)
 	// http://localhost:8080/user : GET apifunc->user.go->UserGet()
@@ -53,6 +54,7 @@ func initUrl(e *echo.Echo) {
 	// http://localhost:8080/login : POST apifunc->login.go->LoginPost()
 	e.POST("/login", apifunc.LoginPost)
 
+	// html routes
 	e.GET("/index", apifunc.GetIndex)
 	e.GET("/blockBreaker", apifunc.GetBlockBreaker)
 	e.GET("/hockey", apifunc.GetHockey);
@@ -67,10 +69,13 @@ func initUrl(e *echo.Echo) {
 func main() {
 	e := echo.New()
 	e.Validator = &CustomValidator{validator: validator.New()}
+
+	// setting static files
 	e.Static("/static/img", "./static/img")
 	e.Static("/static/css", "./static/css")
 	e.Static("/static/js", "./static/js")
 
+	// setting middleware
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 	e.Use(middleware.CORS())
@@ -78,12 +83,13 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Request: %v\n", string(reqBody))
 	}))
 
+	// setting template engine
 	t := &Template{
     templates: template.Must(template.ParseGlob("views/*.html")),
   }
-
 	e.Renderer = t
 
+	// setting routes
 	initUrl(e)
 
 	// 8080番ポートで待ち受け
