@@ -68,6 +68,8 @@ func main() {
 	e := echo.New()
 	e.Validator = &CustomValidator{validator: validator.New()}
 	e.Static("/static/img", "./static/img")
+	e.Static("/static/css", "./static/css")
+	e.Static("/static/js", "./static/js")
 
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
