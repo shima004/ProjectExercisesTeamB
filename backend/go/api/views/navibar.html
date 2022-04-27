@@ -27,11 +27,20 @@
             <a class="btn btn-outline-primary" href="/auth/signIn">Sign In</a>
           </li>
           <li class="mr-2">
-            <a class="btn btn-outline-danger" href="#">Sign out</a>
+            <a class="btn btn-outline-danger" id="signOut">Sign out</a>
           </li>
         </div>
       </ul>
     </div>
   </div>
 </nav>
+<script>
+  $(function () {
+    $("#signOut").on("click", function () {
+      var $this = $(this);
+      document.cookie = "token=token; max-age=0";
+      console.log(document.cookie);
+    });
+  });
+</script>
 {{end}}
