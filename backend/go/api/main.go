@@ -56,6 +56,11 @@ func initUrl(e *echo.Echo) {
 	e.POST("/login", apifunc.LoginPost)
 
 	e.GET("/index", apifunc.GetIndex)
+	e.GET("/blockBreaker", apifunc.GetBlockBreaker)
+	e.GET("/hockey", apifunc.GetHockey);
+	e.GET("/numberGuessing", apifunc.GetNumberGuessing);
+	e.GET("/shooting", apifunc.GetShooting);
+	e.GET("/slot", apifunc.GetSlot);
 }
 
 func main() {
