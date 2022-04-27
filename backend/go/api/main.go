@@ -44,14 +44,12 @@ func initUrl(e *echo.Echo) {
 
 	// http://localhost:8080/coin : GET apifunc->coin.go->CoinPost()
 	requiredAuth.POST("/coin", apifunc.CoinPost)
-
 	// http://localhost:8080/user : GET apifunc->user.go->UserGet()
 	requiredAuth.GET("/user", apifunc.UserGet)
 	// http://localhost:8080/user : POST apifunc->user.go->UserPost()
 	e.POST("/user", apifunc.UserPost)
 	// http://localhost:8080/user : PUT apifunc->user.go->UserPut()
 	requiredAuth.PUT("/user", apifunc.UserPut)
-
 	// http://localhost:8080/login : POST apifunc->login.go->LoginPost()
 	e.POST("/login", apifunc.LoginPost)
 
@@ -61,6 +59,9 @@ func initUrl(e *echo.Echo) {
 	e.GET("/numberGuessing", apifunc.GetNumberGuessing);
 	e.GET("/shooting", apifunc.GetShooting);
 	e.GET("/slot", apifunc.GetSlot);
+	e.GET("/auth/signUp", apifunc.GetSignUp);
+	e.GET("/auth/signIn", apifunc.GetSignIn);
+	e.GET("/auth/signOut", apifunc.GetSignOut);
 }
 
 func main() {
