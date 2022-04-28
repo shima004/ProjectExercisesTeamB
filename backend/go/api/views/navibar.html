@@ -2,8 +2,8 @@
 <!-- ナビバー -->
 <nav class="navbar navbar-expand-md navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">TeamB</a>
-    <button
+    <a class="navbar-brand" href="/index">TeamB</a>
+    <!-- <button
       class="navbar-toggler"
       type="button"
       data-bs-toggle="collapse"
@@ -11,20 +11,20 @@
       aria-controls="navbarSupportedContent"
       aria-expanded="false"
       aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
+    > -->
+      <!-- <span class="navbar-toggler-icon"></span> -->
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/index">Home</a>
         </li>
-        <div class="d-flex">
+        <div class="d-flex text-right">
           <li class="mr-2">
-            <a class="btn btn-outline-primary" href="/auth/signUp">Sign Up</a>
+            <a class="btn btn-outline-primary" id="signUp" href="/auth/signUp">Sign Up</a>
           </li>
           <li class="mr-2">
-            <a class="btn btn-outline-primary" href="/auth/signIn">Sign In</a>
+            <a class="btn btn-outline-primary" id="signIn" href="/auth/signIn">Sign In</a>
           </li>
           <li class="mr-2">
             <a class="btn btn-outline-danger" id="signOut">Sign out</a>
@@ -34,12 +34,46 @@
     </div>
   </div>
 </nav>
+<!-- <nav class="navbar navbar-expand navbar-dark bg-info fixed-top">
+  <a class="navbar-brand" href="/index">TeamB</a>
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item"><a href="#" class="nav-link">ホーム</a></li>
+  </ul>
+  <ul class="navbar-nav">
+    <li class="nav-item mr-2">
+      <a class="btn btn-outline-primary" style="display: none" id="signUp" href="/auth/signUp">Sign Up</a>
+    </li>
+    <li class="nav-item mr-2">
+      <a class="btn btn-outline-primary" style="display: none" id="signIn" href="/auth/signIn">Sign In</a>
+    </li>
+    <li class="nav-item mr-2">
+      <a class="btn btn-outline-danger" style="display: none" id="signOut">Sign out</a>
+    </li>
+  </ul>
+</nav> -->
 <script>
+  window.onload = function () {
+    toggleAuth();
+  };
+
+  function toggleAuth() {
+    if (getToken() == undefined) {
+      document.getElementById("signOut").style.display = "none";
+      document.getElementById("signIn").style.display = "block";
+      document.getElementById("signUp").style.display = "block";
+    } else {
+      document.getElementById("signOut").style.display = "block";
+      document.getElementById("signIn").style.display = "none";
+      document.getElementById("signUp").style.display = "none";
+    }
+  }
+
   $(function () {
     $("#signOut").on("click", function () {
       var $this = $(this);
       document.cookie = "token=token; max-age=0";
       console.log(document.cookie);
+      toggleAuth();
     });
   });
 </script>
