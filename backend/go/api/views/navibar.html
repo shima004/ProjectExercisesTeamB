@@ -4,7 +4,10 @@
 <!-- ナビバー -->
 <nav class="navbar navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand">BGamesプロジェクト</a>
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">BGamesプロジェクト {{ .Title }}</a>
+      <span class="navbar-brand" id="coin"></span>
+    </div>
     <div class="navbar-brand">
       <a
         class="navbar-brand btn btn-outline-dark"
@@ -26,12 +29,17 @@
         id="signOut"
         >Sign out</a
       >
+      <a class="navbar-brand btn btn-outline-danger" id="get">get</a>
     </div>
   </div>
 </nav>
 <script>
-  window.onload = function () {
+  window.onload = async function () {
     toggleAuth();
+    var res = await getUser();
+    if (res.coin != undefined) {
+      document.getElementById("coin").innerHTML = "Coin: " + res.coin;
+    }
   };
 
   function toggleAuth() {
@@ -52,6 +60,13 @@
       document.cookie = "token=token; max-age=0";
       console.log(document.cookie);
       toggleAuth();
+    });
+    $("#get").on("click", async function () {
+      var res = await getUser();
+      if (res.coin != undefined) {
+        document.getElementById("coin").innerHTML = "Coin: " + res.coin;
+      }
+      console.log(res);
     });
   });
 </script>

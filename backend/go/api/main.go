@@ -81,6 +81,7 @@ func main() {
 	e.Use(middleware.CORS())
 	e.Use(middleware.BodyDump(func(c echo.Context, reqBody, resBody []byte) {
 		fmt.Fprintf(os.Stderr, "Request: %v\n", string(reqBody))
+		// fmt.Fprintf(os.Stderr, "Header: %v\n", c.Request().Header)
 	}))
 
 	// setting template engine

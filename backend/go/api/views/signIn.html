@@ -56,7 +56,7 @@
           $.post(url, data, function(res){
             if(res.token != undefined){
               setToken(res.token);
-              window.location.href = '/index';
+              window.location.href = '/';
             }else{
               alert(res);
             }

@@ -9,7 +9,7 @@ import (
 )
 
 type CoinPostParams struct { //受け取るデータの定義
-	Total int `json:"total"`
+	Coin int `json:"coin"`
 }
 
 // requiredAuth
@@ -23,7 +23,7 @@ func CoinPost(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, map[string]interface{}{"message": "パラメータが不足しています: " + err.Error()})
 	}
 
-	err := dbfunc.PostCoin(c, params.Total)
+	err := dbfunc.PostCoin(c, params.Coin)
 	if err != nil { //データベースでエラーが出た時の処理
 		return c.JSON(http.StatusInternalServerError, map[string]interface{}{"message": "データベースの更新に失敗しました: " + err.Error()})
 	}

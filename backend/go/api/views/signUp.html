@@ -40,7 +40,7 @@
           var data = form.serialize();
           $.post(url, data, function(res){
             if(res.status === 'success'){
-              window.location.href = '/index';
+              window.location.href = '/';
             }else{
               alert(res.message);
             }
