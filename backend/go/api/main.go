@@ -28,11 +28,11 @@ func (cv *CustomValidator) Validate(i interface{}) error {
 }
 
 type Template struct {
-  templates *template.Template
+	templates *template.Template
 }
 
 func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Context) error {
-  return t.templates.ExecuteTemplate(w, name, data)
+	return t.templates.ExecuteTemplate(w, name, data)
 }
 
 func initUrl(e *echo.Echo) {
@@ -55,15 +55,15 @@ func initUrl(e *echo.Echo) {
 	e.POST("/login", apifunc.LoginPost)
 
 	// html routes
-	e.GET("/index", apifunc.GetIndex)
+	e.GET("/", apifunc.GetIndex)
 	e.GET("/blockBreaker", apifunc.GetBlockBreaker)
-	e.GET("/hockey", apifunc.GetHockey);
-	e.GET("/numberGuessing", apifunc.GetNumberGuessing);
-	e.GET("/shooting", apifunc.GetShooting);
-	e.GET("/slot", apifunc.GetSlot);
-	e.GET("/auth/signUp", apifunc.GetSignUp);
-	e.GET("/auth/signIn", apifunc.GetSignIn);
-	e.GET("/auth/signOut", apifunc.GetSignOut);
+	e.GET("/hockey", apifunc.GetHockey)
+	e.GET("/numberGuessing", apifunc.GetNumberGuessing)
+	e.GET("/shooting", apifunc.GetShooting)
+	e.GET("/slot", apifunc.GetSlot)
+	e.GET("/auth/signUp", apifunc.GetSignUp)
+	e.GET("/auth/signIn", apifunc.GetSignIn)
+	e.GET("/auth/signOut", apifunc.GetSignOut)
 }
 
 func main() {
@@ -85,8 +85,8 @@ func main() {
 
 	// setting template engine
 	t := &Template{
-    templates: template.Must(template.ParseGlob("views/*.html")),
-  }
+		templates: template.Must(template.ParseGlob("views/*.html")),
+	}
 	e.Renderer = t
 
 	// setting routes
