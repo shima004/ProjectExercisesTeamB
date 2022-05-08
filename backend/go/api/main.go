@@ -2,6 +2,7 @@ package main
 
 import (
 	"ProjectExercises/TeamB/apifunc"
+	"ProjectExercises/TeamB/game"
 	"fmt"
 	"html/template"
 	"io"
@@ -54,6 +55,9 @@ func initUrl(e *echo.Echo) {
 	// http://localhost:8080/login : POST apifunc->login.go->LoginPost()
 	e.POST("/login", apifunc.LoginPost)
 
+	// requiredAuth.POST("/matching", apifunc.MatchingPost)
+	// requiredAuth.GET("/matching", apifunc.MatchingGet)
+
 	// html routes
 	e.GET("/", apifunc.GetIndex)
 	e.GET("/blockBreaker", apifunc.GetBlockBreaker)
@@ -64,6 +68,9 @@ func initUrl(e *echo.Echo) {
 	e.GET("/auth/signUp", apifunc.GetSignUp)
 	e.GET("/auth/signIn", apifunc.GetSignIn)
 	e.GET("/auth/signOut", apifunc.GetSignOut)
+
+	// web socket
+	e.GET("/ws", game.Hello)
 }
 
 func main() {
