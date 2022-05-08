@@ -1,4 +1,4 @@
-FROM golang:latest
+ FROM golang:latest
 
 RUN mkdir /backend
 WORKDIR /backend
