@@ -39,6 +39,8 @@
     var res = await getUser();
     if (res.coin != undefined) {
       document.getElementById("coin").innerHTML = "Coin: " + res.coin;
+    } else {
+      document.getElementById("coin").innerHTML = "";
     }
   };
 
@@ -58,7 +60,7 @@
     $("#signOut").on("click", function () {
       var $this = $(this);
       document.cookie = "token=token; max-age=0";
-      console.log(document.cookie);
+      document.getElementById("coin").innerHTML = "";
       toggleAuth();
     });
     $("#get").on("click", async function () {
