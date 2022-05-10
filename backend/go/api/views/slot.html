@@ -12,11 +12,25 @@
 
     <style type="text/css">
 
-.temoti {
-    text-align: right;
-    width:  100px;               /* 幅指定 */
+div {
+    width: 200px;
+    background: #CCC;
+}
+
+.coin {
+    margin-left: auto;
+    text-align: center; 
+    width:  200px;               /* 幅指定 */
     height: 35px;                /* 高さ指定 */
     font-size: 14px;
+}
+
+.temoti {
+    margin-left: auto;
+    text-align: center; 
+    width:  200px;               /* 幅指定 */
+    height: 35px;                /* 高さ指定 */
+    font-size: 15px;
 }
 
 .hann {
@@ -48,7 +62,6 @@
     text-align: center;
 }
 
-
 .bet {
     text-align: center;
     padding: 0.5em;/*文字周りの余白*/
@@ -71,7 +84,7 @@
 
 <script>
 
-alert("~SLOT GAME START~")
+alert("~ARE YOU READY???~")
 
 var sp1;
 var sp2;
@@ -212,8 +225,10 @@ function hikaku_slot() {
     <p id="han" class="hann">
     <input type="text" class="hantei" id="hanteii" value="S T A N D B Y" readonly/>
     </p>
-    <input type="text" class="temoti" id="temotii" style="text-align: right;" value="手持ちのコイン" readonly/>
-    <input type="text" class="koin" id="koinn" value="" readonly/>
+    <div class="coin">
+        <input type="text" class="temoti" id="temotii" style="text-align: right;" value="手持ちのコイン" readonly/>
+        <input type="text" class="koin" id="koinn" value="" readonly/>
+    </div>
     
 
 <p class="top">
