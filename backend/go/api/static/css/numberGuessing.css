@@ -1,0 +1,18 @@
+span {
+  margin: 5px;
+  padding: 0px 10px;
+  border: thin solid #CCCCCC;
+}
+div p {
+  display: inline-block;
+}
+#question0 {font-size: 60px;}
+#question1 {font-size: 60px;}
+#question2 {font-size: 60px;}
+#question3 {font-size: 60px;}
+#question4 {font-size: 60px;}
+#question5 {font-size: 60px;}
+#question6 {font-size: 60px;}
+#question7 {font-size: 60px;}
+.black {background-color: #000000;}
+.white {background-color: #FFFFFF;}
