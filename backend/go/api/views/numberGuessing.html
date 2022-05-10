@@ -332,12 +332,48 @@
         //出力
         if(correct[0] == 1 && correct[1] == 1) {
             alert("OKOK");
+            if(hide[0] == 0 || hide[1] == 0) {
+                question0.className = "red";
+            }
+            else if(hide[0] == 1 || hide[1] == 1) {
+                question1.className = "red";
+            }
+            else if(hide[0] == 2 || hide[1] == 2) {
+                question2.className = "red";
+            }
+            else if(hide[0] == 3 || hide[1] == 3) {
+                question3.className = "red";
+            }
         }
         else if(correct[0] == 1) {
             alert("OK");
+            if(hide[0] == 0) {
+                question0.className = "green";
+            }
+            else if(hide[0] == 1) {
+                question1.className = "green";
+            }
+            else if(hide[0] == 2) {
+                question2.className = "green";
+            }
+            else if(hide[0] == 3) {
+                question3.className = "green";
+            }
         }
         else if(correct[1] == 1) {
             alert("OK");
+            if(hide[1] == 0) {
+                question0.className = "green";
+            }
+            else if(hide[1] == 1) {
+                question1.className = "green";
+            }
+            else if(hide[1] == 2) {
+                question2.className = "green";
+            }
+            else if(hide[1] == 3) {
+                question3.className = "green";
+            }
         }
     }
   </script>
@@ -360,6 +396,8 @@
     #question7 {font-size: 60px;}
     .black {background-color: #000000;}
     .white {background-color: #FFFFFF;}
+    .green {background-color: green;}
+    .red {background-color: red;}
   </style>
   <body onload="init()">
     {{ template "navibar" . }}
