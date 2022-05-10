@@ -4,26 +4,21 @@
   <head>
     <meta charset="utf-8" />
     <title>ブロック崩し</title>
-    <style>
-      * {
-        padding: 0;
-        margin: 0;
-      }
-      canvas {
-        background: #000;
-        display: block;
-        margin: 0 auto;
-      }
-    </style>
-  </head>
+    <!-- <style>
+    	* { padding: 0; margin: 0; }
+    	canvas { background: #000; display: block; margin: 0 auto; }
+    </style> -->
+</head>
   {{ template "header" . }}
+  <script src="static/js/blockBreaker.js" defer></script>
+  <link rel="stylesheet" href="static/css/blockBreaker.css">
   <body>
     {{ template "navibar" . }}
     <div class="container">
       <!-- この下にコンテンツを作成してください -->
       <h1>ブロック崩し</h1>
       <canvas id="myCanvas" width="480" height="320"></canvas>
-      <script>
+      <!-- <script>
         var canvas = document.getElementById("myCanvas");
         var ctx = canvas.getContext("2d");
         var x = canvas.width / 2;
@@ -230,10 +225,9 @@
             }
           }
         }
-
         var interval = setInterval(draw, 10);
-      </script>
+      </script> -->
     </div>
   </body>
 </html>
-{{ end }}
+{{end}}
