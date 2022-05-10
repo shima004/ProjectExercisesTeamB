@@ -1,12 +1,268 @@
 {{ define "slot"}}
 <!DOCTYPE html>
-<html lang="ja-jp">
-  {{ template "header" . }}
-  <body>
+
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="static/css/slot.css">
+    <script src="static/js/slot.js" defer></script>
+    {{ template "header" . }}
+    <title>スロット</title>
+
+
+    <!-- <style type="text/css">
+
+div {
+    width: 200px;
+    /*background: rgb(255, 255, 255);*/
+}
+
+.coin {
+    margin-left: auto;
+    text-align: center; 
+    width:  100px;               /* 幅指定 */
+    height: 35px;                /* 高さ指定 */
+    font-size: 14px;
+}
+
+/*.temoti {
+    margin-left: auto;
+    text-align: center; 
+    width:  110px;               /* 幅指定 */
+   /* height: 35px;                /* 高さ指定 */
+   /* font-size: 14px;
+}*/
+
+
+.hann {
+    text-align: center;
+    padding: 0.5em;/*文字周りの余白*/
+    font-size: 20px;
+    border-color: #000000 #fff #fff #000000;
+    bottom: 0;
+    right: 0;
+}
+
+.koin{
+    width:  100px;               /* 幅指定 */
+    height: 35px;                /* 高さ指定 */
+    font-size: 14px;
+}
+
+
+.button {
+     font-size:20px;
+     margin:0;
+     padding:0;
+     border-radius:8px;
+     padding:0.3em 0.3em;
+     text-align: center;
+}
+
+.top{
+    text-align: center;
+}
+
+.bet {
+    text-align: center;
+    padding: 0.5em;/*文字周りの余白*/
+    font-size: 20px;
+    border-color: #000000 #fff #fff #000000;
+    bottom: 0;
+    right: 0;
+}
+
+.startt{
+    text-align: center;
+    padding: 0.5em;/*文字周りの余白*/
+    font-size: 20px;
+    border-color: #000000 #fff #fff #000000;
+    bottom: 0;
+    right: 0;
+}
+
+</style> -->
+
+    <!-- <script>
+
+        alert("~ARE YOU READY???~")
+
+        var sp1;
+        var sp2;
+        var sp3;
+
+        var stop1;
+        var stop2;
+        var stop3;
+
+        var cg1;
+        var cg2;
+        var cg3;
+
+
+        function setImage() {
+
+            cg1 = 0;
+            cg2 = 0;
+            cg3 = 0;
+
+            stop1 = 0;
+            stop2 = 0;
+            stop3 = 0;
+
+            var img = ["../static/img/pt1.png", "../static/img/pt2.png", "../static/img/pt3.png", "../static/img/pt4.png", "../static/img/pt5.png"];
+
+            let element = document.getElementById('hanteii');
+            element.value = 'SPINNING';
+
+
+            var loopup1 = function () {
+
+                document.getElementById('img1').src = img[cg1++];
+
+                if (cg1 > 4) {
+                    cg1 = 0;
+                }
+
+            }
+
+            sp1 = setInterval(loopup1, 130);
+
+            var loopup2 = function () {
+
+                document.getElementById('img2').src = img[cg2++];
+
+                if (cg2 > 4) {
+                    cg2 = 0;
+                }
+
+            }
+
+
+            sp2 = setInterval(loopup2, 90);
+
+            var loopup3 = function () {
+                document.getElementById('img3').src = img[cg3++];
+
+                if (cg3 > 4) {
+                    cg3 = 0;
+                }
+            }
+            sp3 = setInterval(loopup3, 70);
+        }
+
+
+        function slot1_stop() {
+            clearInterval(sp1);
+            stop1 = 1;
+
+            if (stop1 == 1 && stop2 == 1 && stop3 == 1) {
+                if (cg1 == cg2 && cg1 == cg3) {
+                    let element = document.getElementById('hanteii');
+                    element.value = '~WIN!!~';
+                } else {
+                    let element = document.getElementById('hanteii');
+                    element.value = '~lose(´ω`)~';
+                }
+            }
+        }
+
+
+        function slot2_stop() {
+            clearInterval(sp2);
+            stop2 = 1;
+
+            if (stop1 == 1 && stop2 == 1 && stop3 == 1) {
+                if (cg1 == cg2 && cg1 == cg3) {
+                    let element = document.getElementById('hanteii');
+                    element.value = '~WIN!!~';
+                } else {
+                    let element = document.getElementById('hanteii');
+                    element.value = '~lose(´ω`)~';
+                }
+            }
+        }
+
+
+        function slot3_stop() {
+            clearInterval(sp3);
+            stop3 = 1;
+
+            if (stop1 == 1 && stop2 == 1 && stop3 == 1) {
+                if (cg1 == cg2 && cg1 == cg3) {
+                    let element = document.getElementById('hanteii');
+                    element.value = '~WIN!!~';
+                } else {
+                    let element = document.getElementById('hanteii');
+                    element.value = '~lose(´ω`)~';
+                }
+            }
+        }
+
+
+        function hikaku_slot() {
+            if (stop1 == 1 && stop2 == 1 && stop3 == 1) {
+                if (cg1 == cg2 && cg1 == cg3) {
+                    let element = document.getElementById('hanteii');
+                    element.value = 'win';
+                } else {
+                    let element = document.getElementById('hanteii');
+                    element.value = 'lose';
+                }
+            }
+        }
+
+
+    </script> -->
+
+</head>
+
+<body>
     {{ template "navibar" . }}
-    <div class="container">
-      <!-- この下にコンテンツを作成してください -->
+    <h1>スロットゲームへようこそ！！！
+        <br>
+        〜コインを 大量GET しよう！！！〜
+    </h1>
+
+    <div class="coin">
+        <input type="text" class="temoti" id="temotii" value="手持ちコイン" readonly />
+        <input type="text" class="koin" id="koinn" value="" readonly />
     </div>
-  </body>
+    <p id="han" class="hann">
+        <input type="text" class="hantei" id="hanteii" value="S T A N D B Y" readonly />
+    </p>
+
+
+    <p class="top">
+
+        <img src="../static/img/pt0-1.png" id="img1" class="img1">
+        <img src="../static/img/pt0-2.png" id="img2" class="img2">
+        <img src="../static/img/pt0-3.png" id="img3" class="img3">
+
+        <br><br>
+
+        <input type="button" class="button" value="  STOP１  " onClick="slot1_stop()">
+
+        <input type="button" class="button" value="  STOP２  " onClick="slot2_stop()">
+
+        <input type="button" class="button" value="  STOP３  " onClick="slot3_stop()">
+
+    <p id="bet" class="bet">ベット額:
+        <br>
+        <input type="radio" name="q1" value="20"> 20
+        <input type="radio" name="q1" value="50"> 50
+        <input type="radio" name="q1" value="100"> 100
+        <input type="radio" name="q1" value="150"> 150
+    </p>
+
+    <p id="start" calss="startt">
+        <input type="button" value="START" class="start" onClick="setImage()">
+    </p>
+
+    </p>
+
+</body>
+
 </html>
-{{ end }}
+{{end}}
