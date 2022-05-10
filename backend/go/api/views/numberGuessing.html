@@ -7,12 +7,12 @@
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
     var Anum = new Array(2); //回答
-    var Qnum = new Array(8); //格納される値
+    var Qnum = new Array(16); //格納される値
     var hide = new Array(2); //＊表示箇所
-    var a = new Array(8); //B or W
+    var a = new Array(16); //B or W
     function init() {
         document.getElementById("number").innerHTML="";
-        for(var i=0;i<12;i++) {
+        for(var i=0;i<16;i++) {
             var number = document.createElement("span");
             number.innerText = i;
             number.className = "white";
@@ -37,8 +37,8 @@
         var Wnum = [0,1,2,3,4,5,6,7,8,9,10,11]; //白数字
         var rand1 = [];
         var rand2 = [];
-        //Qnumの配列(8個)にBnum or　Wnumを格納
-        for(var i=0;i<8;i++) {
+        //Qnumの配列(16個)にBnum or　Wnumを格納
+        for(var i=0;i<16;i++) {
             //乱数 (0 or 1)
             a[i] = getRandomInt(0,100);
             //Black(0だった場合)
@@ -74,8 +74,8 @@
         var tmp1; //Qnum一時保管
         var tmp2; //a(B or W)一時保管
         //ソート(0-3)
-        for(i=0; i<4; i++) {
-            for(j=0; j<4; j++) {
+        for(i=0; i<8; i++) {
+            for(j=0; j<8; j++) {
                 //数字
                 if(Qnum[i] > Qnum[j]) {
                     tmp1 = Qnum[i];
@@ -99,8 +99,8 @@
             }
         }
         //ソート（4-7)
-        for(i=4; i<8; i++) {
-            for(j=4; j<8; j++) {
+        for(i=8; i<16; i++) {
+            for(j=8; j<16; j++) {
                 //数字
                 if(Qnum[i] < Qnum[j]) {
                     tmp1 = Qnum[i];
@@ -123,7 +123,7 @@
                 }
             }
         }
-        for(i=0; i<4; i++) {
+        for(i=0; i<8; i++) {
             //question0-3 id取得
             document.getElementById("question"+i).innerHTML = "";
             //question0
@@ -209,7 +209,7 @@
                 }
                 document.getElementById("question2").appendChild(question2);
             }
-            else {
+            else if(i == 3){
                 var question3 = document.createElement("span");
                 if(hide[0] == i || hide[1] == i) {
                     question3.innerText = "*";
@@ -235,58 +235,210 @@
                 }
                 document.getElementById("question3").appendChild(question3);
             }
-        }
-
-        for(i=4; i<8; i++) {
-            //question4-7 id取得
-            document.getElementById("question"+i).innerHTML = "";
-            if(i == 4) {
+            else if(i == 4) {
                 var question4 = document.createElement("span");
-                question4.innerText = Qnum[i];
-                if(a[i] % 2 == 0) {
-                    question4.style.backgroundColor = "black";
-                    question4.style.color = "white";
+                if(hide[0] == i || hide[1] == i) {
+                    question4.innerText = "*";
+                    if(a[i] % 2 == 0) {
+                        question4.style.backgroundColor = "black";
+                        question4.style.color = "white";
+                    }
+                    else if(a[i] % 2 == 1) {
+                        question4.style.backgroundColor = "white";
+                    }  
+                    question4.ondragover = dragOverNumber;
+                    question4.ondrop = dropNumber;
                 }
-                else if(a[i] % 2 == 1) {
-                    question4.style.backgroundColor = "white";
+                else {
+                    question4.innerText = Qnum[i];
+                    if(a[i] % 2 == 0) {
+                        question4.style.backgroundColor = "black";
+                        question4.style.color = "white";
+                    }
+                    else if(a[i] % 2 == 1) {
+                        question4.style.backgroundColor = "white";
+                    }    
                 }
                 document.getElementById("question4").appendChild(question4);
             }
             else if(i == 5) {
                 var question5 = document.createElement("span");
-                question5.innerText = Qnum[i];
-                if(a[i] % 2 == 0) {
-                    question5.style.backgroundColor = "black";
-                    question5.style.color = "white";
+                if(hide[0] == i || hide[1] == i) {
+                    question5.innerText = "*";
+                    if(a[i] % 2 == 0) {
+                        question5.style.backgroundColor = "black";
+                        question5.style.color = "white";
+                    }
+                    else if(a[i] % 2 == 1) {
+                        question5.style.backgroundColor = "white";
+                    }  
+                    question5.ondragover = dragOverNumber;
+                    question5.ondrop = dropNumber;
                 }
-                else if(a[i] % 2 == 1) {
-                    question5.style.backgroundColor = "white";
+                else {
+                    question5.innerText = Qnum[i];
+                    if(a[i] % 2 == 0) {
+                        question5.style.backgroundColor = "black";
+                        question5.style.color = "white";
+                    }
+                    else if(a[i] % 2 == 1) {
+                        question5.style.backgroundColor = "white";
+                    }    
                 }
                 document.getElementById("question5").appendChild(question5);
             }
             else if(i == 6) {
                 var question6 = document.createElement("span");
-                question6.innerText = Qnum[i];
-                if(a[i] % 2 == 0) {
-                    question6.style.backgroundColor = "black";
-                    question6.style.color = "white";
+                if(hide[0] == i || hide[1] == i) {
+                    question6.innerText = "*";
+                    if(a[i] % 2 == 0) {
+                        question6.style.backgroundColor = "black";
+                        question6.style.color = "white";
+                    }
+                    else if(a[i] % 2 == 1) {
+                        question6.style.backgroundColor = "white";
+                    }  
+                    question6.ondragover = dragOverNumber;
+                    question6.ondrop = dropNumber;
                 }
-                else if(a[i] % 2 == 1) {
-                    question6.style.backgroundColor = "white";
+                else {
+                    question6.innerText = Qnum[i];
+                    if(a[i] % 2 == 0) {
+                        question6.style.backgroundColor = "black";
+                        question6.style.color = "white";
+                    }
+                    else if(a[i] % 2 == 1) {
+                        question6.style.backgroundColor = "white";
+                    }    
                 }
                 document.getElementById("question6").appendChild(question6);
             }
-            else if(i == 7){
+            else if(i == 7) {
                 var question7 = document.createElement("span");
-                question7.innerText = Qnum[i];
-                if(a[i] % 2 == 0) {
-                    question7.style.backgroundColor = "black";
-                    question7.style.color = "white";
+                if(hide[0] == i || hide[1] == i) {
+                    question7.innerText = "*";
+                    if(a[i] % 2 == 0) {
+                        question7.style.backgroundColor = "black";
+                        question7.style.color = "white";
+                    }
+                    else if(a[i] % 2 == 1) {
+                        question7.style.backgroundColor = "white";
+                    }  
+                    question7.ondragover = dragOverNumber;
+                    question7.ondrop = dropNumber;
                 }
-                else if(a[i] % 2 == 1) {
-                    question7.style.backgroundColor = "white";
+                else {
+                    question7.innerText = Qnum[i];
+                    if(a[i] % 2 == 0) {
+                        question7.style.backgroundColor = "black";
+                        question7.style.color = "white";
+                    }
+                    else if(a[i] % 2 == 1) {
+                        question7.style.backgroundColor = "white";
+                    }    
                 }
                 document.getElementById("question7").appendChild(question7);
+            }
+        }
+
+        for(i=8; i<16; i++) {
+            //question8-16 id取得
+            document.getElementById("question"+i).innerHTML = "";
+            if(i == 8) {
+                var question8 = document.createElement("span");
+                question8.innerText = Qnum[i];
+                if(a[i] % 2 == 0) {
+                    question8.style.backgroundColor = "black";
+                    question8.style.color = "white";
+                }
+                else if(a[i] % 2 == 1) {
+                    question8.style.backgroundColor = "white";
+                }
+                document.getElementById("question8").appendChild(question8);
+            }
+            else if(i == 9) {
+                var question9 = document.createElement("span");
+                question9.innerText = Qnum[i];
+                if(a[i] % 2 == 0) {
+                    question9.style.backgroundColor = "black";
+                    question9.style.color = "white";
+                }
+                else if(a[i] % 2 == 1) {
+                    question9.style.backgroundColor = "white";
+                }
+                document.getElementById("question9").appendChild(question9);
+            }
+            else if(i == 10) {
+                var question10 = document.createElement("span");
+                question10.innerText = Qnum[i];
+                if(a[i] % 2 == 0) {
+                    question10.style.backgroundColor = "black";
+                    question10.style.color = "white";
+                }
+                else if(a[i] % 2 == 1) {
+                    question10.style.backgroundColor = "white";
+                }
+                document.getElementById("question10").appendChild(question10);
+            }
+            else if(i == 11){
+                var question11 = document.createElement("span");
+                question11.innerText = Qnum[i];
+                if(a[i] % 2 == 0) {
+                    question11.style.backgroundColor = "black";
+                    question11.style.color = "white";
+                }
+                else if(a[i] % 2 == 1) {
+                    question11.style.backgroundColor = "white";
+                }
+                document.getElementById("question11").appendChild(question11);
+            }
+            else if(i == 12){
+                var question12 = document.createElement("span");
+                question12.innerText = Qnum[i];
+                if(a[i] % 2 == 0) {
+                    question12.style.backgroundColor = "black";
+                    question12.style.color = "white";
+                }
+                else if(a[i] % 2 == 1) {
+                    question12.style.backgroundColor = "white";
+                }
+                document.getElementById("question12").appendChild(question12);
+            }
+            else if(i == 13){
+                var question13 = document.createElement("span");
+                question13.innerText = Qnum[i];
+                if(a[i] % 2 == 0) {
+                    question13.style.backgroundColor = "black";
+                    question13.style.color = "white";
+                }
+                else if(a[i] % 2 == 1) {
+                    question13.style.backgroundColor = "white";
+                }
+                document.getElementById("question13").appendChild(question13);
+            }
+            else if(i == 14){
+                var question14 = document.createElement("span");
+                question14.innerText = Qnum[i];
+                if(a[i] % 2 == 0) {
+                    question14.style.backgroundColor = "black";
+                    question14.style.color = "white";
+                }
+                else if(a[i] % 2 == 1) {
+                    question14.style.backgroundColor = "white";
+                }
+                document.getElementById("question14").appendChild(question14);
+            }
+            else if(i == 15){
+                var question15 = document.createElement("span");
+                question15.innerText = Qnum[i];
+                if(a[i] % 2 == 0) {
+                    question15.style.backgroundColor = "black";
+                    question15.style.color = "white";
+                }
+                else if(a[i] % 2 == 1) {
+                    question15.style.backgroundColor = "white";
+                }
+                document.getElementById("question15").appendChild(question15);
             }
         }
     }
@@ -368,7 +520,7 @@
             }
         }
     }
-  </script>
+</script>
   <style>
     span {
         margin: 5px;
@@ -386,6 +538,14 @@
     #question5 {font-size: 60px;}
     #question6 {font-size: 60px;}
     #question7 {font-size: 60px;}
+    #question8 {font-size: 60px;}
+    #question9 {font-size: 60px;}
+    #question10 {font-size: 60px;}
+    #question11 {font-size: 60px;}
+    #question12 {font-size: 60px;}
+    #question13 {font-size: 60px;}
+    #question14 {font-size: 60px;}
+    #question15 {font-size: 60px;}
     .black {background-color: #000000;}
     .white {background-color: #FFFFFF;}
     .green {background-color: green;}
@@ -394,25 +554,33 @@
     {{ template "navibar" . }}
     <div class="container">
       <!-- この下にコンテンツを作成してください -->
-      <h1>アルゴ</h1>
-      <hr>
-      <div id="number"></div>
-      <hr>↓Drag &amp; Drop
-      <div>
-          <p id="question0"></p>
-          <p id="question1"></p>
-          <p id="question2"></p>
-          <p id="question3"></p>
-      </div>
-      <div>
-          <p id="question4"></p>
-          <p id="question5"></p>
-          <p id="question6"></p>
-          <p id="question7"></p>
-      </div>
-      <hr>
-      <input type="button" value="判定" onclick="check()">
-      <hr>
+      <h1>詰めアルゴ</h1>
+        <hr>
+        <div id="number"></div>
+        <hr>↓Drag &amp; Drop
+        <div>
+            <p id="question0"></p>
+            <p id="question1"></p>
+            <p id="question2"></p>
+            <p id="question3"></p>
+            <p id="question4"></p>
+            <p id="question5"></p>
+            <p id="question6"></p>
+            <p id="question7"></p>
+        </div>
+        <div>
+            <p id="question8"></p>
+            <p id="question9"></p>
+            <p id="question10"></p>
+            <p id="question11"></p>
+            <p id="question12"></p>
+            <p id="question13"></p>
+            <p id="question14"></p>
+            <p id="question15"></p>
+        </div>
+        <hr>
+        <input type="button" value="判定" onclick="check()">
+        <hr>
   </body>
 </html>
 {{ end }}
