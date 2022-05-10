@@ -1,44 +1,44 @@
-version: '3'
+version: "3"
 services:
-    go:
-        image: server
-        environment:
-            MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
-            MYSQL_DATABASE: "${MYSQL_DATABASE}"
-            MYSQL_USER: "${MYSQL_USER}"
-            MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
-            PROTOCOL: "${PROTOCOL}"
-        build:
-            context: .
-            dockerfile: ./go/Dockerfile
-        command: /bin/sh -c "go run main.go"
-        stdin_open: true
-        tty: true
-        volumes:
-            - ./go/api:/backend
-        ports: 
-            - "8080:8080"
-        depends_on:
-            - "db"
+  go:
+    image: server
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
+      MYSQL_USER: "${MYSQL_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+      PROTOCOL: "${PROTOCOL}"
+    build:
+      context: .
+      dockerfile: ./go/Dockerfile
+    command: /bin/sh -c "go run main.go"
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./go/api:/backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - "db"
 
-    db:
-        container_name: db
-        image: mysql:8.0
-        environment:
-            MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
-            MYSQL_DATABASE: "${MYSQL_DATABASE}"
-            MYSQL_USER: "${MYSQL_USER}"
-            MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
-            TZ: 'Asia/Tokyo'
-        command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-        volumes:
-            # - ./mysql/init:/docker-entrypoint-initdb.d
-            - ./mysql/data:/var/lib/mysql
-            - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
-        ports:
-            - 3306:3306
-        platform: linux/x86_64
+  db:
+    container_name: db
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
+      MYSQL_USER: "${MYSQL_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+      TZ: "Asia/Tokyo"
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      # - ./mysql/init:/docker-entrypoint-initdb.d
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+    ports:
+      - 3306:3306
+    platform: linux/x86_64
 
 volumes:
-    db-data:
-        driver: local
+  db-data:
+    driver: local

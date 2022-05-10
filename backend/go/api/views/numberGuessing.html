@@ -1,12 +1,34 @@
-{{ define "index"}}
+{{ define "numberGuessing"}}
 <!DOCTYPE html>
 <html lang="ja-jp">
-  {{ template "header" . }}
-  <body>
+  <head>
+    {{ template "header" . }}
+    <script src="static/js/numberGuessing.js"></script>
+    <link rel="stylesheet" href="static/css/numberGuessing.css">
+  </head>
+  <body onload="init()">
     {{ template "navibar" . }}
     <div class="container">
       <!-- この下にコンテンツを作成してください -->
-    </div>
+      <h1>アルゴ</h1>
+      <hr>
+      <div id="number"></div>
+      <hr>↓Drag &amp; Drop
+      <div>
+        <p id="question0"></p>
+        <p id="question1"></p>
+        <p id="question2"></p>
+        <p id="question3"></p>
+      </div>
+      <div>
+        <p id="question4"></p>
+        <p id="question5"></p>
+        <p id="question6"></p>
+        <p id="question7"></p>
+      </div>
+      <hr>
+      <input type="button" value="判定" onclick="check()">
+      <hr>
   </body>
 </html>
 {{ end }}

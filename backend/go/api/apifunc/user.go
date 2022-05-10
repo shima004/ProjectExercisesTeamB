@@ -19,9 +19,9 @@ func UserGet(c echo.Context) error {
 }
 
 type UserPostParams struct {
-	Email    string `json:"email" validate:"required"`
-	Password string `json:"password" validate:"required"`
-	Name     string `json:"name" validate:"required"`
+	Email    string `json:"email" form:"email" param:"email" validate:"required"`
+	Password string `json:"password" form:"password" param:"password" validate:"required"`
+	Name     string `json:"name" form:"name" param:"name" validate:"required"`
 }
 
 // success: return (json){"message": (string)}
@@ -30,15 +30,18 @@ func UserPost(c echo.Context) error {
 	// 送られてきたJSONを確かめる
 	var params UserPostParams
 	if err := c.Bind(&params); err != nil {
+		println(err.Error())
 		return c.JSON(http.StatusInternalServerError, map[string]interface{}{"message": "パラメータが正しくありません: " + err.Error()})
 	}
 
 	if err := c.Validate(&params); err != nil {
+		println(err.Error())
 		return c.JSON(http.StatusInternalServerError, map[string]interface{}{"message": "パラメータが不足しています: " + err.Error()})
 	}
 
 	// 送られてきたデータを元にDBに登録する
 	if err := dbfunc.PostUser(params.Email, params.Password, params.Name); err != nil {
+		println(err.Error())
 		return c.JSON(http.StatusInternalServerError, map[string]interface{}{"message": "データベースへの登録に失敗しました:" + err.Error()})
 	}
 
