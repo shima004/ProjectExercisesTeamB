@@ -76,3 +76,72 @@ h1 {
 .top{
     text-align: center;
 }
+
+div {
+    width: 200px;
+    /*background: rgb(255, 255, 255);*/
+}
+
+.coin {
+    margin-left: auto;
+    text-align: center; 
+    width:  100px;               /* 幅指定 */
+    height: 35px;                /* 高さ指定 */
+    font-size: 14px;
+}
+
+/*.temoti {
+    margin-left: auto;
+    text-align: center; 
+    width:  110px;               /* 幅指定 */
+   /* height: 35px;                /* 高さ指定 */
+   /* font-size: 14px;
+}*/
+
+
+.hann {
+    text-align: center;
+    padding: 0.5em;/*文字周りの余白*/
+    font-size: 20px;
+    border-color: #000000 #fff #fff #000000;
+    bottom: 0;
+    right: 0;
+}
+
+.koin{
+    width:  100px;               /* 幅指定 */
+    height: 35px;                /* 高さ指定 */
+    font-size: 14px;
+}
+
+
+.button {
+     font-size:20px;
+     margin:0;
+     padding:0;
+     border-radius:8px;
+     padding:0.3em 0.3em;
+     text-align: center;
+}
+
+.top{
+    text-align: center;
+}
+
+.bet {
+    text-align: center;
+    padding: 0.5em;/*文字周りの余白*/
+    font-size: 20px;
+    border-color: #000000 #fff #fff #000000;
+    bottom: 0;
+    right: 0;
+}
+
+.startt{
+    text-align: center;
+    padding: 0.5em;/*文字周りの余白*/
+    font-size: 20px;
+    border-color: #000000 #fff #fff #000000;
+    bottom: 0;
+    right: 0;
+}
