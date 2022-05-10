@@ -1,40 +1,75 @@
 {{ define "navibar" }}
+
+<link rel="stylesheet" href="/static/css/navibar.css" />
 <!-- ナビバー -->
-<nav class="navbar navbar-expand-md navbar-light bg-light">
+<nav class="navbar navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">TeamB</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <div class="d-flex">
-          <li>
-            <a class="btn btn-outline-primary" href="#">Sign Up</a>
-          </li>
-          <li>
-            <a class="btn btn-outline-primary" href="#">Sign In</a>
-          </li>
-          <li>
-            <a class="btn btn-outline-danger" href="#">Sign out</a>
-          </li>
-        </div>
-      </ul>
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">BGamesプロジェクト {{ .Title }}</a>
+      <span class="navbar-brand" id="coin"></span>
+    </div>
+    <div class="navbar-brand">
+      <a
+        class="navbar-brand btn btn-outline-dark"
+        style="display: none"
+        href="/auth/signIn"
+        id="signIn"
+        >Sign in</a
+      >
+      <a
+        class="navbar-brand btn btn-outline-dark"
+        style="display: none"
+        href="/auth/signUp"
+        id="signUp"
+        >Sign up</a
+      >
+      <a
+        class="navbar-brand btn btn-outline-danger"
+        style="display: none"
+        id="signOut"
+        >Sign out</a
+      >
+      <a class="navbar-brand btn btn-outline-danger" id="get">get</a>
     </div>
   </div>
 </nav>
+<script>
+  window.onload = async function () {
+    toggleAuth();
+    var res = await getUser();
+    if (res.coin != undefined) {
+      document.getElementById("coin").innerHTML = "Coin: " + res.coin;
+    } else {
+      document.getElementById("coin").innerHTML = "";
+    }
+  };
+
+  function toggleAuth() {
+    if (getToken() == undefined) {
+      document.getElementById("signOut").style.display = "none";
+      document.getElementById("signIn").style.display = "inline-block";
+      document.getElementById("signUp").style.display = "inline-block";
+    } else {
+      document.getElementById("signOut").style.display = "inline-block";
+      document.getElementById("signIn").style.display = "none";
+      document.getElementById("signUp").style.display = "none";
+    }
+  }
+
+  $(function () {
+    $("#signOut").on("click", function () {
+      var $this = $(this);
+      document.cookie = "token=token; max-age=0";
+      document.getElementById("coin").innerHTML = "";
+      toggleAuth();
+    });
+    $("#get").on("click", async function () {
+      var res = await getUser();
+      if (res.coin != undefined) {
+        document.getElementById("coin").innerHTML = "Coin: " + res.coin;
+      }
+      console.log(res);
+    });
+  });
+</script>
 {{end}}
