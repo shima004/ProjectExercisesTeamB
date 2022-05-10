@@ -11,8 +11,8 @@ import (
 )
 
 type LoginPostParams struct {
-	Email    string `json:"email" validate:"required"`
-	Password string `json:"password" validate:"required"`
+	Email    string `json:"email" form:"email" validate:"required"`
+	Password string `json:"password" form:"password" validate:"required"`
 }
 
 //認証が必要なAPIにアクセスするためトークンを返す
