@@ -9,13 +9,14 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <script src="/static/js/hockey.js"></script>
+    <script src="/static/js/hockey.js" defer></script>
+    <link rel="stylesheet" href="/static/css/hockey.css" />
   </head>
   <body>
     {{ template "navibar" . }}
-    <div class="container">
+    <div id="container">
       <!-- この下にコンテンツを作成してください -->
-      <div id="output"></div>
+      <canvas id="canvas" width="800" height="600"></canvas>
     </div>
   </body>
 </html>

@@ -9,26 +9,9 @@
       <span class="navbar-brand" id="coin"></span>
     </div>
     <div class="navbar-brand">
-      <a
-        class="navbar-brand btn btn-outline-dark"
-        style="display: none"
-        href="/auth/signIn"
-        id="signIn"
-        >Sign in</a
-      >
-      <a
-        class="navbar-brand btn btn-outline-dark"
-        style="display: none"
-        href="/auth/signUp"
-        id="signUp"
-        >Sign up</a
-      >
-      <a
-        class="navbar-brand btn btn-outline-danger"
-        style="display: none"
-        id="signOut"
-        >Sign out</a
-      >
+      <a class="navbar-brand btn btn-outline-dark" style="display: none" href="/auth/signIn" id="signIn">Sign in</a>
+      <a class="navbar-brand btn btn-outline-dark" style="display: none" href="/auth/signUp" id="signUp">Sign up</a>
+      <a class="navbar-brand btn btn-outline-danger" style="display: none" id="signOut">Sign out</a>
       <a class="navbar-brand btn btn-outline-danger" id="get">get</a>
     </div>
   </div>
@@ -36,6 +19,9 @@
 <script>
   window.onload = async function () {
     toggleAuth();
+    if (getToken() == undefined) {
+      return;
+    }
     var res = await getUser();
     if (res.coin != undefined) {
       document.getElementById("coin").innerHTML = "Coin: " + res.coin;

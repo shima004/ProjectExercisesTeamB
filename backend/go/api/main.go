@@ -3,12 +3,12 @@ package main
 import (
 	"ProjectExercises/TeamB/apifunc"
 	"ProjectExercises/TeamB/game"
+	"context"
 	"fmt"
 	"html/template"
 	"io"
 	"log"
 	"net/http"
-	"os"
 
 	"github.com/go-playground/validator"
 	"github.com/labstack/echo/v4"
@@ -36,11 +36,40 @@ func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Con
 	return t.templates.ExecuteTemplate(w, name, data)
 }
 
-func initUrl(e *echo.Echo) {
+func main() {
+	e := echo.New()
+	e.Validator = &CustomValidator{validator: validator.New()}
+	ctx := context.Background()
+
+	roomManager := game.CreateRoomManager(ctx)
+	fmt.Println(roomManager)
+
+	// setting static files
+	e.Static("/static/img", "./static/img")
+	e.Static("/static/css", "./static/css")
+	e.Static("/static/js", "./static/js")
+
+	// setting middleware
+	e.Use(middleware.Logger())
+	e.Use(middleware.Recover())
+	e.Use(middleware.CORS())
+	// e.Use(middleware.BodyDump(func(c echo.Context, reqBody, resBody []byte) {
+	// 	fmt.Fprintf(os.Stderr, "Request: %v\n", string(reqBody))
+	// 	// fmt.Fprintf(os.Stderr, "Header: %v\n", c.Request().Header)
+	// }))
+
+	// setting template engine
+	t := &Template{
+		templates: template.Must(template.ParseGlob("views/*.html")),
+	}
+	e.Renderer = t
+
+	// setting routes
 	requiredAuth := e.Group("")
 
 	requiredAuth.Use(middleware.JWTWithConfig(middleware.JWTConfig{
-		SigningKey: []byte("secret"),
+		SigningKey:  []byte("secret"),
+		TokenLookup: "cookie:token",
 	}))
 
 	// api routes
@@ -70,35 +99,14 @@ func initUrl(e *echo.Echo) {
 	e.GET("/auth/signOut", apifunc.GetSignOut)
 
 	// web socket
-	e.GET("/ws", game.Hello)
-}
-
-func main() {
-	e := echo.New()
-	e.Validator = &CustomValidator{validator: validator.New()}
-
-	// setting static files
-	e.Static("/static/img", "./static/img")
-	e.Static("/static/css", "./static/css")
-	e.Static("/static/js", "./static/js")
-
-	// setting middleware
-	e.Use(middleware.Logger())
-	e.Use(middleware.Recover())
-	e.Use(middleware.CORS())
-	e.Use(middleware.BodyDump(func(c echo.Context, reqBody, resBody []byte) {
-		fmt.Fprintf(os.Stderr, "Request: %v\n", string(reqBody))
-		// fmt.Fprintf(os.Stderr, "Header: %v\n", c.Request().Header)
-	}))
-
-	// setting template engine
-	t := &Template{
-		templates: template.Must(template.ParseGlob("views/*.html")),
-	}
-	e.Renderer = t
-
-	// setting routes
-	initUrl(e)
+	requiredAuth.GET("/ws", func(ctx echo.Context) error {
+		user, err := game.Ws(ctx, roomManager)
+		if err != nil {
+			return err
+		}
+		user.Run()
+		return nil
+	})
 
 	// 8080番ポートで待ち受け
 	e.Logger.Fatal(e.Start(":8080"))
