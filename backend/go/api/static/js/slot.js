@@ -22,10 +22,6 @@
         const music = new Audio('../static/img/sounds_lose.mp3');   //どうしよ
         music.volume = 1;
 
-        let element2 = document.getElementById('temotikoinn');
-        element2.value = '100' + '枚';
-
-
 
         function setImage() {
 
@@ -36,6 +32,9 @@
             stop1 = 0;
             stop2 = 0;
             stop3 = 0;
+
+            let element2 = document.getElementById('temotikoinn');
+            element2.value = '100' + '枚';
 
             var img = ["../static/img/pt1.png", "../static/img/pt2.png", "../static/img/pt3.png", "../static/img/pt4.png", "../static/img/pt5.png"];
 
