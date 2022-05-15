@@ -14,6 +14,7 @@
         var cg3;
 
         const music = new Audio('../img/sounds_lose.mp3');
+        music.volume = 1;
 
 
         function setImage() {
