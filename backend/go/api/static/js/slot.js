@@ -13,7 +13,8 @@
         var cg2;
         var cg3;
 
-        const music = new Audio('../img/sounds_lose.mp3');
+        let audioElm = new Audio('../static/img/sounds_lose.mp3');
+        const music = new Audio('../static/img/sounds_lose.mp3');
         music.volume = 1;
 
 
@@ -82,6 +83,7 @@
                     let element = document.getElementById('hanteii');
                     music.pause()
                     element.value = '~lose(´ω`)~';
+                    audioElm.play();
                 }
             }
         }
@@ -100,6 +102,7 @@
                     let element = document.getElementById('hanteii');
                     music.pause()
                     element.value = '~lose(´ω`)~';
+                    audioElm.play();
                 }
             }
         }
@@ -118,6 +121,7 @@
                     let element = document.getElementById('hanteii');
                     music.pause()
                     element.value = '~lose(´ω`)~';
+                    audioElm.play();
                 }
             }
         }
