@@ -79,6 +79,7 @@
                     element.value = '~WIN!!~';
                 } else {
                     let element = document.getElementById('hanteii');
+                    music.play();
                     element.value = '~lose(´ω`)~';
                 }
             }
@@ -96,6 +97,7 @@
                     element.value = '~WIN!!~';
                 } else {
                     let element = document.getElementById('hanteii');
+                    music.play();
                     element.value = '~lose(´ω`)~';
                 }
             }
@@ -113,6 +115,7 @@
                     element.value = '~WIN!!~';
                 } else {
                     let element = document.getElementById('hanteii');
+                    music.play();
                     element.value = '~lose(´ω`)~';
                 }
             }
