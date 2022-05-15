@@ -401,8 +401,9 @@ function draw() {
             else {
                 x = canvas.width/2;
                 y = canvas.height-30;
-                dx = Math.floor(Math.random()+2);
-                dy = Math.floor(Math.random()+2)*-1;
+                if(dy>=0){
+                    dy = -dy;  
+                }
                 paddleX = (canvas.width-paddleWidth)/2;
             }
         }
