@@ -233,29 +233,23 @@ var x = canvas.width/2;
 var y = canvas.height-30;
 var dx = Math.floor(Math.random()+2);
 var dy = Math.floor(Math.random()+2)*-1;
-var coinRadius = 6;
-var ballRadius = 10;
+var ballRadius = 8;
 var paddleHeight = 10;
 var paddleWidth = 75;
 var paddleX = (canvas.width-paddleWidth)/2;
 var rightPressed = false;
 var leftPressed = false;
-var brickRowCount = 3;
-var brickColumnCount = 5;
-var brickWidth = 75;
+var brickRowCount = 5;
+var brickColumnCount = 7;
+var brickWidth = 60;
 var brickHeight = 20;
 var brickPadding = 10;
 var brickOffsetTop = 30;
-var brickOffsetLeft = 30;
+var brickOffsetLeft = 50;
 var score = 0;
 var lives = 3;
-var Coins = [];
-for(var c=0; c<brickColumnCount; c++) {
-    Coins[c] = [];
-    for(var r=0; r<brickRowCount; r++) {
-        Coins[c][r] = { x: 0, y: 0, status: 1 };
-    }
-}
+var level = 1;
+var breakcount = 0;
 var bricks = [];
 for(var c=0; c<brickColumnCount; c++) {
     bricks[c] = [];
@@ -301,8 +295,9 @@ function collisionDetection() {//衝突判定
                 if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
                     dy = -dy;
                     b.status=0;
-                    score++;
-                    if(score%15==0) {//ブロック復活
+                    breakcount++;
+                    score=score+level;
+                    if(breakcount%(brickRowCount*brickColumnCount)==0) {//ブロック復活
                         for(var c=0;c<brickColumnCount;c++){
                             for(var r=0;r<brickRowCount;r++){
                                 bricks[c][r].status=1;
@@ -311,8 +306,19 @@ function collisionDetection() {//衝突判定
                         if(paddleWidth>20){//パドル大きさ変更
                             paddleWidth=paddleWidth-5;
                         }
-                        if(ballRadius>20){//ボール大きさ変更
-                            ballRadius=ballRadius-5;
+                        level++;
+                        if(paddleWidth>20){//パドル大きさ変更
+                            paddleWidth=paddleWidth-5;
+                        }
+                        if(dx>=0){
+                            dx++;
+                        } else {
+                            dx--;
+                        }
+                        if(dy>=0){
+                            dy++;
+                        } else {
+                            dy--;
                         }
                     }
                 }
@@ -366,28 +372,12 @@ function drawBricks() {
         }
     }
 }
-function drawCoins() {
-    for(var c=0; c<brickColumnCount; c++) {
-        for(var r=0; r<brickRowCount; r++) {
-              var CoinX = (c*(brickWidth+brickPadding))+brickOffsetLeft+brickWidth/2;
-              var CoinY = (r*(brickHeight+brickPadding))+brickOffsetTop+brickHeight/2;
-              Coins[c][r].x = CoinX;
-              Coins[c][r].y = CoinY;
-              ctx.beginPath();
-              ctx.arc(CoinX, CoinY, coinRadius,0, Math.PI*2);
-              ctx.fillStyle = "#ffff00";
-              ctx.fill();
-              ctx.closePath();
-        }
-    }
-}
 
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBricks();
     drawBall();
     drawPaddle();
-    drawCoins();
     drawScore();
     drawLives();
     collisionDetection();
