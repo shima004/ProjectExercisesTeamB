@@ -91,6 +91,9 @@
                     let element = document.getElementById('hanteii');
                     music.pause()
                     element.value = '~lose(´ω`)~';
+
+                    let element2 = document.getElementById('temotikoinn');
+                    element2.value = '100';
                     audioElm.play();
                 }
             }
@@ -110,6 +113,10 @@
                     let element = document.getElementById('hanteii');
                     music.pause()
                     element.value = '~lose(´ω`)~';
+                    
+                    let element2 = document.getElementById('temotikoinn');
+                    element2.value = '100';
+                    
                     audioElm.play();
                 }
             }
@@ -129,6 +136,10 @@
                     let element = document.getElementById('hanteii');
                     music.pause()
                     element.value = '~lose(´ω`)~';
+
+                    let element2 = document.getElementById('temotikoinn');
+                    element2.value = '100';
+
                     audioElm.play();
                 }
             }
