@@ -1045,22 +1045,36 @@
             event.preventDefault();
         }
 
+        var correct = []; //解答確認
         function check() {
-            var correct = []; //解答確認
-            //hide1,2 question0-3 一致確認
+            //hide1,2 question0-7 一致確認
             for(i=0; i<2; i++) {
-                if(hide[i] == 0) {
-                    //question0内を数値変換
-                    Anum[i] = Number(document.getElementById("question0").innerText);
-                }
-                else if(hide[i] == 1) {
-                    Anum[i] = Number(document.getElementById("question1").innerText);
-                }
-                else if(hide[i] == 2) {
-                    Anum[i] = Number(document.getElementById("question2").innerText);
-                }
-                else if(hide[i] == 3) {
-                    Anum[i] = Number(document.getElementById("question3").innerText);
+                switch(hide[i]) {
+                    case 0:
+                        //question0内を数値変換
+                        Anum[i] = Number(document.getElementById("question0").innerText);
+                        break;
+                    case 1:
+                        Anum[i] = Number(document.getElementById("question1").innerText);
+                        break;
+                    case 2:
+                        Anum[i] = Number(document.getElementById("question2").innerText);
+                        break;
+                    case 3:
+                        Anum[i] = Number(document.getElementById("question3").innerText);
+                        break;
+                    case 4:
+                        Anum[i] = Number(document.getElementById("question4").innerText);
+                        break;
+                    case 5:
+                        Anum[i] = Number(document.getElementById("question5").innerText);
+                        break;
+                    case 6:
+                        Anum[i] = Number(document.getElementById("question6").innerText);
+                        break;
+                    case 7:
+                        Anum[i] = Number(document.getElementById("question7").innerText);
+                        break;
                 }
                 // 回答と格納値を比較
                 if(Anum[i] == Qnum[hide[i]]) {
@@ -1078,31 +1092,59 @@
                 alert("OK");
             }
             if(correct[0] == 1) {
-                if(hide[0] == 0) {
-                    question0.className = "green";
-                }
-                else if(hide[0] == 1) {
-                    question1.className = "green";
-                }
-                else if(hide[0] == 2) {
-                    question2.className = "green";
-                }
-                else if(hide[0] == 3) {
-                    question3.className = "green";
+                switch(hide[0]) {
+                    case 0:
+                        question0.className = "green";
+                        break;
+                    case 1:
+                        question1.className = "green";
+                        break;
+                    case 2:
+                        question2.className = "green";
+                        break;
+                    case 3:
+                        question3.className = "green";
+                        break;
+                    case 4:
+                        question4.className = "green";
+                        break;
+                    case 5:
+                        question5.className = "green";
+                        break;
+                    case 6:
+                        question6.className = "green";
+                        break;
+                    case 7:
+                        question7.className = "grren";
+                        break;
                 }
             }
             if(correct[1] == 1) {
-                if(hide[1] == 0) {
-                    question0.className = "green";
-                }
-                else if(hide[1] == 1) {
-                    question1.className = "green";
-                }
-                else if(hide[1] == 2) {
-                    question2.className = "green";
-                }
-                else if(hide[1] == 3) {
-                    question3.className = "green";
+                switch(hide[1]) {
+                    case 0:
+                        question0.className = "green";
+                        break;
+                    case 1:
+                        question1.className = "green";
+                        break;
+                    case 2:
+                        question2.className = "green";
+                        break;
+                    case 3:
+                        question3.className = "green";
+                        break;
+                    case 4:
+                        question4.className = "green";
+                        break;
+                    case 5:
+                        question5.className = "green";
+                        break;
+                    case 6:
+                        question6.className = "green";
+                        break;
+                    case 7:
+                        question7.className = "grren";
+                        break;
                 }
             }
         }
