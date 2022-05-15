@@ -13,9 +13,18 @@
         var cg2;
         var cg3;
 
-        let audioElm = new Audio('../static/img/sounds_lose.mp3');
-        const music = new Audio('../static/img/sounds_lose.mp3');
+        var touch = 0;
+        //var 
+
+        //最初はコイン１００で始める（仮）￥
+
+        //let audioElm = new Audio('../static/img/sounds_lose.mp3');　//Chromeでは、自動再生が不可能となっている。
+        const music = new Audio('../static/img/sounds_lose.mp3');   //どうしよ
         music.volume = 1;
+
+        let element2 = document.getElementById('temotikoinn');
+        element2.value = '100' + '枚';
+
 
 
         function setImage() {
