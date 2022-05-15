@@ -13,6 +13,8 @@
         var cg2;
         var cg3;
 
+        const music = new Audio('../img/sounds_win.mp3');
+
 
         function setImage() {
 
@@ -73,6 +75,7 @@
             if (stop1 == 1 && stop2 == 1 && stop3 == 1) {
                 if (cg1 == cg2 && cg1 == cg3) {
                     let element = document.getElementById('hanteii');
+                    music.play();
                     element.value = '~WIN!!~';
                 } else {
                     let element = document.getElementById('hanteii');
@@ -89,6 +92,7 @@
             if (stop1 == 1 && stop2 == 1 && stop3 == 1) {
                 if (cg1 == cg2 && cg1 == cg3) {
                     let element = document.getElementById('hanteii');
+                    music.play();
                     element.value = '~WIN!!~';
                 } else {
                     let element = document.getElementById('hanteii');
@@ -105,6 +109,7 @@
             if (stop1 == 1 && stop2 == 1 && stop3 == 1) {
                 if (cg1 == cg2 && cg1 == cg3) {
                     let element = document.getElementById('hanteii');
+                    music.play();
                     element.value = '~WIN!!~';
                 } else {
                     let element = document.getElementById('hanteii');
