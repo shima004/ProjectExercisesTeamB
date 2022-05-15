@@ -595,9 +595,8 @@
         var hide = new Array(2); //＊表示箇所
         var a = new Array(16); //B or W
 
-        // function init() {
+        //function init() {
             document.getElementById("number").innerHTML="";
-            console.log("onload")
             for(var i=0;i<12;i++) {
                 var number = document.createElement("span");
                 number.innerText = i;
@@ -659,7 +658,7 @@
             }
             var tmp1; //Qnum一時保管
             var tmp2; //a(B or W)一時保管
-            //ソート(0-3)
+            //ソート(0-7)
             for(i=0; i<8; i++) {
                 for(j=0; j<8; j++) {
                     //数字
@@ -684,7 +683,7 @@
                     }
                 }
             }
-            //ソート（4-7)
+            //ソート（8-15)
             for(i=8; i<16; i++) {
                 for(j=8; j<16; j++) {
                     //数字
@@ -712,322 +711,325 @@
             for(i=0; i<8; i++) {
                 //question0-3 id取得
                 document.getElementById("question"+i).innerHTML = "";
-                //question0
-                if(i == 0) {
-                    var question0 = document.createElement("span");
-                    //*表示箇所確認
-                    if(hide[0] == i || hide[1] == i) {
-                        question0.innerText = "*";
-                        //B or W
-                        if(a[i] % 2 == 0) {
-                            question0.style.backgroundColor = "black";
-                            question0.style.color = "white";
+                switch(i) {
+                    case 0:
+                        var question0 = document.createElement("span");
+                        //*表示箇所確認
+                        if(hide[0] == i || hide[1] == i) {
+                            question0.innerText = "*";
+                            //B or W
+                            if(a[i] % 2 == 0) {
+                                question0.style.backgroundColor = "black";
+                                question0.style.color = "white";
+                            }
+                            else if(a[i] % 2 == 1) {
+                                question0.style.backgroundColor = "white";
+                            }  
+                            question0.ondragover = dragOverNumber;
+                            question0.ondrop = dropNumber;
                         }
-                        else if(a[i] % 2 == 1) {
-                            question0.style.backgroundColor = "white";
-                        }  
-                        question0.ondragover = dragOverNumber;
-                        question0.ondrop = dropNumber;
-                    }
-                    //数字表示
-                    else {
-                        question0.innerText = Qnum[i]; //数字
-                        //B or W
-                        if(a[i] % 2 == 0) {
-                            question0.style.backgroundColor = "black";
-                            question0.style.color = "white";
+                        //数字表示
+                        else {
+                            question0.innerText = Qnum[i]; //数字
+                            //B or W
+                            if(a[i] % 2 == 0) {
+                                question0.style.backgroundColor = "black";
+                                question0.style.color = "white";
+                            }
+                            else if(a[i] % 2 == 1) {
+                                question0.style.backgroundColor = "white";
+                            }    
                         }
-                        else if(a[i] % 2 == 1) {
-                            question0.style.backgroundColor = "white";
-                        }    
-                    }
-                    document.getElementById("question0").appendChild(question0);
-                }
-                else if(i == 1) {
-                    var question1 = document.createElement("span");
-                    if(hide[0] == i || hide[1] == i) {
-                        question1.innerText = "*";
-                        if(a[i] % 2 == 0) {
-                            question1.style.backgroundColor = "black";
-                            question1.style.color = "white";
+                        document.getElementById("question0").appendChild(question0);
+                        break;
+                    case 1:
+                        var question1 = document.createElement("span");
+                        if(hide[0] == i || hide[1] == i) {
+                            question1.innerText = "*";
+                            if(a[i] % 2 == 0) {
+                                question1.style.backgroundColor = "black";
+                                question1.style.color = "white";
+                            }
+                            else if(a[i] % 2 == 1) {
+                                question1.style.backgroundColor = "white";
+                            }  
+                            question1.ondragover = dragOverNumber;
+                            question1.ondrop = dropNumber;
                         }
-                        else if(a[i] % 2 == 1) {
-                            question1.style.backgroundColor = "white";
-                        }  
-                        question1.ondragover = dragOverNumber;
-                        question1.ondrop = dropNumber;
-                    }
-                    else {
-                        question1.innerText = Qnum[i];
-                        if(a[i] % 2 == 0) {
-                            question1.style.backgroundColor = "black";
-                            question1.style.color = "white";
+                        else {
+                            question1.innerText = Qnum[i];
+                            if(a[i] % 2 == 0) {
+                                question1.style.backgroundColor = "black";
+                                question1.style.color = "white";
+                            }
+                            else if(a[i] % 2 == 1) {
+                                question1.style.backgroundColor = "white";
+                            }    
                         }
-                        else if(a[i] % 2 == 1) {
-                            question1.style.backgroundColor = "white";
-                        }    
-                    }
-                    document.getElementById("question1").appendChild(question1);
-                }
-                else if(i == 2) {
-                    var question2 = document.createElement("span");
-                    if(hide[0] == i || hide[1] == i) {
-                        question2.innerText = "*";
-                        if(a[i] % 2 == 0) {
-                            question2.style.backgroundColor = "black";
-                            question2.style.color = "white";
+                        document.getElementById("question1").appendChild(question1);
+                        break;
+                    case 2:
+                        var question2 = document.createElement("span");
+                        if(hide[0] == i || hide[1] == i) {
+                            question2.innerText = "*";
+                            if(a[i] % 2 == 0) {
+                                question2.style.backgroundColor = "black";
+                                question2.style.color = "white";
+                            }
+                            else if(a[i] % 2 == 1) {
+                                question2.style.backgroundColor = "white";
+                            }  
+                            question2.ondragover = dragOverNumber;
+                            question2.ondrop = dropNumber;
                         }
-                        else if(a[i] % 2 == 1) {
-                            question2.style.backgroundColor = "white";
-                        }  
-                        question2.ondragover = dragOverNumber;
-                        question2.ondrop = dropNumber;
-                    }
-                    else {
-                        question2.innerText = Qnum[i]; 
-                        if(a[i] % 2 == 0) {
-                            question2.style.backgroundColor = "black";
-                            question2.style.color = "white";
+                        else {
+                            question2.innerText = Qnum[i]; 
+                            if(a[i] % 2 == 0) {
+                                question2.style.backgroundColor = "black";
+                                question2.style.color = "white";
+                            }
+                            else if(a[i] % 2 == 1) {
+                                question2.style.backgroundColor = "white";
+                            }   
                         }
-                        else if(a[i] % 2 == 1) {
-                            question2.style.backgroundColor = "white";
-                        }   
-                    }
-                    document.getElementById("question2").appendChild(question2);
-                }
-                else if(i == 3){
-                    var question3 = document.createElement("span");
-                    if(hide[0] == i || hide[1] == i) {
-                        question3.innerText = "*";
-                        if(a[i] % 2 == 0) {
-                            question3.style.backgroundColor = "black";
-                            question3.style.color = "white";
+                        document.getElementById("question2").appendChild(question2);
+                        break;
+                    case 3:
+                        var question3 = document.createElement("span");
+                        if(hide[0] == i || hide[1] == i) {
+                            question3.innerText = "*";
+                            if(a[i] % 2 == 0) {
+                                question3.style.backgroundColor = "black";
+                                question3.style.color = "white";
+                            }
+                            else if(a[i] % 2 == 1) {
+                                question3.style.backgroundColor = "white";
+                            }  
+                            question3.ondragover = dragOverNumber;
+                            question3.ondrop = dropNumber;
                         }
-                        else if(a[i] % 2 == 1) {
-                            question3.style.backgroundColor = "white";
-                        }  
-                        question3.ondragover = dragOverNumber;
-                        question3.ondrop = dropNumber;
-                    }
-                    else {
-                        question3.innerText = Qnum[i];
-                        if(a[i] % 2 == 0) {
-                            question3.style.backgroundColor = "black";
-                            question3.style.color = "white";
+                        else {
+                            question3.innerText = Qnum[i];
+                            if(a[i] % 2 == 0) {
+                                question3.style.backgroundColor = "black";
+                                question3.style.color = "white";
+                            }
+                            else if(a[i] % 2 == 1) {
+                                question3.style.backgroundColor = "white";
+                            }    
                         }
-                        else if(a[i] % 2 == 1) {
-                            question3.style.backgroundColor = "white";
-                        }    
-                    }
-                    document.getElementById("question3").appendChild(question3);
-                }
-                else if(i == 4) {
-                    var question4 = document.createElement("span");
-                    if(hide[0] == i || hide[1] == i) {
-                        question4.innerText = "*";
-                        if(a[i] % 2 == 0) {
-                            question4.style.backgroundColor = "black";
-                            question4.style.color = "white";
+                        document.getElementById("question3").appendChild(question3);
+                        break;
+                    case 4:
+                        var question4 = document.createElement("span");
+                        if(hide[0] == i || hide[1] == i) {
+                            question4.innerText = "*";
+                            if(a[i] % 2 == 0) {
+                                question4.style.backgroundColor = "black";
+                                question4.style.color = "white";
+                            }
+                            else if(a[i] % 2 == 1) {
+                                question4.style.backgroundColor = "white";
+                            }  
+                            question4.ondragover = dragOverNumber;
+                            question4.ondrop = dropNumber;
                         }
-                        else if(a[i] % 2 == 1) {
-                            question4.style.backgroundColor = "white";
-                        }  
-                        question4.ondragover = dragOverNumber;
-                        question4.ondrop = dropNumber;
-                    }
-                    else {
-                        question4.innerText = Qnum[i];
-                        if(a[i] % 2 == 0) {
-                            question4.style.backgroundColor = "black";
-                            question4.style.color = "white";
+                        else {
+                            question4.innerText = Qnum[i];
+                            if(a[i] % 2 == 0) {
+                                question4.style.backgroundColor = "black";
+                                question4.style.color = "white";
+                            }
+                            else if(a[i] % 2 == 1) {
+                                question4.style.backgroundColor = "white";
+                            }    
                         }
-                        else if(a[i] % 2 == 1) {
-                            question4.style.backgroundColor = "white";
-                        }    
-                    }
-                    document.getElementById("question4").appendChild(question4);
-                }
-                else if(i == 5) {
-                    var question5 = document.createElement("span");
-                    if(hide[0] == i || hide[1] == i) {
-                        question5.innerText = "*";
-                        if(a[i] % 2 == 0) {
-                            question5.style.backgroundColor = "black";
-                            question5.style.color = "white";
+                        document.getElementById("question4").appendChild(question4);
+                        break;
+                    case 5:
+                        var question5 = document.createElement("span");
+                        if(hide[0] == i || hide[1] == i) {
+                            question5.innerText = "*";
+                            if(a[i] % 2 == 0) {
+                                question5.style.backgroundColor = "black";
+                                question5.style.color = "white";
+                            }
+                            else if(a[i] % 2 == 1) {
+                                question5.style.backgroundColor = "white";
+                            }  
+                            question5.ondragover = dragOverNumber;
+                            question5.ondrop = dropNumber;
                         }
-                        else if(a[i] % 2 == 1) {
-                            question5.style.backgroundColor = "white";
-                        }  
-                        question5.ondragover = dragOverNumber;
-                        question5.ondrop = dropNumber;
-                    }
-                    else {
-                        question5.innerText = Qnum[i];
-                        if(a[i] % 2 == 0) {
-                            question5.style.backgroundColor = "black";
-                            question5.style.color = "white";
+                        else {
+                            question5.innerText = Qnum[i];
+                            if(a[i] % 2 == 0) {
+                                question5.style.backgroundColor = "black";
+                                question5.style.color = "white";
+                            }
+                            else if(a[i] % 2 == 1) {
+                                question5.style.backgroundColor = "white";
+                            }    
                         }
-                        else if(a[i] % 2 == 1) {
-                            question5.style.backgroundColor = "white";
-                        }    
-                    }
-                    document.getElementById("question5").appendChild(question5);
-                }
-                else if(i == 6) {
-                    var question6 = document.createElement("span");
-                    if(hide[0] == i || hide[1] == i) {
-                        question6.innerText = "*";
-                        if(a[i] % 2 == 0) {
-                            question6.style.backgroundColor = "black";
-                            question6.style.color = "white";
+                        document.getElementById("question5").appendChild(question5);
+                        break;
+                    case 6:
+                        var question6 = document.createElement("span");
+                        if(hide[0] == i || hide[1] == i) {
+                            question6.innerText = "*";
+                            if(a[i] % 2 == 0) {
+                                question6.style.backgroundColor = "black";
+                                question6.style.color = "white";
+                            }
+                            else if(a[i] % 2 == 1) {
+                                question6.style.backgroundColor = "white";
+                            }  
+                            question6.ondragover = dragOverNumber;
+                            question6.ondrop = dropNumber;
                         }
-                        else if(a[i] % 2 == 1) {
-                            question6.style.backgroundColor = "white";
-                        }  
-                        question6.ondragover = dragOverNumber;
-                        question6.ondrop = dropNumber;
-                    }
-                    else {
-                        question6.innerText = Qnum[i];
-                        if(a[i] % 2 == 0) {
-                            question6.style.backgroundColor = "black";
-                            question6.style.color = "white";
+                        else {
+                            question6.innerText = Qnum[i];
+                            if(a[i] % 2 == 0) {
+                                question6.style.backgroundColor = "black";
+                                question6.style.color = "white";
+                            }
+                            else if(a[i] % 2 == 1) {
+                                question6.style.backgroundColor = "white";
+                            }    
                         }
-                        else if(a[i] % 2 == 1) {
-                            question6.style.backgroundColor = "white";
-                        }    
-                    }
-                    document.getElementById("question6").appendChild(question6);
-                }
-                else if(i == 7) {
-                    var question7 = document.createElement("span");
-                    if(hide[0] == i || hide[1] == i) {
-                        question7.innerText = "*";
-                        if(a[i] % 2 == 0) {
-                            question7.style.backgroundColor = "black";
-                            question7.style.color = "white";
+                        document.getElementById("question6").appendChild(question6);
+                        break;
+                    case 7:
+                        var question7 = document.createElement("span");
+                        if(hide[0] == i || hide[1] == i) {
+                            question7.innerText = "*";
+                            if(a[i] % 2 == 0) {
+                                question7.style.backgroundColor = "black";
+                                question7.style.color = "white";
+                            }
+                            else if(a[i] % 2 == 1) {
+                                question7.style.backgroundColor = "white";
+                            }  
+                            question7.ondragover = dragOverNumber;
+                            question7.ondrop = dropNumber;
                         }
-                        else if(a[i] % 2 == 1) {
-                            question7.style.backgroundColor = "white";
-                        }  
-                        question7.ondragover = dragOverNumber;
-                        question7.ondrop = dropNumber;
-                    }
-                    else {
-                        question7.innerText = Qnum[i];
-                        if(a[i] % 2 == 0) {
-                            question7.style.backgroundColor = "black";
-                            question7.style.color = "white";
+                        else {
+                            question7.innerText = Qnum[i];
+                            if(a[i] % 2 == 0) {
+                                question7.style.backgroundColor = "black";
+                                question7.style.color = "white";
+                            }
+                            else if(a[i] % 2 == 1) {
+                                question7.style.backgroundColor = "white";
+                            }    
                         }
-                        else if(a[i] % 2 == 1) {
-                            question7.style.backgroundColor = "white";
-                        }    
-                    }
-                    document.getElementById("question7").appendChild(question7);
+                        document.getElementById("question7").appendChild(question7);
+                        break;
                 }
             }
 
             for(i=8; i<16; i++) {
                 //question8-16 id取得
                 document.getElementById("question"+i).innerHTML = "";
-                if(i == 8) {
-                    var question8 = document.createElement("span");
-                    question8.innerText = Qnum[i];
-                    if(a[i] % 2 == 0) {
-                        question8.style.backgroundColor = "black";
-                        question8.style.color = "white";
-                    }
-                    else if(a[i] % 2 == 1) {
-                        question8.style.backgroundColor = "white";
-                    }
-                    document.getElementById("question8").appendChild(question8);
-                }
-                else if(i == 9) {
-                    var question9 = document.createElement("span");
-                    question9.innerText = Qnum[i];
-                    if(a[i] % 2 == 0) {
-                        question9.style.backgroundColor = "black";
-                        question9.style.color = "white";
-                    }
-                    else if(a[i] % 2 == 1) {
-                        question9.style.backgroundColor = "white";
-                    }
-                    document.getElementById("question9").appendChild(question9);
-                }
-                else if(i == 10) {
-                    var question10 = document.createElement("span");
-                    question10.innerText = Qnum[i];
-                    if(a[i] % 2 == 0) {
-                        question10.style.backgroundColor = "black";
-                        question10.style.color = "white";
-                    }
-                    else if(a[i] % 2 == 1) {
-                        question10.style.backgroundColor = "white";
-                    }
-                    document.getElementById("question10").appendChild(question10);
-                }
-                else if(i == 11){
-                    var question11 = document.createElement("span");
-                    question11.innerText = Qnum[i];
-                    if(a[i] % 2 == 0) {
-                        question11.style.backgroundColor = "black";
-                        question11.style.color = "white";
-                    }
-                    else if(a[i] % 2 == 1) {
-                        question11.style.backgroundColor = "white";
-                    }
-                    document.getElementById("question11").appendChild(question11);
-                }
-                else if(i == 12){
-                    var question12 = document.createElement("span");
-                    question12.innerText = Qnum[i];
-                    if(a[i] % 2 == 0) {
-                        question12.style.backgroundColor = "black";
-                        question12.style.color = "white";
-                    }
-                    else if(a[i] % 2 == 1) {
-                        question12.style.backgroundColor = "white";
-                    }
-                    document.getElementById("question12").appendChild(question12);
-                }
-                else if(i == 13){
-                    var question13 = document.createElement("span");
-                    question13.innerText = Qnum[i];
-                    if(a[i] % 2 == 0) {
-                        question13.style.backgroundColor = "black";
-                        question13.style.color = "white";
-                    }
-                    else if(a[i] % 2 == 1) {
-                        question13.style.backgroundColor = "white";
-                    }
-                    document.getElementById("question13").appendChild(question13);
-                }
-                else if(i == 14){
-                    var question14 = document.createElement("span");
-                    question14.innerText = Qnum[i];
-                    if(a[i] % 2 == 0) {
-                        question14.style.backgroundColor = "black";
-                        question14.style.color = "white";
-                    }
-                    else if(a[i] % 2 == 1) {
-                        question14.style.backgroundColor = "white";
-                    }
-                    document.getElementById("question14").appendChild(question14);
-                }
-                else if(i == 15){
-                    var question15 = document.createElement("span");
-                    question15.innerText = Qnum[i];
-                    if(a[i] % 2 == 0) {
-                        question15.style.backgroundColor = "black";
-                        question15.style.color = "white";
-                    }
-                    else if(a[i] % 2 == 1) {
-                        question15.style.backgroundColor = "white";
-                    }
-                    document.getElementById("question15").appendChild(question15);
+                switch(i) {
+                    case 8:
+                        var question8 = document.createElement("span");
+                        question8.innerText = Qnum[i];
+                        if(a[i] % 2 == 0) {
+                            question8.style.backgroundColor = "black";
+                            question8.style.color = "white";
+                        }
+                        else if(a[i] % 2 == 1) {
+                            question8.style.backgroundColor = "white";
+                        }
+                        document.getElementById("question8").appendChild(question8);
+                        break;
+                    case 9:
+                        var question9 = document.createElement("span");
+                        question9.innerText = Qnum[i];
+                        if(a[i] % 2 == 0) {
+                            question9.style.backgroundColor = "black";
+                            question9.style.color = "white";
+                        }
+                        else if(a[i] % 2 == 1) {
+                            question9.style.backgroundColor = "white";
+                        }
+                        document.getElementById("question9").appendChild(question9);
+                        break;
+                    case 10:
+                        var question10 = document.createElement("span");
+                        question10.innerText = Qnum[i];
+                        if(a[i] % 2 == 0) {
+                            question10.style.backgroundColor = "black";
+                            question10.style.color = "white";
+                        }
+                        else if(a[i] % 2 == 1) {
+                            question10.style.backgroundColor = "white";
+                        }
+                        document.getElementById("question10").appendChild(question10);
+                        break;
+                    case 11:
+                        var question11 = document.createElement("span");
+                        question11.innerText = Qnum[i];
+                        if(a[i] % 2 == 0) {
+                            question11.style.backgroundColor = "black";
+                            question11.style.color = "white";
+                        }
+                        else if(a[i] % 2 == 1) {
+                            question11.style.backgroundColor = "white";
+                        }
+                        document.getElementById("question11").appendChild(question11);
+                        break;
+                    case 12:
+                        var question12 = document.createElement("span");
+                        question12.innerText = Qnum[i];
+                        if(a[i] % 2 == 0) {
+                            question12.style.backgroundColor = "black";
+                            question12.style.color = "white";
+                        }
+                        else if(a[i] % 2 == 1) {
+                            question12.style.backgroundColor = "white";
+                        }
+                        document.getElementById("question12").appendChild(question12);
+                        break;
+                    case 13:
+                        var question13 = document.createElement("span");
+                        question13.innerText = Qnum[i];
+                        if(a[i] % 2 == 0) {
+                            question13.style.backgroundColor = "black";
+                            question13.style.color = "white";
+                        }
+                        else if(a[i] % 2 == 1) {
+                            question13.style.backgroundColor = "white";
+                        }
+                        document.getElementById("question13").appendChild(question13);
+                        break;
+                    case 14:
+                        var question14 = document.createElement("span");
+                        question14.innerText = Qnum[i];
+                        if(a[i] % 2 == 0) {
+                            question14.style.backgroundColor = "black";
+                            question14.style.color = "white";
+                        }
+                        else if(a[i] % 2 == 1) {
+                            question14.style.backgroundColor = "white";
+                        }
+                        document.getElementById("question14").appendChild(question14);
+                        break;
+                    case 15:
+                        var question15 = document.createElement("span");
+                        question15.innerText = Qnum[i];
+                        if(a[i] % 2 == 0) {
+                            question15.style.backgroundColor = "black";
+                            question15.style.color = "white";
+                        }
+                        else if(a[i] % 2 == 1) {
+                            question15.style.backgroundColor = "white";
+                        }
+                        document.getElementById("question15").appendChild(question15);
+                        break;
                 }
             }
-        // }
+        //}
 
         
 
