@@ -33,8 +33,8 @@
             stop2 = 0;
             stop3 = 0;
 
-            let element2 = document.getElementById('temotikoinn');
-            element2.value = '100' + '枚';
+            let element = document.getElementById('temotikoinn');
+            element.value = '100';
 
             var img = ["../static/img/pt1.png", "../static/img/pt2.png", "../static/img/pt3.png", "../static/img/pt4.png", "../static/img/pt5.png"];
 
