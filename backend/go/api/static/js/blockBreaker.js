@@ -193,7 +193,6 @@
 // }
 
 // // ========================= 01_avoid ==================================
-
 // const TIMER_INTERVAL = 33;
 
 // var gKey = new Uint8Array( 0x100 );
@@ -267,6 +266,7 @@ function mouseMoveHandler(e) {
         paddleX = relativeX - paddleWidth/2;
     }
 }
+
 
 function keyDownHandler(e) {
     if(e.key == "Right" || e.key == "ArrowRight") {
