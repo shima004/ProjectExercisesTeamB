@@ -1,33 +1,16 @@
-// const socket = new WebSocket("ws://localhost:8080/ws", getToken());
+ws = new WebSocket("ws://localhost:8080/ws");
 
-// function sendMessage(event, message, data) {
-//   socket.send(
-//     JSON.stringify({
-//       event: event,
-//       message: message,
-//       data: data,
-//     })
-//   );
-// }
+ws.onopen = function () {
+  console.log("Connected");
+};
 
-// socket.onopen = function (event) {
-//   console.log("open");
-//   // send json message
-//   sendMessage("connection", "world", { test: "test" });
-// };
+ws.onmessage = function (evt) {
+  console.log(evt);
+};
 
-// socket.onmessage = function (event) {
-//   console.log("message");
-//   console.log(event.data);
-// };
-
-// socket.onclose = function (event) {
-//   console.log("close");
-// };
-
-// socket.onerror = function (event) {
-//   console.log("error");
-// };
+setInterval(function () {
+  ws.send("Hello, Server!");
+}, 1000);
 
 canvas = document.getElementById("canvas");
 ctx = canvas.getContext("2d");
@@ -136,7 +119,6 @@ function init() {
 }
 
 function draw() {
-  console.log("draw");
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   if (inputkey === "ArrowLeft" || inputkey === "a") {
     bar1.move(-5);

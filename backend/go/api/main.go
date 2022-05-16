@@ -1,10 +1,10 @@
 package main
 
 import (
+	room "ProjectExercises/TeamB/Room"
 	"ProjectExercises/TeamB/apifunc"
-	"ProjectExercises/TeamB/game"
+	"ProjectExercises/TeamB/dbfunc"
 	"context"
-	"fmt"
 	"html/template"
 	"io"
 	"log"
@@ -40,9 +40,7 @@ func main() {
 	e := echo.New()
 	e.Validator = &CustomValidator{validator: validator.New()}
 	ctx := context.Background()
-
-	roomManager := game.CreateRoomManager(ctx)
-	fmt.Println(roomManager)
+	roomManager := room.CreateRoomManager(ctx)
 
 	// setting static files
 	e.Static("/static/img", "./static/img")
@@ -52,10 +50,10 @@ func main() {
 	// setting middleware
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
-	e.Use(middleware.CORS())
+	// e.Use(middleware.CORS())
 	// e.Use(middleware.BodyDump(func(c echo.Context, reqBody, resBody []byte) {
 	// 	fmt.Fprintf(os.Stderr, "Request: %v\n", string(reqBody))
-	// 	// fmt.Fprintf(os.Stderr, "Header: %v\n", c.Request().Header)
+	// 	fmt.Fprintf(os.Stderr, "Header: %v\n", c.Request().Header)
 	// }))
 
 	// setting template engine
@@ -99,12 +97,52 @@ func main() {
 	e.GET("/auth/signOut", apifunc.GetSignOut)
 
 	// web socket
-	requiredAuth.GET("/ws", func(ctx echo.Context) error {
-		user, err := game.Ws(ctx, roomManager)
+	requiredAuth.GET("/ws", func(c echo.Context) error {
+		// ws, err := room.Upgrader.Upgrade(c.Response(), c.Request(), nil)
+		// if err != nil {
+		// 	return err
+		// }
+		// defer ws.Close()
+
+		// for {
+		// 	// Write
+		// 	err := ws.WriteMessage(websocket.TextMessage, []byte("Hello, Client!"))
+		// 	if err != nil {
+		// 		c.Logger().Error(err)
+		// 	}
+
+		// 	// Read
+		// 	_, msg, err := ws.ReadMessage()
+		// 	if err != nil {
+		// 		c.Logger().Error(err)
+		// 	}
+		// 	fmt.Printf("%s\n", msg)
+		// }
+
+		conn, err := room.Upgrader.Upgrade(c.Response(), c.Request(), nil)
+		if err != nil {
+			log.Printf("Failed to set websocket upgrade: %+v\n", err)
+			return err
+		}
+
+		u, err := dbfunc.GetUserInfo(c)
 		if err != nil {
 			return err
 		}
-		user.Run()
+
+		Player := room.NewPlayer(
+			u.UUID,
+			u.Name,
+			nil,
+			conn,
+		)
+
+		roomManager.AddPlayerToRoom(Player)
+		log.Printf("%s is connected\n", u.Name)
+		log.Printf("%s player are connected\n", Player.Room.Id)
+		go Player.Read()
+		go Player.Write()
+		log.Printf("%s is connected\n", u.Name)
 		return nil
 	})
 
