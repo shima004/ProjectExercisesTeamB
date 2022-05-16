@@ -5,9 +5,10 @@ window.onload = async function () {
   }
   var res = await getUser();
   if (res.coin != undefined) {
-    document.getElementById("coin").innerHTML = "Coin: " + res.coin;
+    document.getElementById("coin").style.display = "inline-block";
+    document.getElementById("coin").innerHTML = "Name: " + res.name + " Coin: " + res.coin;
   } else {
-    document.getElementById("coin").innerHTML = "";
+    document.getElementById("coin").style.display = "none";
   }
 };
 
@@ -28,6 +29,7 @@ $(function () {
     var $this = $(this);
     document.cookie = "token=token; max-age=0";
     document.getElementById("coin").innerHTML = "";
+    document.getElementById("coin").style.display = "none";
     toggleAuth();
   });
   $("#get").on("click", async function () {
