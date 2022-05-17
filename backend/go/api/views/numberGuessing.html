@@ -555,6 +555,7 @@
             <p id="question15"></p>
         </div>
         <hr>
+        <button id="start">スタート</button>
         <input type="button" value="判定" onclick="check()">
         <hr>
     </body>
@@ -897,6 +898,7 @@
                         document.getElementById("question7").appendChild(question7);
                         break;
                 }
+
             }
 
             for(i=8; i<16; i++) {
@@ -1001,6 +1003,8 @@
                         break;
                 }
             }
+            var start = document.getElementById('start');
+            start.addEventListener('click',count_start, false);
         //}
 
         
@@ -1122,6 +1126,41 @@
                 }
             }
         }
+
+        var count   = 30;     //カウントダウンの数字を格納する変数  
+        var min     = 0;       //残り時間「分」を格納する変数
+        var sec     = 0;       //残り時間「秒」を格納する変数
+        var start_f = false; 
+        var interval;
+
+        function count_start() {
+            if (start_f === false) {
+                interval = setInterval(count_down,1000);
+                start_f = true;
+            }
+        }
+
+        function count_down() {
+            if(count === 1){
+                var display = document.getElementById("default");
+                display.style.color = 'red';
+                display.innerHTML = "TIME UP!";
+                clearInterval(interval);
+            } 
+            else {
+                count--;
+                min = Math.floor(count / 60);
+                sec = count % 60;
+                var count_down = document.getElementById("default");
+                count_down.innerHTML = ("0"+min) +"：" + ("0"+sec).slice(-2);
+            }
+        }
+
+        function count_stop() {
+            clearInterval(interval);
+            start_f = false;
+        }
+
     </script>
      <style>
         span {
