@@ -12,7 +12,7 @@ button.addEventListener("click", () => {
   init();
 });
 // ゲーム画面生成
-function init() {
+window.onload = function init() {
   const table = document.querySelector("table");
   let id = 0;
   for (let i = 0; i < y; i++) {
