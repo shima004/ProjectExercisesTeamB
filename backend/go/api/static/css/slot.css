@@ -56,20 +56,20 @@ h1 {
 
     margin:  auto;
 
-    width:  180px;               /* 幅指定 */
-    height: 50px;                /* 高さ指定 */
+    width:  210px;               /* 幅指定 */
+    height: 90px;                /* 高さ指定 */
 
     font-size:30px;
 
     padding:0;
 
-    border-radius:8px;
+    border-radius:30px;
 
     padding:0.5em 0.5em;
 
     top:  0;                     /* 位置指定 */
     bottom:  0;                  /* 位置指定 */
-    left:  0;                    /* 位置指定 */
+    /*left:  0; */                   /* 位置指定 */
     right:  0;                   /* 位置指定 */
 
     /*text-align: center;*/
