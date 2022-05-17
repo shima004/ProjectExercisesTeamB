@@ -19,8 +19,8 @@
         //最初はコイン１００で始める（仮）￥
 
         //let audioElm = new Audio('../static/img/sounds_lose.mp3');　//Chromeでは、自動再生が不可能となっている。
-        const music = new Audio('../static/img/sounds_lose.mp3');   //どうしよ
-        music.volume = 1;
+        //const music = new Audio('../static/img/sounds_lose.mp3');   //どうしよ
+        //music.volume = 1;
 
 
         function setImage() {
@@ -92,8 +92,8 @@
                     //music.pause()
                     element.value = '~lose(´ω`)~';
 
-                    let element2 = document.getElementById('temotikoinn');
-                    element2.value = '100';
+                    //let element2 = document.getElementById('temotikoinn');
+                    //element2.value = '100';
                     //audioElm.play();
                 }
             }
@@ -114,8 +114,8 @@
                     //music.pause()
                     element.value = '~lose(´ω`)~';
                     
-                    let element2 = document.getElementById('temotikoinn');
-                    element2.value = '100';
+                    //let element2 = document.getElementById('temotikoinn');
+                    //element2.value = '100';
                     
                     //audioElm.play();
                 }
@@ -137,8 +137,8 @@
                     //music.pause()
                     element.value = '~lose(´ω`)~';
 
-                    let element2 = document.getElementById('temotikoinn');
-                    element2.value = '100';
+                    //let element2 = document.getElementById('temotikoinn');
+                    //element2.value = '100';
 
                     //audioElm.play();
                 }
