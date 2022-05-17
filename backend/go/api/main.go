@@ -117,7 +117,6 @@ func main() {
 		)
 
 		roomManager.AddPlayerToRoom(Player)
-		log.Printf("%s player are connected\n", Player.Room.Id)
 		go Player.Read()
 		go Player.Write()
 		log.Printf("%s is connected\n", u.Name)
