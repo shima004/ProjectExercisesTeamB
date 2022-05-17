@@ -13,7 +13,7 @@
         var cg2;
         var cg3;
 
-        var touch = 0;
+        //var touch = 0;
         //var 
 
         //最初はコイン１００で始める（仮）￥
@@ -33,8 +33,8 @@
             stop2 = 0;
             stop3 = 0;
 
-            let element = document.getElementById('temotikoinn');
-            element.value = '100';
+            //let element = document.getElementById('temotikoinn');
+            //element.value = '100';
 
             var img = ["../static/img/pt1.png", "../static/img/pt2.png", "../static/img/pt3.png", "../static/img/pt4.png", "../static/img/pt5.png"];
 
