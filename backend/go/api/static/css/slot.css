@@ -32,7 +32,7 @@ h1 {
     text-align: center;
     margin:  auto;
     width:  240px;               /* 幅指定 */
-    height: 40px;                /* 高さ指定 */
+    height: 50px;                /* 高さ指定 */
     padding: 0.4em;/*文字周りの余白*/
     font-size: 28px;
     color: red;
