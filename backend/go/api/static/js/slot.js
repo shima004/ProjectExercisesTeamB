@@ -54,7 +54,6 @@
 
             }
 
-
             sp2 = setInterval(loopup2, 90);
 
             var loopup3 = function () {
@@ -64,7 +63,7 @@
                     cg3 = 0;
                 }
             }
-            sp3 = setInterval(loopup3, 70);
+            sp3 = setInterval(loopup3, 60);
         }
 
 
