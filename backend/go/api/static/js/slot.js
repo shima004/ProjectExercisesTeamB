@@ -13,14 +13,6 @@
         var cg2;
         var cg3;
 
-        //var touch = 0;
-        //var 
-
-        //最初はコイン１００で始める（仮）￥
-
-        //let audioElm = new Audio('../static/img/sounds_lose.mp3');　//Chromeでは、自動再生が不可能となっている。
-        //const music = new Audio('../static/img/sounds_lose.mp3');   //どうしよ
-        //music.volume = 1;
 
 
         function setImage() {
@@ -33,8 +25,6 @@
             stop2 = 0;
             stop3 = 0;
 
-            //let element = document.getElementById('temotikoinn');
-            //element.value = '100';
 
             var img = ["../static/img/pt1.png", "../static/img/pt2.png", "../static/img/pt3.png", "../static/img/pt4.png", "../static/img/pt5.png"];
 
@@ -85,16 +75,10 @@
             if (stop1 == 1 && stop2 == 1 && stop3 == 1) {
                 if (cg1 == cg2 && cg1 == cg3) {
                     let element = document.getElementById('hanteii');
-                    //music.play();
                     element.value = '~WIN!!~';
                 } else {
                     let element = document.getElementById('hanteii');
-                    //music.pause()
                     element.value = '~lose(´ω`)~';
-
-                    //let element2 = document.getElementById('temotikoinn');
-                    //element2.value = '100';
-                    //audioElm.play();
                 }
             }
         }
@@ -107,17 +91,11 @@
             if (stop1 == 1 && stop2 == 1 && stop3 == 1) {
                 if (cg1 == cg2 && cg1 == cg3) {
                     let element = document.getElementById('hanteii');
-                    //music.play();
                     element.value = '~WIN!!~';
                 } else {
                     let element = document.getElementById('hanteii');
-                    //music.pause()
                     element.value = '~lose(´ω`)~';
                     
-                    //let element2 = document.getElementById('temotikoinn');
-                    //element2.value = '100';
-                    
-                    //audioElm.play();
                 }
             }
         }
@@ -130,17 +108,11 @@
             if (stop1 == 1 && stop2 == 1 && stop3 == 1) {
                 if (cg1 == cg2 && cg1 == cg3) {
                     let element = document.getElementById('hanteii');
-                    //music.play();
                     element.value = '~WIN!!~';
                 } else {
                     let element = document.getElementById('hanteii');
-                    //music.pause()
                     element.value = '~lose(´ω`)~';
 
-                    //let element2 = document.getElementById('temotikoinn');
-                    //element2.value = '100';
-
-                    //audioElm.play();
                 }
             }
         }
