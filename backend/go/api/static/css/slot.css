@@ -31,7 +31,7 @@ h1 {
 .hantei {
     text-align: center;
     margin:  auto;
-    width:  240px;               /* 幅指定 */
+    width:  250px;               /* 幅指定 */
     height: 50px;                /* 高さ指定 */
     padding: 0.4em;/*文字周りの余白*/
     font-size: 28px;
@@ -101,8 +101,8 @@ div {
 
 .hann {
     text-align: center;
-    padding: 0.5em;/*文字周りの余白*/
-    font-size: 20px;
+    padding: 0.5em;       /*文字周りの余白*/
+    font-size: 22px;
     border-color: #000000 #fff #fff #000000;
     bottom: 0;
     right: 0;
