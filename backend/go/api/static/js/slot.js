@@ -85,16 +85,16 @@
             if (stop1 == 1 && stop2 == 1 && stop3 == 1) {
                 if (cg1 == cg2 && cg1 == cg3) {
                     let element = document.getElementById('hanteii');
-                    music.play();
+                    //music.play();
                     element.value = '~WIN!!~';
                 } else {
                     let element = document.getElementById('hanteii');
-                    music.pause()
+                    //music.pause()
                     element.value = '~lose(´ω`)~';
 
                     let element2 = document.getElementById('temotikoinn');
                     element2.value = '100';
-                    audioElm.play();
+                    //audioElm.play();
                 }
             }
         }
@@ -107,17 +107,17 @@
             if (stop1 == 1 && stop2 == 1 && stop3 == 1) {
                 if (cg1 == cg2 && cg1 == cg3) {
                     let element = document.getElementById('hanteii');
-                    music.play();
+                    //music.play();
                     element.value = '~WIN!!~';
                 } else {
                     let element = document.getElementById('hanteii');
-                    music.pause()
+                    //music.pause()
                     element.value = '~lose(´ω`)~';
                     
                     let element2 = document.getElementById('temotikoinn');
                     element2.value = '100';
                     
-                    audioElm.play();
+                    //audioElm.play();
                 }
             }
         }
@@ -130,17 +130,17 @@
             if (stop1 == 1 && stop2 == 1 && stop3 == 1) {
                 if (cg1 == cg2 && cg1 == cg3) {
                     let element = document.getElementById('hanteii');
-                    music.play();
+                    //music.play();
                     element.value = '~WIN!!~';
                 } else {
                     let element = document.getElementById('hanteii');
-                    music.pause()
+                    //music.pause()
                     element.value = '~lose(´ω`)~';
 
                     let element2 = document.getElementById('temotikoinn');
                     element2.value = '100';
 
-                    audioElm.play();
+                    //audioElm.play();
                 }
             }
         }
