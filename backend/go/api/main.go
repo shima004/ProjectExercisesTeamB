@@ -98,27 +98,6 @@ func main() {
 
 	// web socket
 	requiredAuth.GET("/ws", func(c echo.Context) error {
-		// ws, err := room.Upgrader.Upgrade(c.Response(), c.Request(), nil)
-		// if err != nil {
-		// 	return err
-		// }
-		// defer ws.Close()
-
-		// for {
-		// 	// Write
-		// 	err := ws.WriteMessage(websocket.TextMessage, []byte("Hello, Client!"))
-		// 	if err != nil {
-		// 		c.Logger().Error(err)
-		// 	}
-
-		// 	// Read
-		// 	_, msg, err := ws.ReadMessage()
-		// 	if err != nil {
-		// 		c.Logger().Error(err)
-		// 	}
-		// 	fmt.Printf("%s\n", msg)
-		// }
-
 		conn, err := room.Upgrader.Upgrade(c.Response(), c.Request(), nil)
 		if err != nil {
 			log.Printf("Failed to set websocket upgrade: %+v\n", err)
@@ -138,7 +117,6 @@ func main() {
 		)
 
 		roomManager.AddPlayerToRoom(Player)
-		log.Printf("%s is connected\n", u.Name)
 		log.Printf("%s player are connected\n", Player.Room.Id)
 		go Player.Read()
 		go Player.Write()
