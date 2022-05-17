@@ -51,7 +51,7 @@ h1 {
 }
   
 
-.startt{               /*.start からstarttに変更*/
+.start{               /*.start からstarttに変更*/
     text-align: center;
 
     margin:  auto;
@@ -148,8 +148,8 @@ div {
     padding: 0.5em;/*文字周りの余白*/
     /*font-size: 20px;*/
     border-color: #000000 #fff #fff #000000;
-    /*bottom: 0;
-    right: 0;*/
+    bottom: 0;
+    right: 0;
 }
 
 .Bet {
