@@ -1,5 +1,5 @@
 
-        alert("~ARE YOU READY???~")
+        alert("~ARE YOU READY???~")   //alert
 
         var sp1;
         var sp2;
