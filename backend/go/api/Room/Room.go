@@ -31,6 +31,9 @@ func newRoom(id string) *Room {
 func (rm *Room) AddPlayer(player *Player) {
 	player.Room = rm
 	rm.Players = append(rm.Players, player)
+	if len(rm.Players) == 2 {
+		rm.Send([]byte("start"))
+	}
 }
 
 func (rm *Room) RemovePlayer(player *Player) {
@@ -71,7 +74,7 @@ func (rm *Room) Run(ctx context.Context) {
 			log.Printf("Room %s closed", rm.Id)
 			return
 		case <-ticker.C:
-			rm.Send([]byte("tick" + time.Now().String()))
+			// rm.Send([]byte("tick" + time.Now().String()))
 		}
 	}
 }

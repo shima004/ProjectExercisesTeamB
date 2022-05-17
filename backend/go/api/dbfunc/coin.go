@@ -15,8 +15,10 @@ func PostCoin(c echo.Context, total int) (err error) { //引数と返り値
 	if err != nil {
 		return err
 	}
+
+	coin := user.Coin + total //ユーザーのコインを更新
 	// データベースを更新
-	err = db.Model(models.User{}).Where("uuid = ?", user.UUID).Select("Coin").Updates(models.User{Coin: total}).Error
+	err = db.Model(models.User{}).Where("uuid = ?", user.UUID).Select("Coin").Updates(models.User{Coin: coin}).Error
 
 	return err
 }

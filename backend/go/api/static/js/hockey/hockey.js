@@ -8,10 +8,6 @@ ws.onmessage = function (evt) {
   console.log(evt);
 };
 
-// setInterval(function () {
-//   ws.send("Hello, Server!");
-// }, 1000);
-
 canvas = document.getElementById("canvas");
 ctx = canvas.getContext("2d");
 canvas_width = canvas.width;
@@ -54,8 +50,8 @@ class Ball {
     this.y = y;
     this.radius = radius;
     this.color = color;
-    this.dx = Math.random() * 5 - 1;
-    this.dy = Math.random() * 5 - 1;
+    this.dx = Math.random();
+    this.dy = Math.random();
   }
   draw() {
     this.move();
@@ -122,12 +118,14 @@ function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   if (inputkey === "ArrowLeft" || inputkey === "a") {
     if (ws.readyState === WebSocket.OPEN) {
-      ws.send("{key: 'left', x: " + bar1.x + "y: " + bar1.y + "}");
+      key = new InputData(Date.now(), true, false, 0);
+      ws.send(JSON.stringify(key));
     }
     bar1.move(-5);
   } else if (inputkey === "ArrowRight" || inputkey === "d") {
     if (ws.readyState === WebSocket.OPEN) {
-      ws.send("{key: 'right', x: " + bar1.x + "y: " + bar1.y + "}");
+      key = new InputData(Date.now(), false, true, 0);
+      ws.send(JSON.stringify(key));
     }
     bar1.move(5);
   }

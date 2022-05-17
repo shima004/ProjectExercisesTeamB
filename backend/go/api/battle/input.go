@@ -2,6 +2,11 @@ package battle
 
 type Input struct {
 	Time int64
-	Key  string
-	Side int8
+	Key  Keys
+	Side int
+}
+
+type Keys struct {
+	Left  bool
+	Right bool
 }
