@@ -8,9 +8,9 @@ ws.onmessage = function (evt) {
   console.log(evt);
 };
 
-setInterval(function () {
-  ws.send("Hello, Server!");
-}, 1000);
+// setInterval(function () {
+//   ws.send("Hello, Server!");
+// }, 1000);
 
 canvas = document.getElementById("canvas");
 ctx = canvas.getContext("2d");
@@ -121,8 +121,14 @@ function init() {
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   if (inputkey === "ArrowLeft" || inputkey === "a") {
+    if (ws.readyState === WebSocket.OPEN) {
+      ws.send("{key: 'left', x: " + bar1.x + "y: " + bar1.y + "}");
+    }
     bar1.move(-5);
   } else if (inputkey === "ArrowRight" || inputkey === "d") {
+    if (ws.readyState === WebSocket.OPEN) {
+      ws.send("{key: 'right', x: " + bar1.x + "y: " + bar1.y + "}");
+    }
     bar1.move(5);
   }
   bar1.draw();

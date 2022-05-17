@@ -36,7 +36,11 @@ func (rm *Room) AddPlayer(player *Player) {
 func (rm *Room) RemovePlayer(player *Player) {
 	for i, player := range rm.Players {
 		if player.UUID == player.UUID {
-			rm.Players = append(rm.Players[:i], rm.Players[i+1:]...)
+			if len(rm.Players) == 1 {
+				rm.Players = make([]*Player, 0)
+			} else {
+				rm.Players = append(rm.Players[:i], rm.Players[i+1:]...)
+			}
 		}
 	}
 }
@@ -53,10 +57,6 @@ func (rm *Room) Send(msg []byte) {
 	}
 }
 
-func FieldUpdate(player *Player) {
-
-}
-
 func (rm *Room) Run(ctx context.Context) {
 	ticker := time.NewTicker(ServerFPS)
 	for {
@@ -71,7 +71,7 @@ func (rm *Room) Run(ctx context.Context) {
 			log.Printf("Room %s closed", rm.Id)
 			return
 		case <-ticker.C:
-
+			rm.Send([]byte("tick" + time.Now().String()))
 		}
 	}
 }
