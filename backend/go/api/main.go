@@ -1,14 +1,14 @@
 package main
 
 import (
+	room "ProjectExercises/TeamB/Room"
 	"ProjectExercises/TeamB/apifunc"
-	"ProjectExercises/TeamB/game"
-	"fmt"
+	"ProjectExercises/TeamB/dbfunc"
+	"context"
 	"html/template"
 	"io"
 	"log"
 	"net/http"
-	"os"
 
 	"github.com/go-playground/validator"
 	"github.com/labstack/echo/v4"
@@ -36,11 +36,38 @@ func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Con
 	return t.templates.ExecuteTemplate(w, name, data)
 }
 
-func initUrl(e *echo.Echo) {
+func main() {
+	e := echo.New()
+	e.Validator = &CustomValidator{validator: validator.New()}
+	ctx := context.Background()
+	roomManager := room.CreateRoomManager(ctx)
+
+	// setting static files
+	e.Static("/static/img", "./static/img")
+	e.Static("/static/css", "./static/css")
+	e.Static("/static/js", "./static/js")
+
+	// setting middleware
+	e.Use(middleware.Logger())
+	e.Use(middleware.Recover())
+	// e.Use(middleware.CORS())
+	// e.Use(middleware.BodyDump(func(c echo.Context, reqBody, resBody []byte) {
+	// 	fmt.Fprintf(os.Stderr, "Request: %v\n", string(reqBody))
+	// 	fmt.Fprintf(os.Stderr, "Header: %v\n", c.Request().Header)
+	// }))
+
+	// setting template engine
+	t := &Template{
+		templates: template.Must(template.ParseGlob("views/*.html")),
+	}
+	e.Renderer = t
+
+	// setting routes
 	requiredAuth := e.Group("")
 
 	requiredAuth.Use(middleware.JWTWithConfig(middleware.JWTConfig{
-		SigningKey: []byte("secret"),
+		SigningKey:  []byte("secret"),
+		TokenLookup: "cookie:token",
 	}))
 
 	// api routes
@@ -70,35 +97,31 @@ func initUrl(e *echo.Echo) {
 	e.GET("/auth/signOut", apifunc.GetSignOut)
 
 	// web socket
-	e.GET("/ws", game.Hello)
-}
+	requiredAuth.GET("/ws", func(c echo.Context) error {
+		conn, err := room.Upgrader.Upgrade(c.Response(), c.Request(), nil)
+		if err != nil {
+			log.Printf("Failed to set websocket upgrade: %+v\n", err)
+			return err
+		}
 
-func main() {
-	e := echo.New()
-	e.Validator = &CustomValidator{validator: validator.New()}
+		u, err := dbfunc.GetUserInfo(c)
+		if err != nil {
+			return err
+		}
 
-	// setting static files
-	e.Static("/static/img", "./static/img")
-	e.Static("/static/css", "./static/css")
-	e.Static("/static/js", "./static/js")
+		Player := room.NewPlayer(
+			u.UUID,
+			u.Name,
+			nil,
+			conn,
+		)
 
-	// setting middleware
-	e.Use(middleware.Logger())
-	e.Use(middleware.Recover())
-	e.Use(middleware.CORS())
-	e.Use(middleware.BodyDump(func(c echo.Context, reqBody, resBody []byte) {
-		fmt.Fprintf(os.Stderr, "Request: %v\n", string(reqBody))
-		// fmt.Fprintf(os.Stderr, "Header: %v\n", c.Request().Header)
-	}))
-
-	// setting template engine
-	t := &Template{
-		templates: template.Must(template.ParseGlob("views/*.html")),
-	}
-	e.Renderer = t
-
-	// setting routes
-	initUrl(e)
+		roomManager.AddPlayerToRoom(Player)
+		go Player.Read()
+		go Player.Write()
+		log.Printf("%s is connected\n", u.Name)
+		return nil
+	})
 
 	// 8080番ポートで待ち受け
 	e.Logger.Fatal(e.Start(":8080"))
