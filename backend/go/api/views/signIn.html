@@ -31,9 +31,9 @@
           var form = $(this);
           var url = "/login";
           var data = form.serialize();
-          $.post(url, data, function(res){
-            if(res.token != undefined){
-              setToken(res.token);
+          axios.post(url, data).then(function(res){
+            if(res.data.token != undefined){
+              setToken(res.data.token);
               window.location.href = '/';
             }else{
               alert(res);

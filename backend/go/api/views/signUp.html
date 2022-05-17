@@ -33,17 +33,14 @@
     </div>
     <script>
       $(function(){
+
         $('#signUpForm').submit(function(e){
           e.preventDefault();
           var form = $(this);
           var url = "/user";
           var data = form.serialize();
-          $.post(url, data, function(res){
-            if(res.status === 'success'){
-              window.location.href = '/';
-            }else{
-              alert(res.message);
-            }
+          axios.post(url, data).then(function(res){
+            window.location.href = '/';
           });
         });
       });
