@@ -27,12 +27,8 @@ func (b *Ball) Move(fieldSize Point2D, paddle1 Paddle, paddle2 Paddle) {
 	if futurePosition.Y-b.Radius < 0 {
 		b.Velocity.Y *= -1
 	}
-	if futurePosition.X+b.Radius > paddle1.Position.X && futurePosition.X-b.Radius < paddle1.Position.X+paddle1.Size.X && futurePosition.Y+b.Radius > paddle1.Position.Y && futurePosition.Y-b.Radius < paddle1.Position.Y+paddle1.Size.Y {
-		b.Velocity.X *= -1
-	}
-	if futurePosition.X+b.Radius > paddle2.Position.X && futurePosition.X-b.Radius < paddle2.Position.X+paddle2.Size.X && futurePosition.Y+b.Radius > paddle2.Position.Y && futurePosition.Y-b.Radius < paddle2.Position.Y+paddle2.Size.Y {
-		b.Velocity.X *= -1
-	}
+	paddle1.Collide(b)
+	paddle2.Collide(b)
 	b.Position.X += b.Velocity.X
 	b.Position.Y += b.Velocity.Y
 }

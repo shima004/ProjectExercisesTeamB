@@ -5,7 +5,47 @@ ws.onopen = function () {
 };
 
 ws.onmessage = function (evt) {
-  console.log(evt);
+  console.log("onmessage" + evt.data);
+  var data = JSON.parse(evt.data);
+  if (data.Event == "update" || data.Event == "start") {
+    var field = JSON.parse(data.Mes);
+    console.log(field);
+    bar1.x = field.Paddle_one.Position.X;
+    bar1.y = field.Paddle_one.Position.Y;
+    bar1.width = field.Paddle_one.Size.X;
+    bar1.height = field.Paddle_one.Size.Y;
+    bar2.x = field.Paddle_two.Position.X;
+    bar2.y = field.Paddle_two.Position.Y;
+    bar2.width = field.Paddle_two.Size.X;
+    bar2.height = field.Paddle_two.Size.Y;
+    ball.x = field.Ball.Position.X;
+    ball.y = field.Ball.Position.Y;
+    ball.radius = field.Ball.Radius;
+    sendflag = true;
+  }
+  if (data.Event == "join") {
+    var user = JSON.parse(data.Mes);
+    console.log(user);
+    var header = document.getElementById("nav-header");
+    var user_info = document.createElement("div");
+    user_info.className = "navbar-brand info";
+    user_info.innerHTML = user.Name;
+    header.appendChild(user_info);
+  }
+};
+
+const superInterval = (cb, interval = 1000, ...args) => {
+  try {
+    const code = `self.addEventListener('message', msg=>{setInterval(()=>self.postMessage(null), msg.data)})`;
+    const w = new Worker(`data:text/javascript;base64,${btoa(code)}`);
+    w.onmessage = () => cb(...args);
+    w.postMessage(interval);
+    return { stop: () => w.terminate() };
+  } catch (_) {
+    // 実装の問題またはCSPによる拒否などで Worker が使えなければ普通の setInterval を使う
+    const id = setInterval(cb, interval, ...args);
+    return { stop: () => clearInterval(id) };
+  }
 };
 
 canvas = document.getElementById("canvas");
@@ -30,7 +70,7 @@ class HockeyBar {
   }
   draw() {
     ctx.fillStyle = this.color;
-    ctx.fillRect(this.x, this.y, this.width, this.height);
+    ctx.fillRect(this.x - this.width / 2, this.y - this.height / 2, this.width, this.height);
   }
   move(dx) {
     this.dx = dx;
@@ -54,7 +94,7 @@ class Ball {
     this.dy = Math.random();
   }
   draw() {
-    this.move();
+    // this.move();
     ctx.fillStyle = this.color;
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
@@ -110,41 +150,44 @@ function init() {
     "blue"
   );
   ball = new Ball(canvas_width / 2, canvas_height / 2, 10, "black");
+  time = 0;
+  sendflag = false;
   inputkey = "";
-  setInterval(draw, 1000 / 60);
+  superInterval(draw, 1000 / 60);
 }
+
+const Input = new InputData(Date.now(), false, false, 0);
+// const timar = new Timer();
 
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  if (inputkey === "ArrowLeft" || inputkey === "a") {
-    if (ws.readyState === WebSocket.OPEN) {
-      key = new InputData(Date.now(), true, false, 0);
-      ws.send(JSON.stringify(key));
-    }
-    bar1.move(-5);
-  } else if (inputkey === "ArrowRight" || inputkey === "d") {
-    if (ws.readyState === WebSocket.OPEN) {
-      key = new InputData(Date.now(), false, true, 0);
-      ws.send(JSON.stringify(key));
-    }
-    bar1.move(5);
-  }
   bar1.draw();
   bar2.draw();
-  ball.coliision(bar1);
-  ball.coliision(bar2);
   ball.draw();
+  console.log("draw");
+  if (ws.readyState === WebSocket.OPEN) {
+    if (sendflag) {
+      ws.send(JSON.stringify(Input));
+      sendflag = false;
+    }
+  }
 }
 
 function getKeyDown(event) {
-  console.log("getKeyDown");
-  console.log(event.key);
+  if (event.key === "ArrowLeft" || event.key === "a") {
+    Input.key.left = true;
+  } else {
+    Input.key.right = true;
+  }
   inputkey = event.key;
 }
 
 function getKeyUp(event) {
-  console.log("getKeyUp");
-  console.log(event.key);
+  if (event.key === "ArrowLeft" || event.key === "a") {
+    Input.key.left = false;
+  } else {
+    Input.key.right = false;
+  }
   inputkey = "";
 }
 
