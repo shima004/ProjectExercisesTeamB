@@ -3,23 +3,34 @@
 <html lang="ja">
     <head>
       {{ template "header" . }}
-        <meta charset="utf-8">
-        <title>JavaScriptの練習</title>
-        <script>
-          window.onload = func;
-          function func() {
-            var e = document.getElementById("fruits");
-            alert(e.childNodes.length);
-          }
-        </script>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>パネルたたきゲーム</title>
+      <link rel="stylesheet" href="style.css">
+
+
     </head>
     <body>
       {{ template "navibar" . }}
-        <ul id="fruits">
-          <li>りんご</li>
-          <li>みかん</li>
-          <li>いちご</li>
-        </ul>
+      <div id="modal" class="modal">
+        <section>
+            <h1>パネルたたきゲーム</h1>
+            <p><span style="color: pink;">■</span>+2　コイン</p>
+            <p><span style="color: #6091d3;">■</span>+1　コイン</p>
+            <p><span style="color: #222324;">■</span>-1　コイン</p>
+            <div class="button">GAME START</div>
+        </section>
+    </div>
+    
+    <div id="main" class="hidden2">
+        <header>
+            <h2>START</h2>
+            <h2 class="score">score: 0</h2>
+        </header>
+        <main>
+            <table></table>
+        </main>
+    </div>
     </body>
 </html>
 {{ end }}
