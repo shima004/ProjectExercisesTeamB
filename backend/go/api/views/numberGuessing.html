@@ -532,34 +532,47 @@
         {{ template "navibar" . }}
         <p>詰めアルゴ</p>
         <hr>
-        <p id="default">00:30</p>
-        <hr>
-        <div id="number"></div>
-        <hr>↓Drag &amp; Drop
         <div>
-            <p id="question0"></p>
-            <p id="question1"></p>
-            <p id="question2"></p>
-            <p id="question3"></p>
-            <p id="question4"></p>
-            <p id="question5"></p>
-            <p id="question6"></p>
-            <p id="question7"></p>
+            ＜ルール＞<br>
+            黒のカード(0〜11)と白のカード(0~11)がある。<br>
+            同じカードは存在しない。<br>
+            手前の数字は昇順、奥の数字は降順に並んでいる。<br>
+            白と黒で同じ数字の場合は「黒の方が小さい」とする。<br>
+            空いたマスを以上のルールに沿って埋めていく。<br>
+            <hr>
+            <input type="button" value="スタート" id="start" onclick="init()">
+            <input type="button" value="判定" onclick="check()">
+            <hr>
         </div>
-        <div>
-            <p id="question8"></p>
-            <p id="question9"></p>
-            <p id="question10"></p>
-            <p id="question11"></p>
-            <p id="question12"></p>
-            <p id="question13"></p>
-            <p id="question14"></p>
-            <p id="question15"></p>
+        <div style="background-color: #CCC;">
+            <form>
+                <p id="default">00:30</p>
+                <hr>
+                <div id="number"></div>
+                <hr>↓Drag &amp; Drop
+                <div>
+                    <p id="question0"></p>
+                    <p id="question1"></p>
+                    <p id="question2"></p>
+                    <p id="question3"></p>
+                    <p id="question4"></p>
+                    <p id="question5"></p>
+                    <p id="question6"></p>
+                    <p id="question7"></p>
+                </div>
+                <div>
+                    <p id="question8"></p>
+                    <p id="question9"></p>
+                    <p id="question10"></p>
+                    <p id="question11"></p>
+                    <p id="question12"></p>
+                    <p id="question13"></p>
+                    <p id="question14"></p>
+                    <p id="question15"></p>
+                </div>
+                <hr>
+            </form>
         </div>
-        <hr>
-        <button id="start">スタート</button>
-        <input type="button" value="判定" onclick="check()">
-        <hr>
     </body>
     <script>
         function getRandomInt(min, max) {
@@ -570,7 +583,7 @@
         var hide = new Array(2); //＊表示箇所
         var a = new Array(16); //B or W
 
-        //function init() {
+        function init() {
             document.getElementById("number").innerHTML="";
             for(var i=0;i<12;i++) {
                 var number = document.createElement("span");
@@ -1007,7 +1020,7 @@
             }
             var start = document.getElementById('start');
             start.addEventListener('click',count_start, false);
-        //}
+        }
 
         
 
@@ -1063,7 +1076,7 @@
             }
             //出力
             if(correct[0] == 1 && correct[1] == 1) {
-                alert("OK");
+                alert("clear");
                 count_stop();
             }
             
