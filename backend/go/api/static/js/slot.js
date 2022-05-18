@@ -1,7 +1,7 @@
 
         alert("~ARE YOU READY???~")   //alert
 
-        var stt;
+        var sw;
         stt = 0;
 
         var sp1;
@@ -21,7 +21,7 @@
 
 
         function setImage() {
-            if (stt==1) {
+            //if (sw==1) {
                 cg1 = 0;
                 cg2 = 0;
                 cg3 = 0;
@@ -69,7 +69,7 @@
                     }
                 }
                 sp3 = setInterval(loopup3, 60);
-            }
+            //}
         }
 
 
@@ -86,7 +86,7 @@
                     element.value = '~lose(´ω`)~';
                 }
             }
-            stt = 0;
+            sw = 0;
         }
 
 
@@ -104,7 +104,7 @@
                     
                 }
             }
-            stt = 0;
+            sw = 0;
         }
 
 
@@ -121,7 +121,7 @@
                     element.value = '~lose(´ω`)~';
                 }
             }
-            stt = 0;
+            sw = 0;
         }
 
 
@@ -139,6 +139,7 @@
 
 
         function slot_bet() {
-            stt = 1;
+            sw = 1;
+            document.getElementById("srt").disabled = true;
         }
 
