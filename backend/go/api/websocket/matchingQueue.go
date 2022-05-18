@@ -1,4 +1,4 @@
-package game
+package ws
 
 type MatchingQueue struct {
 	Rate  int

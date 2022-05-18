@@ -29,7 +29,7 @@ func PostUser(email string, password string, name string) (err error) {
 	// おなじemailが既に登録されていないか確認
 	var tmp models.User
 	if err = db.Where("email = ?", email).First(&tmp).Error; err == nil {
-		return errors.New("it already exists")
+		return errors.New("email is already exists")
 	}
 
 	// パスワードをハッシュ化
