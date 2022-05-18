@@ -2,16 +2,24 @@
 <!DOCTYPE html>
 <html lang="ja">
     <head>
-        {{ template "header" . }}
+      {{ template "header" . }}
         <meta charset="utf-8">
-        <title>あいさつを表示するスクリプト</title>
+        <title>JavaScriptの練習</title>
         <script>
-            var a = 10;
-            console.log("a");
+          window.onload = func;
+          function func() {
+            var e = document.getElementById("fruits");
+            alert(e.childNodes.length);
+          }
         </script>
     </head>
     <body>
-        {{ template "navibar" . }}
+      {{ template "navibar" . }}
+        <ul id="fruits">
+          <li>りんご</li>
+          <li>みかん</li>
+          <li>いちご</li>
+        </ul>
     </body>
 </html>
 {{ end }}
