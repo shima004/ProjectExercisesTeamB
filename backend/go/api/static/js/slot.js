@@ -80,6 +80,8 @@
                 } else {
                     let element = document.getElementById('hanteii');
                     element.value = '~lose(´ω`)~';
+                    let element2 = document.getElementById('temotikoinn');
+                    element2.value = '10';
                 }
             }
         }
@@ -96,6 +98,8 @@
                 } else {
                     let element = document.getElementById('hanteii');
                     element.value = '~lose(´ω`)~';
+                    let element2 = document.getElementById('temotikoinn');
+                    element2.value = '10';
                     
                 }
             }
@@ -113,6 +117,8 @@
                 } else {
                     let element = document.getElementById('hanteii');
                     element.value = '~lose(´ω`)~';
+                    let element2 = document.getElementById('temotikoinn');
+                    element2.value = '10';
 
                 }
             }
