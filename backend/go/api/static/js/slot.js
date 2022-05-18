@@ -31,9 +31,6 @@
             let element = document.getElementById('hanteii');
             element.value = 'SPINNING';
 
-            let element2 = document.getElementById('temotikoinn');
-            element2.value = '100';
-
 
             var loopup1 = function () {
 
@@ -45,7 +42,7 @@
 
             }
 
-            sp1 = setInterval(loopup1, 130);
+            sp1 = setInterval(loopup1, 120);
 
             var loopup2 = function () {
 
@@ -131,4 +128,6 @@
                 }
             }
         }
+
+        
 
