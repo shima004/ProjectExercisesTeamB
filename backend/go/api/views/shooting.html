@@ -1,7 +1,6 @@
 {{ define "shooting"}}
 <!DOCTYPE html>
 <html lang="ja-jp">
-
   <head>
     {{ template "header" . }}
     <meta charset="UTF-8">
@@ -37,7 +36,7 @@
     <!--   <script src="/static/js/shoting.js"></script>  -->
 
 
-    <script>
+    <script defer>
       const x = 5; // 横のマスの数
 const y = 5; // 縦のマスの数
 let score = 0; // 点数
@@ -52,8 +51,10 @@ button.addEventListener("click", () => {
   init();
 });
 // ゲーム画面生成
-window.onload = function init() {
+function init() {
+  console.log("test")
   const table = document.querySelector("table");
+  console.log(table)
   let id = 0;
   for (let i = 0; i < y; i++) {
     let tr = document.createElement("tr");
@@ -143,6 +144,7 @@ function mainLoop() {
     }
   }, 250);
 }
+init();
     </script>
 
   </body>

@@ -5,6 +5,7 @@ let viewScore = document.querySelector(".score"); // 点数表示
 const main = document.getElementById("main");
 const modal = document.getElementById("modal");
 const button = document.querySelector(".button");
+console.log("test")
 // スタートボタンが押された時の処理
 button.addEventListener("click", () => {
   modal.setAttribute("class", "hidden2");
