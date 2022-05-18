@@ -75,6 +75,8 @@
                 if (cg1 == cg2 && cg1 == cg3) {
                     let element = document.getElementById('hanteii');
                     element.value = '~WIN!!~';
+                    let element2 = document.getElementById('temotikoinn');
+                    element2.value = '1000';
                 } else {
                     let element = document.getElementById('hanteii');
                     element.value = '~lose(´ω`)~';
@@ -129,5 +131,5 @@
             }
         }
 
-        
+
 
