@@ -140,6 +140,8 @@
 
         function slot_bet() {
             sw = 1;
-            document.getElementById('srt').disabled = false;
+            //document.getElementById('srt').disabled = false;
+            const input = document.getElementById('srt');
+            input.disabled = false;
         }
 
