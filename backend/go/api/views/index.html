@@ -1,7 +1,11 @@
 {{ define "index"}}
 <!DOCTYPE html>
 <html lang="ja-jp">
-  {{ template "header" . }}
+  <head>
+    {{ template "header" . }}
+    <link rel="stylesheet" href="/static/css/index.css" />
+    <script src="/static/js/index.js" defer></script>
+  </head>
   <body>
     {{ template "navibar" . }}
     <div class="container">
@@ -25,6 +29,13 @@
           </div>
         </div>
       </div>
+      <!-- <div class="scroll">
+        <div class="box green"></div>
+        <div class="box orange"></div>
+        <div class="box green"></div>
+        <div class="box orange"></div>
+        <div class="box green"></div>
+      </div> -->
     </div>
   </body>
 </html>
