@@ -1,4 +1,7 @@
 /* common */
+#container {
+  text-align: center;
+}
 body {
     background: rgb(128, 179, 101);
     user-select: none;
