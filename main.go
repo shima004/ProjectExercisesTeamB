@@ -124,10 +124,7 @@ func main() {
 		return nil
 	})
 
-	port, err := os.Getenv("PORT")
-	if err != nil {
-		port = "8080"
-	}
+	port := os.Getenv("PORT")
 	// 8080番ポートで待ち受け
 	e.Logger.Fatal(e.Start(":" + port))
 }
