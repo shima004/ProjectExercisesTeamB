@@ -1,10 +1,10 @@
 package room
 
 import (
-	"ProjectExercises/TeamB/battle"
-	"ProjectExercises/TeamB/dbfunc"
 	"context"
 	"encoding/json"
+	"github.com/shima004/ProjectExercisesTeamB/battle"
+	"github.com/shima004/ProjectExercisesTeamB/dbfunc"
 	"log"
 	"time"
 )
