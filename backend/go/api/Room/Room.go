@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-var ServerFPS = time.Second / 20
+var ServerFPS = time.Second / 60
 
 type Room struct {
 	Id         string
@@ -45,7 +45,7 @@ func (rm *Room) AddPlayer(player *Player) {
 
 func (rm *Room) RemovePlayer(player *Player) {
 	for i, p := range rm.Players {
-		if p.UUID == player.UUID {
+		if p.Connention.RemoteAddr() == player.Connention.RemoteAddr() {
 			if len(rm.Players) == 1 {
 				rm.Players = make([]*Player, 0)
 			} else {
@@ -69,10 +69,10 @@ func (rm *Room) Send(msg []byte) {
 
 func (rm *Room) Run(ctx context.Context) {
 	ticker := time.NewTicker(ServerFPS)
-	c, cancel := context.WithCancel(context.Background())
+	c := context.Background()
 	defer func() {
 		ticker.Stop()
-		cancel()
+		c.Done()
 	}()
 	for {
 		select {
@@ -82,7 +82,6 @@ func (rm *Room) Run(ctx context.Context) {
 				rm.Battle = OpenBattle(c, rm)
 			}
 		case player := <-rm.Unregister:
-			cancel()
 			rm.RemovePlayer(player)
 		case msg := <-rm.read:
 			var input battle.Input
@@ -101,6 +100,9 @@ func (rm *Room) Run(ctx context.Context) {
 			}
 			rm.Send(m)
 		case <-ctx.Done():
+			log.Printf("Room %s closed", rm.Id)
+			return
+		case <-c.Done():
 			log.Printf("Room %s closed", rm.Id)
 			return
 		case <-ticker.C:

@@ -10,7 +10,7 @@ func NewBall(position Point2D, velocity Point2D, radius float64) Ball {
 	return Ball{position, velocity, radius}
 }
 
-func (b *Ball) Move(fieldSize Point2D, paddle1 Paddle, paddle2 Paddle) {
+func (b *Ball) Move(fieldSize Point2D, paddle1 Paddle, paddle2 Paddle) int {
 	futurePosition := Point2D{
 		X: b.Position.X + b.Velocity.X,
 		Y: b.Position.Y + b.Velocity.Y,
@@ -22,13 +22,22 @@ func (b *Ball) Move(fieldSize Point2D, paddle1 Paddle, paddle2 Paddle) {
 		b.Velocity.X *= -1
 	}
 	if futurePosition.Y+b.Radius > fieldSize.Y {
-		b.Velocity.Y *= -1
+		b.Position.X = fieldSize.X / 2
+		b.Position.Y = fieldSize.Y / 2
+		b.Velocity.X = -4
+		b.Velocity.Y = -4
+		return 1
 	}
 	if futurePosition.Y-b.Radius < 0 {
-		b.Velocity.Y *= -1
+		b.Position.X = fieldSize.X / 2
+		b.Position.Y = fieldSize.Y / 2
+		b.Velocity.X = 4
+		b.Velocity.Y = 4
+		return 2
 	}
 	paddle1.Collide(b)
 	paddle2.Collide(b)
 	b.Position.X += b.Velocity.X
 	b.Position.Y += b.Velocity.Y
+	return 0
 }

@@ -95,3 +95,13 @@ func GetUserFromToken(c echo.Context) (u models.User, err error) {
 
 	return u, err
 }
+
+func GetUserFromUUID(uuid string) (u models.User, err error) {
+	db := sqlConnect()
+	defer db.Close()
+
+	// データベースからユーザー情報を取得
+	err = db.Where("uuid = ?", uuid).First(&u).Error
+
+	return u, err
+}

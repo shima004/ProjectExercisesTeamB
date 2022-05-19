@@ -22,15 +22,26 @@ ws.onmessage = function (evt) {
     ball.y = field.Ball.Position.Y;
     ball.radius = field.Ball.Radius;
     sendflag = true;
+    document.getElementById("time").innerHTML = field.Time + "/ " + 60 * 60 * 1;
+    document.getElementById("score").innerHTML = field.Point.One + " : " + field.Point.Two;
+    calc_fps();
   }
   if (data.Event == "join") {
     var user = JSON.parse(data.Mes);
     console.log(user);
     var header = document.getElementById("nav-header");
+    var vs = document.createElement("h5");
+    vs.style.display = "inline-block";
+    vs.innerHTML = "VS";
+    header.appendChild(vs);
     var user_info = document.createElement("div");
     user_info.className = "navbar-brand info";
+    user_info.style.display = "inline-block";
     user_info.innerHTML = user.Name;
     header.appendChild(user_info);
+  } else if (data.Event == "win" || data.Event == "lose") {
+    updateUserData();
+    console.log(data.Event);
   }
 };
 
@@ -49,6 +60,32 @@ const superInterval = (cb, interval = 1000, ...args) => {
 };
 
 canvas = document.getElementById("canvas");
+// const chart = new Chart(document.getElementById("chart"), {
+//   type: "bar",
+//   data: {
+//     labels: [],
+//     datasets: [
+//       {
+//         label: "FPS",
+//         data: [],
+//         backgroundColor: "rgba(255, 99, 132, 0.2)",
+//         borderColor: "rgba(255, 99, 132, 1)",
+//         borderWidth: 1,
+//       },
+//     ],
+//   },
+//   options: {
+//     scales: {
+//       yAxes: [
+//         {
+//           ticks: {
+//             beginAtZero: true,
+//           },
+//         },
+//       ],
+//     },
+//   },
+// });
 ctx = canvas.getContext("2d");
 canvas_width = canvas.width;
 canvas_height = canvas.height;
@@ -56,6 +93,7 @@ const Hockey = {
   bar_width: 100,
   bar_height: 10,
 };
+const FPS = 30;
 document.addEventListener("keydown", getKeyDown);
 document.addEventListener("keyup", getKeyUp);
 
@@ -152,12 +190,23 @@ function init() {
   ball = new Ball(canvas_width / 2, canvas_height / 2, 10, "black");
   time = 0;
   sendflag = false;
-  inputkey = "";
-  superInterval(draw, 1000 / 60);
+  last = new Date();
+  superInterval(draw, 1000 / FPS);
+}
+
+function calc_fps() {
+  var now = new Date();
+  var fps = 1000 / (now - last);
+  last = now;
+  document.getElementById("fps").innerHTML = fps.toFixed(0) + " fps";
+  if (fps < FPS - 5) {
+    document.getElementById("fps").style.color = "red";
+  } else {
+    document.getElementById("fps").style.color = "black";
+  }
 }
 
 const Input = new InputData(Date.now(), false, false, 0);
-// const timar = new Timer();
 
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -179,7 +228,6 @@ function getKeyDown(event) {
   } else {
     Input.key.right = true;
   }
-  inputkey = event.key;
 }
 
 function getKeyUp(event) {
@@ -188,7 +236,6 @@ function getKeyUp(event) {
   } else {
     Input.key.right = false;
   }
-  inputkey = "";
 }
 
 init();

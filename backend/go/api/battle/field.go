@@ -5,12 +5,18 @@ import (
 	"encoding/json"
 )
 
+type Point struct {
+	One int
+	Two int
+}
+
 type Field struct {
 	Time       int64
 	Ball       Ball
 	Paddle_one Paddle
 	Paddle_two Paddle
 	Size       Point2D
+	Point      Point
 }
 
 func NewField(size Point2D, paddleSize Point2D, ballSize float64) Field {
@@ -20,13 +26,19 @@ func NewField(size Point2D, paddleSize Point2D, ballSize float64) Field {
 		Paddle_one: NewPaddle(NewPoint2D(size.X/2, 30), paddleSize),
 		Paddle_two: NewPaddle(NewPoint2D(size.X/2, size.Y-30), paddleSize),
 		Size:       size,
+		Point:      Point{One: 0, Two: 0},
 	}
 }
 
 func (f *Field) Update(input1 Input, input2 Input) {
 	f.Paddle_one.Move(input1, f.Size, 5.0)
 	f.Paddle_two.Move(input2, f.Size, 5.0)
-	f.Ball.Move(f.Size, f.Paddle_one, f.Paddle_two)
+	point := f.Ball.Move(f.Size, f.Paddle_one, f.Paddle_two)
+	if point == 1 {
+		f.Point.One += 1
+	} else if point == 2 {
+		f.Point.Two += 1
+	}
 	f.Time++
 }
 

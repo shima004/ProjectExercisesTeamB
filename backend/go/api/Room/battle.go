@@ -2,6 +2,7 @@ package room
 
 import (
 	"ProjectExercises/TeamB/battle"
+	"ProjectExercises/TeamB/dbfunc"
 	"context"
 	"encoding/json"
 	"log"
@@ -10,6 +11,7 @@ import (
 
 var (
 	BAR_SPEED = 5.0
+	GAME_TIME = 60 * 60 * 1
 )
 
 type Battle struct {
@@ -23,7 +25,7 @@ type Battle struct {
 
 func OpenBattle(ctx context.Context, room *Room) *Battle {
 	battle := &Battle{
-		Field:       battle.NewField(battle.NewPoint2D(800, 600), battle.NewPoint2D(200, 20), 5),
+		Field:       battle.NewField(battle.NewPoint2D(800, 600), battle.NewPoint2D(200, 20), 20),
 		PlayerInput: make(chan battle.Input),
 		FieldUpdate: make(chan bool),
 		PlayerOne:   make([]battle.Input, 0),
@@ -73,17 +75,14 @@ func (b *Battle) initBattle() {
 	for _, v := range b.Room.Players {
 		for _, v2 := range b.Room.Players {
 			if v.Connention.RemoteAddr() != v2.Connention.RemoteAddr() {
-				// msg, err := json.Marshal(OutputMessage{
-				// 	Mes:   v2.Name,
-				// 	Event: "join",
-				// })
-				// if err != nil {
-				// 	log.Println("Battle_init:", err)
-				// }
-				b.Room.broadcast <- OutputMessage{
-					Mes:   v2.Name,
+				msg, err := json.Marshal(OutputMessage{
+					Mes:   "{\"Name\": \"" + v2.Name + "\"}",
 					Event: "join",
+				})
+				if err != nil {
+					log.Println("Battle_init:", err)
 				}
+				v.Send <- msg
 			}
 		}
 	}
@@ -101,25 +100,44 @@ func (b *Battle) initBattle() {
 func (b *Battle) RunBattle(ctx context.Context) {
 	b.initBattle()
 	log.Println("Battle:", "Battle started"+b.Room.Id)
-	// field, err := json.Marshal(b.Field)
-	// if err != nil {
-	// 	log.Println("Battle:", err)
-	// }
-	// m := OutputMessage{
-	// 	Mes:   string(field),
-	// 	Event: "start",
-	// }
-	// b.Room.broadcast <- m
 	tiker := time.NewTicker(time.Second / 60)
 	for {
 		select {
 		case <-ctx.Done():
 			log.Println("Battle:", "Battle ended"+b.Room.Id)
+			tiker.Stop()
+			ctx.Done()
 			return
 		case input := <-b.PlayerInput:
 			b.AddPlayerInput(input)
 		case <-tiker.C:
-			b.BattleUpdate()
+			if b.Field.Time == int64(GAME_TIME) {
+				win := OutputMessage{
+					Mes:   "",
+					Event: "win",
+				}
+				lose := OutputMessage{
+					Mes:   "",
+					Event: "lose",
+				}
+				if b.Field.Point.One > b.Field.Point.Two {
+					dbfunc.SetCoinFromUUID(b.Room.Players[0].UUID, 10)
+					dbfunc.SetCoinFromUUID(b.Room.Players[1].UUID, -10)
+					b.Room.Players[0].Send <- []byte(win.ToJson())
+					b.Room.Players[1].Send <- []byte(lose.ToJson())
+				} else {
+					dbfunc.SetCoinFromUUID(b.Room.Players[0].UUID, -10)
+					dbfunc.SetCoinFromUUID(b.Room.Players[1].UUID, 10)
+					b.Room.Players[0].Send <- []byte(lose.ToJson())
+					b.Room.Players[1].Send <- []byte(win.ToJson())
+				}
+				log.Println("Battle:", "Battle ended"+b.Room.Id)
+				tiker.Stop()
+				ctx.Done()
+				return
+			} else if b.Field.Time < int64(GAME_TIME) {
+				b.BattleUpdate()
+			}
 		}
 	}
 }
