@@ -1,4 +1,4 @@
-module ProjectExercises/TeamB
+module github.com/shima004/ProjectExercisesTeamB
 
 go 1.16
 
