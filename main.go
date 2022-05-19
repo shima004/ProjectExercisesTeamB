@@ -9,6 +9,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/go-playground/validator"
 	"github.com/labstack/echo/v4"
@@ -123,6 +124,10 @@ func main() {
 		return nil
 	})
 
+	port, err := os.Getenv("PORT")
+	if err != nil {
+		port = "8080"
+	}
 	// 8080番ポートで待ち受け
-	e.Logger.Fatal(e.Start(":8080"))
+	e.Logger.Fatal(e.Start(":" + port))
 }
