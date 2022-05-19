@@ -1,8 +1,8 @@
 package dbfunc
 
 import (
-	"ProjectExercises/TeamB/models"
 	"errors"
+	"github.com/shima004/ProjectExercisesTeamB/models"
 
 	"github.com/golang-jwt/jwt"
 	"github.com/google/uuid"

@@ -1,7 +1,7 @@
 package apifunc
 
 import (
-	"ProjectExercises/TeamB/dbfunc"
+	"github.com/shima004/ProjectExercisesTeamB/dbfunc"
 
 	"net/http"
 

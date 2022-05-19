@@ -1,8 +1,8 @@
 package dbfunc
 
 import (
-	"ProjectExercises/TeamB/models"
 	"fmt"
+	"github.com/shima004/ProjectExercisesTeamB/models"
 	"os"
 	"time"
 

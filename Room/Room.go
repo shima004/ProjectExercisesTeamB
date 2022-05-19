@@ -1,9 +1,9 @@
 package room
 
 import (
-	"ProjectExercises/TeamB/battle"
 	"context"
 	"encoding/json"
+	"github.com/shima004/ProjectExercisesTeamB/battle"
 	"log"
 	"time"
 )

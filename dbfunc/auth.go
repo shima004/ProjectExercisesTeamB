@@ -1,7 +1,7 @@
 package dbfunc
 
 import (
-	"ProjectExercises/TeamB/models"
+	"github.com/shima004/ProjectExercisesTeamB/models"
 )
 
 func PostLoginInfo(email string, password string) (user models.User, err error) {

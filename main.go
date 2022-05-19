@@ -1,10 +1,10 @@
 package main
 
 import (
-	room "ProjectExercises/TeamB/Room"
-	"ProjectExercises/TeamB/apifunc"
-	"ProjectExercises/TeamB/dbfunc"
 	"context"
+	room "github.com/shima004/ProjectExercisesTeamB/Room"
+	"github.com/shima004/ProjectExercisesTeamB/apifunc"
+	"github.com/shima004/ProjectExercisesTeamB/dbfunc"
 	"html/template"
 	"io"
 	"log"

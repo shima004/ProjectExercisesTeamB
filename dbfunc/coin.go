@@ -1,7 +1,7 @@
 package dbfunc
 
 import (
-	"ProjectExercises/TeamB/models"
+	"github.com/shima004/ProjectExercisesTeamB/models"
 
 	"github.com/labstack/echo/v4"
 )

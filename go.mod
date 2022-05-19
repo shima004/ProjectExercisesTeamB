@@ -1,6 +1,7 @@
 module github.com/shima004/ProjectExercisesTeamB
 
 go 1.16
+// +heroku goVersion go1.16
 
 require (
 	github.com/go-playground/universal-translator v0.18.0 // indirect
