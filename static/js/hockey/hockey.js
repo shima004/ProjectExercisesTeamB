@@ -1,4 +1,4 @@
-ws = new WebSocket("ws://localhost:8080/ws");
+ws = new WebSocket("wss://project-exercises-teamb-1.herokuapp.com/ws");
 
 ws.onopen = function () {
   console.log("Connected");
