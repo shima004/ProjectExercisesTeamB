@@ -1,1 +1,1 @@
-web: bin/TeamB
+web: bin/ProjectExercisesTeamB
