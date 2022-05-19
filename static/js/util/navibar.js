@@ -1,5 +1,9 @@
 window.onload = async function () {
   toggleAuth();
+  updateUserData();
+};
+
+async function updateUserData() {
   if (getToken() == undefined) {
     return;
   }
@@ -10,7 +14,7 @@ window.onload = async function () {
   } else {
     document.getElementById("coin").style.display = "none";
   }
-};
+}
 
 function toggleAuth() {
   if (getToken() == undefined) {
