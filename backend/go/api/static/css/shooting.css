@@ -4,7 +4,7 @@ body {
   user-select: none;
 }
 .hidden2 {
-  display: block;
+  display: none;
 }
 /* modal */
 section {
