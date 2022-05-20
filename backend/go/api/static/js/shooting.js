@@ -5,7 +5,6 @@ let viewScore = document.querySelector(".score"); // 点数表示
 const main = document.getElementById("main");
 const modal = document.getElementById("modal");
 const button = document.querySelector(".button");
-console.log("test")
 // スタートボタンが押された時の処理
 button.addEventListener("click", () => {
   modal.setAttribute("class", "hidden2");
@@ -13,7 +12,7 @@ button.addEventListener("click", () => {
   init();
 });
 // ゲーム画面生成
-window.onload = function init() {
+function init() {
   const table = document.querySelector("table");
   let id = 0;
   for (let i = 0; i < y; i++) {
@@ -54,8 +53,8 @@ window.onload = function init() {
 function mainLoop() {
   // カウントダウンタイマー
   let time = document.querySelector("h2");
-  let cnt = 30;
-  // 30秒たったらすべての処理を止める
+  let cnt = 10;
+  // 10秒たったらすべての処理を止める
   let timer = setInterval(() => {
     time.textContent = `TIME: ${cnt}`;
     cnt--;
@@ -77,8 +76,8 @@ function mainLoop() {
     let id = Math.floor(Math.random() * (x * y));
     let panel = document.getElementById(id);
     if (panel.className === "hidden") {
-      // 確率20%でピンクパネル
-      if (n < 0.2) {
+      // 確率10%でピンクパネル
+      if (n < 0.1) {
         // visibleクラスを付けてピンクパネルを表示
         panel.setAttribute("class", "visible");
         // hiddenクラスを付けてパネル非表示
@@ -94,7 +93,7 @@ function mainLoop() {
           panel.setAttribute("class", "hidden");
         }, 1500);
       }
-      // 確率50%でブラックパネル
+      // 確率60%でブラックパネル
       else {
         panel.setAttribute("class", "visible3");
         setTimeout(() => {
