@@ -6,9 +6,6 @@ body {
 .hidden2 {
   display: none;
 }
-.modal {
-  display: block;
-}
 /* modal */
 section {
   background: #fff;
