@@ -5,10 +5,12 @@ import (
 	"ProjectExercises/TeamB/apifunc"
 	"ProjectExercises/TeamB/dbfunc"
 	"context"
+	"fmt"
 	"html/template"
 	"io"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/go-playground/validator"
 	"github.com/labstack/echo/v4"
@@ -50,11 +52,11 @@ func main() {
 	// setting middleware
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
-	// e.Use(middleware.CORS())
-	// e.Use(middleware.BodyDump(func(c echo.Context, reqBody, resBody []byte) {
-	// 	fmt.Fprintf(os.Stderr, "Request: %v\n", string(reqBody))
-	// 	fmt.Fprintf(os.Stderr, "Header: %v\n", c.Request().Header)
-	// }))
+	e.Use(middleware.CORS())
+	e.Use(middleware.BodyDump(func(c echo.Context, reqBody, resBody []byte) {
+		fmt.Fprintf(os.Stderr, "Request: %v\n", string(reqBody))
+		// fmt.Fprintf(os.Stderr, "Header: %v\n", c.Request().Header)
+	}))
 
 	// setting template engine
 	t := &Template{
@@ -81,9 +83,6 @@ func main() {
 	requiredAuth.PUT("/user", apifunc.UserPut)
 	// http://localhost:8080/login : POST apifunc->login.go->LoginPost()
 	e.POST("/login", apifunc.LoginPost)
-
-	// requiredAuth.POST("/matching", apifunc.MatchingPost)
-	// requiredAuth.GET("/matching", apifunc.MatchingGet)
 
 	// html routes
 	e.GET("/", apifunc.GetIndex)

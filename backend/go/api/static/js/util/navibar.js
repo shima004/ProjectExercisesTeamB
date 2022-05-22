@@ -28,6 +28,17 @@ function toggleAuth() {
   }
 }
 
+function addCoinAnimation(name, before, after) {
+  var coin = document.getElementById("coin");
+  before += 1;
+  coin.innerHTML = "Name: " + name + " Coin: " + before + " <- " + (after - before);
+  var t = setTimeout(addCoinAnimation, Math.min(1000 / (after - before), 50), name, before, after);
+  if (before == after) {
+    coin.innerHTML = "Name: " + name + " Coin: " + before;
+    clearTimeout(t);
+  }
+}
+
 $(function () {
   $("#signOut").on("click", function () {
     var $this = $(this);
@@ -42,5 +53,8 @@ $(function () {
       document.getElementById("coin").innerHTML = "Coin: " + res.coin;
     }
     console.log(res);
+  });
+  $("#test").on("click", async function () {
+    postCoin(200);
   });
 });
