@@ -286,7 +286,9 @@ function keyUpHandler(e) {
         leftPressed = false;
     }
 }
-
+function GameStart(){
+    gamestart = 1;
+}
 
 function collisionDetection() {//衝突判定
     for(var c=0; c<brickColumnCount; c++) {
