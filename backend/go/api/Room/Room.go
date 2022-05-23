@@ -32,7 +32,7 @@ func newRoom(id string) *Room {
 		Battle:     nil,
 		close:      make(chan struct{}),
 	}
-	go r.Run(context.Background())
+	go r.Run()
 	return &r
 }
 
@@ -56,7 +56,7 @@ func (rm *Room) RemovePlayer(player *Player) {
 	}
 }
 
-func (rm *Room) Send(msg []byte) {
+func (rm *Room) SendBroadcast(msg []byte) {
 	for _, player := range rm.Players {
 		select {
 		case player.Send <- msg:
@@ -67,30 +67,44 @@ func (rm *Room) Send(msg []byte) {
 	}
 }
 
-func (rm *Room) Run(ctx context.Context) {
-	ticker := time.NewTicker(ServerFPS)
+func (rm *Room) inputMessageUnmarshal(message InputMessage) (input Field.Input, err error) {
+	err = json.Unmarshal(message.Mes, &input)
+	if err != nil {
+		return input, err
+	}
+	input.Side = message.Player.Side
+	return input, nil
+}
+
+func (rm *Room) isBattleOpen() bool {
+	return rm.Battle != nil
+}
+
+func (rm *Room) isAvailable() bool {
+	return len(rm.Players) == 2
+}
+
+func (rm *Room) Run() {
 	c := context.Background()
 	defer func() {
-		ticker.Stop()
 		c.Done()
 	}()
 	for {
 		select {
 		case player := <-rm.Register:
 			rm.AddPlayer(player)
-			if len(rm.Players) == 2 {
+			if rm.isAvailable() {
 				rm.Battle = OpenBattle(c, rm)
 			}
 		case player := <-rm.Unregister:
 			rm.RemovePlayer(player)
 		case msg := <-rm.read:
-			var input Field.Input
-			err := json.Unmarshal(msg.Mes, &input)
+			input, err := rm.inputMessageUnmarshal(msg)
 			if err != nil {
-				log.Printf("error: %v", err)
+				log.Printf("Error unmarshal input message: %s", err)
+				continue
 			}
-			input.Side = msg.Player.Side
-			if rm.Battle != nil {
+			if rm.isBattleOpen() {
 				rm.Battle.PlayerInput <- input
 			}
 		case msg := <-rm.broadcast:
@@ -98,15 +112,10 @@ func (rm *Room) Run(ctx context.Context) {
 			if err != nil {
 				log.Printf("error: %v", err)
 			}
-			rm.Send(m)
-		case <-ctx.Done():
-			log.Printf("Room %s closed", rm.Id)
-			return
+			rm.SendBroadcast(m)
 		case <-c.Done():
-			log.Printf("Room %s closed", rm.Id)
+			log.Printf("Battle is ended and Room %s closed", rm.Id)
 			return
-		case <-ticker.C:
-			// rm.Send([]byte("tick" + time.Now().String()))
 		}
 	}
 }

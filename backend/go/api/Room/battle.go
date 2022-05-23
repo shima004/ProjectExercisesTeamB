@@ -108,11 +108,11 @@ func (b *Battle) RunBattle(ctx context.Context) {
 		case <-tiker.C:
 			if b.Field.Time == int64(GAME_TIME) {
 				win := OutputMessage{
-					Mes:   "",
+					Mes:   "{\"bet\": \"10\"}",
 					Event: "win",
 				}
 				lose := OutputMessage{
-					Mes:   "",
+					Mes:   "{\"bet\": \"10\"}",
 					Event: "lose",
 				}
 				if b.Field.Point.One > b.Field.Point.Two {

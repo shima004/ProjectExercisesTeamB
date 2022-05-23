@@ -64,7 +64,6 @@ func (u *Player) Read() {
 			break
 		}
 		message = append(message, '\n')
-		// log.Printf("message: %v \n user: %s \n room: %s", string(message), u.Connention.RemoteAddr(), u.Room.Id)
 		msg := &InputMessage{
 			Mes:    message,
 			Player: u,
@@ -127,16 +126,8 @@ func (u *Player) Write() {
 					log.Printf("Close error: %v", err)
 					return
 				}
-				// if _, err := w.Write(<-u.Send); err != nil {
-				// 	log.Printf("Write error: %v", err)
-				// 	return
-				// }
 			}
 
-			// if err := w.Close(); err != nil {
-			// 	log.Printf("Close error: %v", err)
-			// 	return
-			// }
 		case <-ticker.C:
 			if err := u.Connention.SetWriteDeadline(time.Now().Add(writeWait)); err != nil {
 				log.Printf("SetWriteDeadline error: %v", err)

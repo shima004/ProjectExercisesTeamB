@@ -50,7 +50,7 @@ func (rm *RoomManager) RemovePlayerFromRoom(Player *Player) {
 	}
 }
 
-func (rm *RoomManager) Print() {
+func (rm *RoomManager) PrintRoomsInfo() {
 	for _, room := range rm.Rooms {
 		fmt.Println(room.Id)
 		for _, player := range room.Players {
@@ -61,6 +61,11 @@ func (rm *RoomManager) Print() {
 
 func (rm *RoomManager) Run(ctx context.Context) {
 	log.Printf("RoomManager started")
+	defer func() {
+		for _, room := range rm.Rooms {
+			close(room.close)
+		}
+	}()
 	for {
 		select {
 		case Player := <-rm.AddPlayer:
