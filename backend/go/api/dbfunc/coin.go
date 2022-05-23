@@ -1,7 +1,7 @@
 package dbfunc
 
 import (
-	"ProjectExercises/TeamB/models"
+	"ProjectExercises/TeamB/dbModels"
 
 	"github.com/labstack/echo/v4"
 )
@@ -18,7 +18,7 @@ func PostCoin(c echo.Context, total int) (err error) { //引数と返り値
 
 	coin := user.Coin + total //ユーザーのコインを更新
 	// データベースを更新
-	err = db.Model(models.User{}).Where("uuid = ?", user.UUID).Select("Coin").Updates(models.User{Coin: coin}).Error
+	err = db.Model(dbModels.User{}).Where("uuid = ?", user.UUID).Select("Coin").Updates(dbModels.User{Coin: coin}).Error
 
 	return err
 }
@@ -35,7 +35,7 @@ func SetCoinFromUUID(uuid string, coin int) (err error) { //引数と返り値
 
 	coin = user.Coin + coin //ユーザーのコインを更新
 	// データベースを更新
-	err = db.Model(models.User{}).Where("uuid = ?", uuid).Select("Coin").Updates(models.User{Coin: coin}).Error
+	err = db.Model(dbModels.User{}).Where("uuid = ?", uuid).Select("Coin").Updates(dbModels.User{Coin: coin}).Error
 
 	return err
 }

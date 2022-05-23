@@ -1,7 +1,7 @@
 package dbfunc
 
 import (
-	"ProjectExercises/TeamB/models"
+	"ProjectExercises/TeamB/dbModels"
 	"fmt"
 	"os"
 	"time"
@@ -18,12 +18,12 @@ func init() {
 	// }
 
 	db := sqlConnect()
-	db.AutoMigrate(&models.User{}) // テーブル作成
+	db.AutoMigrate(&dbModels.User{}) // テーブル作成
 	defer db.Close()
 }
 
 func sqlConnect() (database *gorm.DB) {
-	DBMS := "mysql"
+	dbMS := "mysql"
 	USER := os.Getenv("MYSQL_USER")
 	PASS := os.Getenv("MYSQL_PASSWORD")
 	PROTOCOL := os.Getenv("PROTOCOL")
@@ -32,7 +32,7 @@ func sqlConnect() (database *gorm.DB) {
 	CONNECT := USER + ":" + PASS + "@" + PROTOCOL + "/" + DBNAME + "?charset=utf8&parseTime=true&loc=Asia%2FTokyo"
 
 	count := 0
-	db, err := gorm.Open(DBMS, CONNECT)
+	db, err := gorm.Open(dbMS, CONNECT)
 	if err != nil {
 		for {
 			if err == nil {
@@ -47,7 +47,7 @@ func sqlConnect() (database *gorm.DB) {
 				fmt.Println("DB接続失敗")
 				panic(err)
 			}
-			db, err = gorm.Open(DBMS, CONNECT)
+			db, err = gorm.Open(dbMS, CONNECT)
 		}
 	}
 	return db

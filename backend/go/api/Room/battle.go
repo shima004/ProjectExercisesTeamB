@@ -1,7 +1,7 @@
 package room
 
 import (
-	"ProjectExercises/TeamB/battle"
+	"ProjectExercises/TeamB/Field"
 	"ProjectExercises/TeamB/dbfunc"
 	"context"
 	"encoding/json"
@@ -9,34 +9,29 @@ import (
 	"time"
 )
 
-var (
-	BAR_SPEED = 5.0
-	GAME_TIME = 60 * 60 * 1
-)
-
 type Battle struct {
-	Field       battle.Field
-	PlayerOne   []battle.Input
-	PlayerTwo   []battle.Input
-	PlayerInput chan battle.Input
+	Field       Field.Field
+	PlayerOne   []Field.Input
+	PlayerTwo   []Field.Input
+	PlayerInput chan Field.Input
 	FieldUpdate chan bool
 	Room        *Room
 }
 
 func OpenBattle(ctx context.Context, room *Room) *Battle {
-	battle := &Battle{
-		Field:       battle.NewField(battle.NewPoint2D(800, 600), battle.NewPoint2D(200, 20), 20),
-		PlayerInput: make(chan battle.Input),
+	Field := &Battle{
+		Field:       Field.NewField(FIELD_SIZE, PADDLE_SIZE, PADDLE_VELOCITY, BALL_SIZE, BALL_VELOCITY),
+		PlayerInput: make(chan Field.Input),
 		FieldUpdate: make(chan bool),
-		PlayerOne:   make([]battle.Input, 0),
-		PlayerTwo:   make([]battle.Input, 0),
+		PlayerOne:   make([]Field.Input, 0),
+		PlayerTwo:   make([]Field.Input, 0),
 		Room:        room,
 	}
-	go battle.RunBattle(ctx)
-	return battle
+	go Field.RunBattle(ctx)
+	return Field
 }
 
-func (b *Battle) AddPlayerInput(input battle.Input) {
+func (b *Battle) AddPlayerInput(input Field.Input) {
 	if input.Side == 1 {
 		b.PlayerOne = append(b.PlayerOne, input)
 	} else {
@@ -52,12 +47,12 @@ func (b *Battle) BattleUpdate() {
 	if len(b.PlayerOne) >= 1 {
 		b.PlayerOne = b.PlayerOne[1:]
 	} else {
-		b.PlayerOne = make([]battle.Input, 0)
+		b.PlayerOne = make([]Field.Input, 0)
 	}
 	if len(b.PlayerTwo) >= 1 {
 		b.PlayerTwo = b.PlayerTwo[1:]
 	} else {
-		b.PlayerTwo = make([]battle.Input, 0)
+		b.PlayerTwo = make([]Field.Input, 0)
 	}
 
 	msg, e := json.Marshal(b.Field)

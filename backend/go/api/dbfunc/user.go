@@ -1,7 +1,7 @@
 package dbfunc
 
 import (
-	"ProjectExercises/TeamB/models"
+	"ProjectExercises/TeamB/dbModels"
 	"errors"
 
 	"github.com/golang-jwt/jwt"
@@ -10,7 +10,7 @@ import (
 	"golang.org/x/crypto/bcrypt" //パスワードをハッシュ化するために使用
 )
 
-func GetUserInfo(c echo.Context) (user models.User, err error) {
+func GetUserInfo(c echo.Context) (user dbModels.User, err error) {
 	db := sqlConnect()
 	defer db.Close()
 
@@ -27,7 +27,7 @@ func PostUser(email string, password string, name string) (err error) {
 	defer db.Close()
 
 	// おなじemailが既に登録されていないか確認
-	var tmp models.User
+	var tmp dbModels.User
 	if err = db.Where("email = ?", email).First(&tmp).Error; err == nil {
 		return errors.New("email is already exists")
 	}
@@ -45,7 +45,7 @@ func PostUser(email string, password string, name string) (err error) {
 	}
 
 	// データベースに登録
-	var u models.User = models.User{Email: email, Password: hashStr, Name: name, Coin: 100, UUID: uid.String()}
+	var u dbModels.User = dbModels.User{Email: email, Password: hashStr, Name: name, Coin: 100, UUID: uid.String()}
 	err = db.Create(&u).Error
 
 	return err
@@ -62,7 +62,7 @@ func PutUser(c echo.Context, name string) (err error) {
 	}
 
 	// データベースを更新
-	err = db.Model(models.User{}).Where("uuid = ?", user.UUID).Select("name").Updates(models.User{Name: name}).Error
+	err = db.Model(dbModels.User{}).Where("uuid = ?", user.UUID).Select("name").Updates(dbModels.User{Name: name}).Error
 
 	return err
 }
@@ -81,7 +81,7 @@ func ComparePassword(hashStr string, inputPass string) (Ok bool) {
 	return Ok
 }
 
-func GetUserFromToken(c echo.Context) (u models.User, err error) {
+func GetUserFromToken(c echo.Context) (u dbModels.User, err error) {
 	db := sqlConnect()
 	defer db.Close()
 
@@ -96,7 +96,7 @@ func GetUserFromToken(c echo.Context) (u models.User, err error) {
 	return u, err
 }
 
-func GetUserFromUUID(uuid string) (u models.User, err error) {
+func GetUserFromUUID(uuid string) (u dbModels.User, err error) {
 	db := sqlConnect()
 	defer db.Close()
 

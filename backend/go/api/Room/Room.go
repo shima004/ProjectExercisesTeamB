@@ -1,7 +1,7 @@
 package room
 
 import (
-	"ProjectExercises/TeamB/battle"
+	"ProjectExercises/TeamB/Field"
 	"context"
 	"encoding/json"
 	"log"
@@ -84,7 +84,7 @@ func (rm *Room) Run(ctx context.Context) {
 		case player := <-rm.Unregister:
 			rm.RemovePlayer(player)
 		case msg := <-rm.read:
-			var input battle.Input
+			var input Field.Input
 			err := json.Unmarshal(msg.Mes, &input)
 			if err != nil {
 				log.Printf("error: %v", err)

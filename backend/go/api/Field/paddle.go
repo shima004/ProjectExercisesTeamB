@@ -1,12 +1,13 @@
-package battle
+package Field
 
 type Paddle struct {
 	Position Point2D
 	Size     Point2D
+	Velocity Point2D
 }
 
-func NewPaddle(position Point2D, size Point2D) Paddle {
-	return Paddle{position, size}
+func NewPaddle(position Point2D, size Point2D, Velocity Point2D) Paddle {
+	return Paddle{position, size, Velocity}
 }
 
 func (p *Paddle) Collide(b *Ball) bool {
@@ -44,12 +45,12 @@ func (p *Paddle) Collide(b *Ball) bool {
 	return false
 }
 
-func (p *Paddle) Move(input Input, fieldSize Point2D, speed float64) {
+func (p *Paddle) Move(input Input, fieldSize Point2D) {
 	if input.Key.Left {
-		p.Position.X -= speed
+		p.Position.X -= p.Velocity.X
 	}
 	if input.Key.Right {
-		p.Position.X += speed
+		p.Position.X += p.Velocity.X
 	}
 	if p.Position.X < p.Size.X/2 {
 		p.Position.X = p.Size.X / 2

@@ -1,4 +1,6 @@
-package battle
+package Field
+
+import "math/rand"
 
 type Ball struct {
 	Position Point2D
@@ -24,15 +26,15 @@ func (b *Ball) Move(fieldSize Point2D, paddle1 Paddle, paddle2 Paddle) int {
 	if futurePosition.Y+b.Radius > fieldSize.Y {
 		b.Position.X = fieldSize.X / 2
 		b.Position.Y = fieldSize.Y / 2
-		b.Velocity.X = -4
-		b.Velocity.Y = -4
+		b.Velocity.X = 8 * (rand.Float64() - 0.5)
+		b.Velocity.Y = -8 * rand.Float64()
 		return 1
 	}
 	if futurePosition.Y-b.Radius < 0 {
 		b.Position.X = fieldSize.X / 2
 		b.Position.Y = fieldSize.Y / 2
-		b.Velocity.X = 4
-		b.Velocity.Y = 4
+		b.Velocity.X = 8 * (rand.Float64() - 0.5)
+		b.Velocity.Y = 8 * rand.Float64()
 		return 2
 	}
 	paddle1.Collide(b)
