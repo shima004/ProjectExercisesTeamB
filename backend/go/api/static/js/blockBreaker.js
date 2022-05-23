@@ -375,15 +375,15 @@ function drawBricks() {
 
 function draw() {
     if(gamestart == 1){
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawBricks();
-    drawBall();
-    drawPaddle();
-    drawScore();
-    drawLives();
-    collisionDetection();
-    x += dx;
-    y += dy;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawBricks();
+        drawBall();
+        drawPaddle();
+        drawScore();
+        drawLives();
+        collisionDetection();
+        x += dx;
+        y += dy;
     }
     if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
         dx = -dx;
