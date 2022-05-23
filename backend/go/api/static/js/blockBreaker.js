@@ -248,6 +248,7 @@ var brickOffsetLeft = 50;
 var score = 0;
 var lives = 3;
 var level = 1;
+var gamestart = 0;
 var breakcount = 0;
 var bricks = [];
 for(var c=0; c<brickColumnCount; c++) {
@@ -371,6 +372,7 @@ function drawBricks() {
 }
 
 function draw() {
+    if(gamestart == 1){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBricks();
     drawBall();
@@ -380,6 +382,7 @@ function draw() {
     collisionDetection();
     x += dx;
     y += dy;
+    }
     if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
         dx = -dx;
     }
