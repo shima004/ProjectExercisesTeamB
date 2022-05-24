@@ -54,7 +54,7 @@ function mainLoop() {
   // カウントダウンタイマー
   let time = document.querySelector("h2");
   let cnt = 30;
-  // 10秒たったらすべての処理を止める
+  // 30秒たったらすべての処理を止める
   let timer = setInterval(() => {
     time.textContent = `TIME: ${cnt}`;
     cnt--;
