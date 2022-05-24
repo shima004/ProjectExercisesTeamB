@@ -25,6 +25,7 @@ type Player struct {
 	Room       *Room
 	Connention *websocket.Conn
 	Send       chan []byte
+	Side       int8
 }
 
 func NewPlayer(uuid string, name string, room *Room, conn *websocket.Conn) *Player {
@@ -34,6 +35,7 @@ func NewPlayer(uuid string, name string, room *Room, conn *websocket.Conn) *Play
 		Room:       room,
 		Connention: conn,
 		Send:       make(chan []byte, 256),
+		Side:       -1,
 	}
 	return u
 }
@@ -63,7 +65,11 @@ func (u *Player) Read() {
 		}
 		message = append(message, '\n')
 		log.Printf("message: %v \n user: %s \n room: %s", string(message), u.Connention.RemoteAddr(), u.Room.Id)
-		u.Room.broadcast <- message
+		msg := &Message{
+			Mes:    message,
+			Player: u,
+		}
+		u.Room.broadcast <- *msg
 	}
 }
 
