@@ -64,7 +64,7 @@ header .score {
   border: 2px solid black;
   border-radius: 5px;
   margin: 0 auto;
-  cursor: url(hammer.png), auto;
+  cursor: url(../img/hammer.png), auto;
 }
 table {
   margin: 0 auto;
