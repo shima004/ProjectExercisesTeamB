@@ -14,6 +14,7 @@ ws.onmessage = async function (evt) {
     var field = JSON.parse(data.Mes);
     battle_field.init(field);
     battle_field.draw();
+    FPS = field.FPS;
     superInterval(send, 1000 / FPS);
   } else if (data.Event == "update") {
     var field = JSON.parse(data.Mes);
@@ -21,7 +22,7 @@ ws.onmessage = async function (evt) {
     battle_field.update(field);
     battle_field.draw();
     sendflag = true;
-    document.getElementById("time").innerHTML = field.Time + "/ " + 60 * 60 * 1;
+    document.getElementById("time").innerHTML = field.Time + "/ " + field.TimeLimit;
     document.getElementById("score").innerHTML = field.Point.One + " : " + field.Point.Two;
     calc_fps();
   }
@@ -44,7 +45,7 @@ ws.onmessage = async function (evt) {
     if (user == undefined) {
       return;
     }
-    addCoinAnimation(user.name, user.coin, user.coin + result.bet);
+    addCoinAnimation(user.name, user.coin, user.coin + parseInt(result.bet));
   }
 };
 
@@ -64,7 +65,6 @@ const superInterval = (cb, interval = 1000, ...args) => {
 
 canvas = document.getElementById("canvas");
 ctx = canvas.getContext("2d");
-const FPS = 30;
 const Input = new InputData(Date.now(), false, false, 0);
 document.addEventListener("keydown", getKeyDown);
 document.addEventListener("keyup", getKeyUp);
