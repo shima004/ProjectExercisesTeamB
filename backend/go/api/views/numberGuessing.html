@@ -530,7 +530,7 @@
     
     <body>
         {{ template "navibar" . }}
-        <p>詰めアルゴ</p>
+        <h1>詰めアルゴ</h1>
         <hr>
         <div>
             ＜ルール＞<br>
@@ -548,7 +548,7 @@
         </div>
         <div style="background-color: #CCC;">
             <form>
-                <p id="default">01:00</p>
+                <h2 id="default">01:00</h2>
                 <hr>
                 <div id="number"></div>
                 <hr>↓Drag &amp; Drop
@@ -1101,7 +1101,6 @@
                 else if(count < 11 && count >= 1) {
                     score = 10;
                 }
-                postCoin(score);
                 alert("CLEAR!!!!\nSCORE: " + score);
             }
             
@@ -1161,6 +1160,7 @@
                         break;
                 }
             }
+            postCoin(score);
         }
 
         var count   = 60;     //カウントダウンの数字を格納する変数  
