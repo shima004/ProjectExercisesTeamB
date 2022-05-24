@@ -28,7 +28,9 @@
 
 .font1 {
   color: #333;
+  text-decoration :none;
   background: #ffbf4b;
+  transition: .4s;
   box-shadow: 10px 10px #f9a5a5;
 }
 
@@ -38,7 +40,9 @@
 
 .font2 {
   color: #333;
+  text-decoration :none;
   background: #ffbf4b;
+  transition: .4s;
   box-shadow: 10px 10px #f9a5a5;
 }
 
@@ -48,7 +52,9 @@
 
 .font3 {
   color: #333;
+  text-decoration :none;
   background: #ffbf4b;
+  transition: .4s;
   box-shadow: 10px 10px #f9a5a5;
 }
 
@@ -58,7 +64,9 @@
 
 .font4 {
   color: #333;
+  text-decoration :none;
   background: #ffbf4b;
+  transition: .4s;
   box-shadow: 10px 10px #f9a5a5;
 }
 
@@ -68,7 +76,9 @@
 
 .font5 {
   color: #333;
+  text-decoration :none;
   background: #ffbf4b;
+  transition: .4s;
   box-shadow: 10px 10px #f9a5a5;
 }
 
