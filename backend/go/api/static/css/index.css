@@ -31,11 +31,11 @@
   text-decoration :none;
   background: #ffbf4b;
   transition: .4s;
-  box-shadow: 10px 10px #f9a5a5;
+  box-shadow: 10px 10px #fa190d;
 }
 
 .btn-style1:hover {
-	box-shadow: 0px 0px #f9a5a5;
+	box-shadow: 0px 0px #de0b4e;
 }
 
 .btn-style2 {
@@ -43,11 +43,11 @@
   text-decoration :none;
   background: #ffbf4b;
   transition: .4s;
-  box-shadow: 10px 10px #f9a5a5;
+  box-shadow: 10px 10px #f500c7;
 }
 
 .btn-style2:hover {
-	box-shadow: 0px 0px #f9a5a5;
+	box-shadow: 0px 0px #b90bde;
 }
 
 .btn-style3 {
@@ -55,7 +55,7 @@
   text-decoration :none;
   background: #ffbf4b;
   transition: .4s;
-  box-shadow: 10px 10px #f9a5a5;
+  box-shadow: 10px 10px #900dfa;
 }
 
 .btn-style3:hover {
