@@ -68,6 +68,7 @@ function mainLoop() {
       time.addEventListener("click", () => {
         document.location.reload();
       });
+      postCoin(score);
     }
   }, 1000);
   // パネルをランダムに表示させる
