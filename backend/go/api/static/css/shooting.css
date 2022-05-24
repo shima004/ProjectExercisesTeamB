@@ -44,9 +44,6 @@ section span {
   margin: 30px auto;
   cursor: url(../img/hammer.png), auto;
 }
-.score {
-  cursor: url(../img/hammer.png), auto;
-}
 /* header */
 header {
   display: flex;
