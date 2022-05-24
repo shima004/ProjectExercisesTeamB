@@ -248,6 +248,7 @@ var brickOffsetLeft = 50;
 var score = 0;
 var lives = 3;
 var level = 1;
+var a = 0;
 var gamestart = 0;
 var breakcount = 0;
 var bricks = [];
@@ -399,6 +400,9 @@ function draw() {
             if(!lives) {
                 alert("GAME OVER");
                 postCoin(score);
+                a=1;
+            }
+            if(a==1){
                 document.location.reload();
             }
             else {
