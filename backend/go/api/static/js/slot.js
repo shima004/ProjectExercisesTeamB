@@ -4,6 +4,7 @@
         var sw;
         stt = 0;
 
+        var flag;
         var coincnt;
 
         var sp1;
@@ -83,9 +84,23 @@
                 if (cg1 == cg2 && cg1 == cg3) {
                     let element = document.getElementById('hanteii');
                     element.value = '~WIN!!~';
-                    if (cg1==1) {
-                        fruitRadio[0].checked = true;
-                        console.log("100");
+                    if (cg1==1 && cg1 == 2 && cg == 3 && cg == 4 && cg == 5) {
+                           //　ラジオボタンの数だけ判定を繰り返す（ボタンを表すインプットタグがあるので１引く）
+                        for(var i=0; i<document.COIN.bet.length-1;i++){
+ 
+                            // i番目のラジオボタンがチェックされているかを判定
+                            if(document.COIN.bet[i].checked){ 
+                            flag = i;
+                            }  
+
+                        }   
+
+                        if (flag == 0) {
+                            coincnt = 20 * 2
+                        } else if (flag==1) {
+                            coincnt = 50 * 2;
+                        }
+                        console.log(coincnt);
                         postCoin(100);
                     }
 
