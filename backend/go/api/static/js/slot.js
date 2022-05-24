@@ -84,7 +84,7 @@
                 if (cg1 == cg2 && cg1 == cg3) {
                     let element = document.getElementById('hanteii');
                     element.value = '~WIN!!~';
-                    if (cg1==1 && cg1 == 2 && cg == 3 && cg == 4 && cg == 5) {
+                    if (cg1==1 || cg1 == 2 || cg == 3 || cg == 4 || cg == 5) {
                            //　ラジオボタンの数だけ判定を繰り返す（ボタンを表すインプットタグがあるので１引く）
                         for(var i=0; i<document.COIN.bet.length-1;i++){
  
