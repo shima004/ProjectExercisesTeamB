@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Myfont';
+  src: url('/static/font/PixelMplus12-Regular.ttf') format('truetype');
+}
+
 .scroll {
   margin: auto;
   overflow-x: auto;
@@ -18,4 +23,5 @@
 
 .container {
   text-align: center;
+  font-family: 'Myfont',cursive;
 }
