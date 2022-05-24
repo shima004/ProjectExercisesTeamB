@@ -123,7 +123,6 @@
                 if (cg1 == cg2 && cg1 == cg3) {
                     let element = document.getElementById('hanteii');
                     element.value = '~WIN!!~';
-                    if (cg1==1 || cg1 == 2 || cg == 3 || cg == 4 || cg == 5) {
                         //　ラジオボタンの数だけ判定を繰り返す（ボタンを表すインプットタグがあるので１引く）
                      for(var i=0; i<document.COIN.bet.length-1;i++){
 
@@ -132,7 +131,8 @@
                          flag = i;
                          }  
 
-                     }   
+                     }  
+                    
 
                      if (flag == 0) {
                          coincnt = 20 * 2
@@ -141,15 +141,14 @@
                      }
                      console.log(coincnt);
                      postCoin(coincnt);
-                 }
                 } else {
                     let element = document.getElementById('hanteii');
                     element.value = '~lose(´ω`)~';
                     postCoin(-50);
                     
                 }
+            //sw = 0;
             }
-            sw = 0;
         }
 
 
@@ -161,31 +160,27 @@
                 if (cg1 == cg2 && cg1 == cg3) {
                     let element = document.getElementById('hanteii');
                     element.value = '~WIN!!~';
-                    if (cg1==1 || cg1 == 2 || cg == 3 || cg == 4 || cg == 5) {
                         //　ラジオボタンの数だけ判定を繰り返す（ボタンを表すインプットタグがあるので１引く）
-                     for(var i=0; i<document.COIN.bet.length-1;i++){
+                        for(var i=0; i<document.COIN.bet.length-1;i++){
 
-                         // i番目のラジオボタンがチェックされているかを判定
-                         if(document.COIN.bet[i].checked){ 
-                         flag = i;
-                         }  
+                            // i番目のラジオボタンがチェックされているかを判定
+                            if(document.COIN.bet[i].checked){ 
+                                flag = i;
+                            }  
 
-                     }   
-
-                     if (flag == 0) {
-                         coincnt = 20 * 2
+                        }
+                    if (flag == 0) {
+                        coincnt = 20 * 2
                      } else if (flag==1) {
-                         coincnt = 50 * 2;
+                        coincnt = 50 * 2;
                      }
                      console.log(coincnt);
-                 }
                 } else {
                     let element = document.getElementById('hanteii');
                     element.value = '~lose(´ω`)~';
                     postCoin(-50);
                 }
-            }
-            sw = 0;
+            //sw = 0;
         }
 
 
