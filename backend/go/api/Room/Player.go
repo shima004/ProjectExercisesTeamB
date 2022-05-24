@@ -25,6 +25,7 @@ type Player struct {
 	Room       *Room
 	Connention *websocket.Conn
 	Send       chan []byte
+	Side       int8
 }
 
 func NewPlayer(uuid string, name string, room *Room, conn *websocket.Conn) *Player {
@@ -34,6 +35,7 @@ func NewPlayer(uuid string, name string, room *Room, conn *websocket.Conn) *Play
 		Room:       room,
 		Connention: conn,
 		Send:       make(chan []byte, 256),
+		Side:       -1,
 	}
 	return u
 }
@@ -62,8 +64,11 @@ func (u *Player) Read() {
 			break
 		}
 		message = append(message, '\n')
-		log.Printf("message: %v \n user: %s \n room: %s", string(message), u.Connention.RemoteAddr(), u.Room.Id)
-		u.Room.broadcast <- message
+		msg := &InputMessage{
+			Mes:    message,
+			Player: u,
+		}
+		u.Room.read <- *msg
 	}
 }
 
@@ -95,19 +100,34 @@ func (u *Player) Write() {
 				return
 			}
 
-			//送られていなかったデータを送信する
-			n := len(u.Send)
-			for i := 0; i < n; i++ {
-				if _, err := w.Write(<-u.Send); err != nil {
-					log.Printf("Write error: %v", err)
-					return
-				}
-			}
-
 			if err := w.Close(); err != nil {
 				log.Printf("Close error: %v", err)
 				return
 			}
+
+			//送られていなかったデータを送信する
+			n := len(u.Send)
+			for i := 0; i < n; i++ {
+				message, ok := <-u.Send
+				if !ok {
+					return
+				}
+				w, err := u.Connention.NextWriter(websocket.TextMessage)
+				if err != nil {
+					log.Printf("NextWriter error: %v", err)
+					return
+				}
+				if _, err := w.Write(message); err != nil {
+					log.Printf("Write error: %v", err)
+					return
+				}
+
+				if err := w.Close(); err != nil {
+					log.Printf("Close error: %v", err)
+					return
+				}
+			}
+
 		case <-ticker.C:
 			if err := u.Connention.SetWriteDeadline(time.Now().Add(writeWait)); err != nil {
 				log.Printf("SetWriteDeadline error: %v", err)

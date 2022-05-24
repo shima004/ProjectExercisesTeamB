@@ -9,14 +9,22 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <script src="/static/js/hockey.js" defer></script>
+    <script src="/static/js/hockey/data.js"></script>
+    <script src="/static/js/hockey/hockey.js" defer></script>
+    <script src="/static/js/util/user.js" defer></script>
     <link rel="stylesheet" href="/static/css/hockey.css" />
   </head>
   <body>
     {{ template "navibar" . }}
     <div id="container">
       <!-- この下にコンテンツを作成してください -->
+      <div>
+        <div style="display: inline-block" id="fps"></div>
+        <div style="display: inline-block" id="time"></div>
+        <div style="display: inline-block" id="score"></div>
+      </div>
       <canvas id="canvas" width="800" height="600"></canvas>
+      <!-- <canvas id="chart" width="200" height="200"></canvas> -->
     </div>
   </body>
 </html>
