@@ -112,7 +112,7 @@ func (b *Battle) RunBattle(ctx context.Context) {
 					Event: "win",
 				}
 				lose := OutputMessage{
-					Mes:   "{\"bet\": \"10\"}",
+					Mes:   "{\"bet\": \"-10\"}",
 					Event: "lose",
 				}
 				if b.Field.Point.One > b.Field.Point.Two {

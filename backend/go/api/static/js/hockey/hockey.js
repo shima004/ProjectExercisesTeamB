@@ -4,7 +4,7 @@ ws.onopen = function () {
   console.log("Connected");
 };
 
-ws.onmessage = function (evt) {
+ws.onmessage = async function (evt) {
   console.log("onmessage" + evt.data);
   var data = JSON.parse(evt.data);
   console.log(data.Event);
@@ -39,8 +39,12 @@ ws.onmessage = function (evt) {
     user_info.innerHTML = user.Name;
     header.appendChild(user_info);
   } else if (data.Event == "win" || data.Event == "lose") {
-    updateUserData();
-    console.log(data.Event);
+    var result = JSON.parse(data.Mes);
+    var user = await getUser();
+    if (user == undefined) {
+      return;
+    }
+    addCoinAnimation(user.name, user.coin, user.coin + result.bet);
   }
 };
 
