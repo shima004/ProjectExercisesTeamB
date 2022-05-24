@@ -175,6 +175,7 @@
                         coincnt = 50 * 2;
                      }
                      console.log(coincnt);
+                     postCoin(coincnt);
                 } else {
                     let element = document.getElementById('hanteii');
                     element.value = '~lose(´ω`)~';
