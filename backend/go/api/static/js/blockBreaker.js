@@ -398,6 +398,7 @@ function draw() {
             lives--;
             if(!lives) {
                 alert("GAME OVER");
+                ProcessingInstruction(score);
                 document.location.reload();
             }
             else {
