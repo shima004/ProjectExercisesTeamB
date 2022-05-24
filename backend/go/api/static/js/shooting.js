@@ -77,8 +77,8 @@ function mainLoop() {
     let id = Math.floor(Math.random() * (x * y));
     let panel = document.getElementById(id);
     if (panel.className === "hidden") {
-      // 確率10%でピンクパネル
-      if (n < 0.1) {
+      // 確率20%でピンクパネル
+      if (n < 0.2) {
         // visibleクラスを付けてピンクパネルを表示
         panel.setAttribute("class", "visible");
         // hiddenクラスを付けてパネル非表示
@@ -94,7 +94,7 @@ function mainLoop() {
           panel.setAttribute("class", "hidden");
         }, 1500);
       }
-      // 確率60%でブラックパネル
+      // 確率50%でブラックパネル
       else {
         panel.setAttribute("class", "visible3");
         setTimeout(() => {
