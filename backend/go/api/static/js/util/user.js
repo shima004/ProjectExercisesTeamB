@@ -4,6 +4,10 @@ async function getUser() {
 }
 
 async function postCoin(coin) {
+  var u = await getUser();
+  if (u == undefined) {
+    return;
+  }
   var res = await axios.post(
     "/coin",
     {
@@ -11,5 +15,8 @@ async function postCoin(coin) {
     },
     {}
   );
+  if (res.status == 200) {
+    addCoinAnimation(u.name, u.coin, u.coin + coin);
+  }
   return res.data;
 }

@@ -4,20 +4,121 @@ ws.onopen = function () {
   console.log("Connected");
 };
 
-ws.onmessage = function (evt) {
-  console.log(evt);
+ws.onmessage = async function (evt) {
+  console.log("onmessage" + evt.data);
+  var data = JSON.parse(evt.data);
+  console.log(data.Event);
+  if (data.Event == "start") {
+    sendflag = true;
+    last = new Date();
+    var field = JSON.parse(data.Mes);
+    battle_field.init(field);
+    battle_field.draw();
+    superInterval(send, 1000 / FPS);
+  } else if (data.Event == "update") {
+    var field = JSON.parse(data.Mes);
+    console.log(field);
+    battle_field.update(field);
+    battle_field.draw();
+    sendflag = true;
+    document.getElementById("time").innerHTML = field.Time + "/ " + 60 * 60 * 1;
+    document.getElementById("score").innerHTML = field.Point.One + " : " + field.Point.Two;
+    calc_fps();
+  }
+  if (data.Event == "join") {
+    var user = JSON.parse(data.Mes);
+    console.log(user);
+    var header = document.getElementById("nav-header");
+    var vs = document.createElement("h5");
+    vs.style.display = "inline-block";
+    vs.innerHTML = "VS";
+    header.appendChild(vs);
+    var user_info = document.createElement("div");
+    user_info.className = "navbar-brand info";
+    user_info.style.display = "inline-block";
+    user_info.innerHTML = user.Name;
+    header.appendChild(user_info);
+  } else if (data.Event == "win" || data.Event == "lose") {
+    var result = JSON.parse(data.Mes);
+    var user = await getUser();
+    if (user == undefined) {
+      return;
+    }
+    addCoinAnimation(user.name, user.coin, user.coin + result.bet);
+  }
+};
+
+const superInterval = (cb, interval = 1000, ...args) => {
+  try {
+    const code = `self.addEventListener('message', msg=>{setInterval(()=>self.postMessage(null), msg.data)})`;
+    const w = new Worker(`data:text/javascript;base64,${btoa(code)}`);
+    w.onmessage = () => cb(...args);
+    w.postMessage(interval);
+    return { stop: () => w.terminate() };
+  } catch (_) {
+    // 実装の問題またはCSPによる拒否などで Worker が使えなければ普通の setInterval を使う
+    const id = setInterval(cb, interval, ...args);
+    return { stop: () => clearInterval(id) };
+  }
 };
 
 canvas = document.getElementById("canvas");
 ctx = canvas.getContext("2d");
-canvas_width = canvas.width;
-canvas_height = canvas.height;
-const Hockey = {
-  bar_width: 100,
-  bar_height: 10,
-};
+const FPS = 30;
+const Input = new InputData(Date.now(), false, false, 0);
 document.addEventListener("keydown", getKeyDown);
 document.addEventListener("keyup", getKeyUp);
+
+class Field {
+  constructor() {
+    this.ball = null;
+    this.bar1 = null;
+    this.bar2 = null;
+    this.time = 0;
+  }
+  init(field) {
+    this.ball = new Ball(field.Ball.Position.X, field.Ball.Position.Y, field.Ball.Radius, "black");
+    this.bar1 = new HockeyBar(
+      field.Paddle_one.Position.X,
+      field.Paddle_one.Position.Y,
+      field.Paddle_one.Size.X,
+      field.Paddle_one.Size.Y,
+      "red"
+    );
+    this.bar2 = new HockeyBar(
+      field.Paddle_two.Position.X,
+      field.Paddle_two.Position.Y,
+      field.Paddle_two.Size.X,
+      field.Paddle_two.Size.Y,
+      "blue"
+    );
+    this.time = field.Time;
+  }
+  update(field) {
+    this.ball.update(field.Ball.Position.X, field.Ball.Position.Y, field.Ball.Radius);
+    this.bar1.update(
+      field.Paddle_one.Position.X,
+      field.Paddle_one.Position.Y,
+      field.Paddle_one.Size.X,
+      field.Paddle_one.Size.Y
+    );
+    this.bar2.update(
+      field.Paddle_two.Position.X,
+      field.Paddle_two.Position.Y,
+      field.Paddle_two.Size.X,
+      field.Paddle_two.Size.Y
+    );
+    this.time = field.Time;
+  }
+  draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    this.ball.draw();
+    this.bar1.draw();
+    this.bar2.draw();
+  }
+}
+
+const battle_field = new Field();
 
 class HockeyBar {
   constructor(x, y, width, height, color) {
@@ -30,17 +131,13 @@ class HockeyBar {
   }
   draw() {
     ctx.fillStyle = this.color;
-    ctx.fillRect(this.x, this.y, this.width, this.height);
+    ctx.fillRect(this.x - this.width / 2, this.y - this.height / 2, this.width, this.height);
   }
-  move(dx) {
-    this.dx = dx;
-    if (this.x + dx < 0) {
-      this.x = 0;
-    } else if (this.x + dx > canvas_width - this.width) {
-      this.x = canvas_width - this.width;
-    } else {
-      this.x += dx;
-    }
+  update(x, y, w, h) {
+    this.x = x;
+    this.y = y;
+    this.width = w;
+    this.height = h;
   }
 }
 
@@ -54,98 +151,51 @@ class Ball {
     this.dy = Math.random();
   }
   draw() {
-    this.move();
     ctx.fillStyle = this.color;
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
     ctx.fill();
   }
-  move() {
-    if (this.x + this.dx < this.radius) {
-      this.x = this.radius;
-      this.dx = -this.dx;
-    }
-    if (this.x + this.dx > canvas_width - this.radius) {
-      this.x = canvas_width - this.radius;
-      this.dx = -this.dx;
-    }
-    if (this.y + this.dy < this.radius) {
-      this.y = this.radius;
-      this.dy = -this.dy;
-    }
-    if (this.y + this.dy > canvas_height - this.radius) {
-      this.y = canvas_height - this.radius;
-      this.dy = -this.dy;
-    }
-    this.x += this.dx;
-    this.y += this.dy;
-  }
-  coliision(bar) {
-    if (
-      this.x + this.radius > bar.x &&
-      this.x - this.radius < bar.x + bar.width &&
-      this.y + this.radius > bar.y &&
-      this.y - this.radius < bar.y + bar.height
-    ) {
-      this.dy = -this.dy;
-      this.dx += bar.dx;
-    }
+  update(x, y, radius) {
+    this.x = x;
+    this.y = y;
+    this.radius = radius;
   }
 }
 
-function init() {
-  console.log("init");
-  bar1 = new HockeyBar(
-    canvas_width / 2 - Hockey.bar_width / 2,
-    Hockey.bar_height,
-    Hockey.bar_width,
-    Hockey.bar_height,
-    "red"
-  );
-  bar2 = new HockeyBar(
-    canvas_width / 2 - Hockey.bar_width / 2,
-    canvas_height - Hockey.bar_height,
-    Hockey.bar_width,
-    Hockey.bar_height,
-    "blue"
-  );
-  ball = new Ball(canvas_width / 2, canvas_height / 2, 10, "black");
-  inputkey = "";
-  setInterval(draw, 1000 / 60);
+function calc_fps() {
+  var now = new Date();
+  var fps = 1000 / (now - last);
+  last = now;
+  document.getElementById("fps").innerHTML = fps.toFixed(0) + " fps";
+  if (fps < FPS - 5) {
+    document.getElementById("fps").style.color = "red";
+  } else {
+    document.getElementById("fps").style.color = "black";
+  }
 }
 
-function draw() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  if (inputkey === "ArrowLeft" || inputkey === "a") {
-    if (ws.readyState === WebSocket.OPEN) {
-      key = new InputData(Date.now(), true, false, 0);
-      ws.send(JSON.stringify(key));
+function send() {
+  if (ws.readyState === WebSocket.OPEN) {
+    if (sendflag) {
+      ws.send(JSON.stringify(Input));
+      sendflag = false;
     }
-    bar1.move(-5);
-  } else if (inputkey === "ArrowRight" || inputkey === "d") {
-    if (ws.readyState === WebSocket.OPEN) {
-      key = new InputData(Date.now(), false, true, 0);
-      ws.send(JSON.stringify(key));
-    }
-    bar1.move(5);
   }
-  bar1.draw();
-  bar2.draw();
-  ball.coliision(bar1);
-  ball.coliision(bar2);
-  ball.draw();
 }
 
 function getKeyDown(event) {
-  console.log("getKeyDown");
-  console.log(event.key);
-  inputkey = event.key;
+  if (event.key === "ArrowLeft" || event.key === "a") {
+    Input.key.left = true;
+  } else {
+    Input.key.right = true;
+  }
 }
 
 function getKeyUp(event) {
-  console.log("getKeyUp");
-  console.log(event.key);
-  inputkey = "";
+  if (event.key === "ArrowLeft" || event.key === "a") {
+    Input.key.left = false;
+  } else {
+    Input.key.right = false;
+  }
 }
-
-init();

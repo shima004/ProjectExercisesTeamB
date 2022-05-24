@@ -1,5 +1,9 @@
 window.onload = async function () {
   toggleAuth();
+  updateUserData();
+};
+
+async function updateUserData() {
   if (getToken() == undefined) {
     return;
   }
@@ -10,7 +14,7 @@ window.onload = async function () {
   } else {
     document.getElementById("coin").style.display = "none";
   }
-};
+}
 
 function toggleAuth() {
   if (getToken() == undefined) {
@@ -21,6 +25,27 @@ function toggleAuth() {
     document.getElementById("signOut").style.display = "inline-block";
     document.getElementById("signIn").style.display = "none";
     document.getElementById("signUp").style.display = "none";
+  }
+}
+
+function addCoinAnimation(name, before, after) {
+  var coin = document.getElementById("coin");
+  if (before < after) {
+    before += 1;
+    coin.innerHTML = "Name: " + name + " Coin: " + before + " <- " + (after - before);
+    var t = setTimeout(addCoinAnimation, Math.min(1000 / (after - before), 50), name, before, after);
+    if (before == after) {
+      coin.innerHTML = "Name: " + name + " Coin: " + before;
+      clearTimeout(t);
+    }
+  } else {
+    before -= 1;
+    coin.innerHTML = "Name: " + name + " Coin: " + before + " -> " + (after - before);
+    var t = setTimeout(addCoinAnimation, Math.min(1000 / (after - before), 50), name, before, after);
+    if (before == after) {
+      coin.innerHTML = "Name: " + name + " Coin: " + before;
+      clearTimeout(t);
+    }
   }
 }
 
@@ -38,5 +63,8 @@ $(function () {
       document.getElementById("coin").innerHTML = "Coin: " + res.coin;
     }
     console.log(res);
+  });
+  $("#test").on("click", async function () {
+    postCoin(200);
   });
 });

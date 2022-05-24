@@ -1,4 +1,4 @@
-package models
+package dbModels
 
 import "github.com/jinzhu/gorm"
 
