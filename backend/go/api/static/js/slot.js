@@ -89,9 +89,9 @@
                         for(var i=0; i<document.COIN.bet.length-1;i++){
  
                             // i番目のラジオボタンがチェックされているかを判定
-                            if(document.COIN.bet[i].checked){ 
+                            if(document.COIN.bet[i].checked){
                             flag = i;
-                            }  
+                            }
 
                         }   
 
