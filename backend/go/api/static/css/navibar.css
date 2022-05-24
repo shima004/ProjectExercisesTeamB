@@ -1,0 +1,14 @@
+.btn-outline-dark:hover {
+  background-color: #343a40;
+  color: #fff !important ;
+}
+
+.info {
+  padding: 0.5em 1em;
+  display: none;
+  border: solid 2px black; /*線*/
+  border-radius: 10px; /*角の丸み*/
+  color: black; /*文字色*/
+  background: #fff;
+  margin: 0px 16px;
+}

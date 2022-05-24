@@ -1,0 +1,21 @@
+.scroll {
+  margin: auto;
+  overflow-x: auto;
+  white-space: nowrap;
+  width: 500px;
+}
+.box {
+  display: inline-block;
+  height: 400px;
+  width: 300px;
+}
+.green {
+  background-color: #3cb371;
+}
+.orange {
+  background-color: #ffbf7f;
+}
+
+.container {
+  text-align: center;
+}

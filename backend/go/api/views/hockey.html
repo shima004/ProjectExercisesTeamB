@@ -1,0 +1,31 @@
+{{ define "hockey" }}
+<!DOCTYPE html>
+<html lang="ja-jp">
+  <head>
+    {{ template "header" . }}
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.0/socket.io.js"
+      integrity="sha512-/xb5+PNOA079FJkngKI2jvID5lyiqdHXaUUcfmzE0X0BdpkgzIWHC59LOG90a2jDcOyRsd1luOr24UCCAG8NNw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="/static/js/hockey/data.js"></script>
+    <script src="/static/js/hockey/hockey.js" defer></script>
+    <script src="/static/js/util/user.js" defer></script>
+    <link rel="stylesheet" href="/static/css/hockey.css" />
+  </head>
+  <body>
+    {{ template "navibar" . }}
+    <div id="container">
+      <!-- この下にコンテンツを作成してください -->
+      <div>
+        <div style="display: inline-block" id="fps"></div>
+        <div style="display: inline-block" id="time"></div>
+        <div style="display: inline-block" id="score"></div>
+      </div>
+      <canvas id="canvas" width="800" height="600"></canvas>
+      <!-- <canvas id="chart" width="200" height="200"></canvas> -->
+    </div>
+  </body>
+</html>
+{{ end }}
