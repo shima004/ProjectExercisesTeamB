@@ -534,19 +534,21 @@
         <hr>
         <div>
             ＜ルール＞<br>
-            黒のカード(0〜11)と白のカード(0~11)がある。<br>
+            黒のカード(0〜11)と白のカード(0~11)の計24枚のカードがある。<br>
             同じカードは存在しない。<br>
-            手前の数字は昇順、奥の数字は降順に並んでいる。<br>
+            スタートをクリックすると、上下8枚ずつ、計16枚のカードが表示される。<br>
+            下の数字は昇順、上の数字は降順に並んでいる。<br>
             白と黒で同じ数字の場合は「黒の方が小さい」とする。<br>
-            空いたマスを以上のルールに沿って埋めていく。<br>
+            上にある空いたマス(*)を以上のルールに沿って埋めていく。<br>
             <hr>
-            <input type="button" value="スタート" id="start" onclick="init()">
-            <input type="button" value="判定" onclick="check()">
+            <input type="button" value="スタート" onclick="init()" id="start">
+            <input type="button" value="判定" onclick="check()" id="deci">
+            <input type="button" value="リセット" onclick="count_reset()" id="reset">
             <hr>
         </div>
         <div style="background-color: #CCC;">
             <form>
-                <p id="default">00:30</p>
+                <p id="default">01:00</p>
                 <hr>
                 <div id="number"></div>
                 <hr>↓Drag &amp; Drop
@@ -1018,8 +1020,10 @@
                         break;
                 }
             }
-            var start = document.getElementById('start');
-            start.addEventListener('click',count_start, false);
+            if (start_f === false) {
+                interval = setInterval(count_down,1000);
+                start_f = true;
+            }
         }
 
         
@@ -1074,10 +1078,30 @@
                     correct[i] = 1;
                 }
             }
+            
+            var score;
             //出力
             if(correct[0] == 1 && correct[1] == 1) {
-                alert("clear");
                 count_stop();
+                if(count < 60 && count >= 51) {
+                    score = 100;
+                }
+                else if(count < 51 && count >= 41) {
+                    score = 50;
+                }
+                else if(count < 41 && count >= 31) {
+                    score = 40;
+                }
+                else if(count < 31 && count >= 21) {
+                    score = 30;
+                }
+                else if(count < 21 && count >= 11) {
+                    score = 20;
+                }
+                else if(count < 11 && count >= 1) {
+                    score = 10;
+                }
+                alert("CLEAR!!!!\nSCORE: " + score);
             }
             
             if(correct[0] == 1) {
@@ -1138,7 +1162,7 @@
             }
         }
 
-        var count   = 30;     //カウントダウンの数字を格納する変数  
+        var count   = 60;     //カウントダウンの数字を格納する変数  
         var min     = 0;       //残り時間「分」を格納する変数
         var sec     = 0;       //残り時間「秒」を格納する変数
         var start_f = false; 
@@ -1170,6 +1194,43 @@
         function count_stop() {
             clearInterval(interval);
             start_f = false;
+        }
+
+        function count_reset(){
+            clearInterval(interval);
+            count = 60;
+            start_f = false;
+            var count_down = document.getElementById("default");
+            count_down.style.color = 'black';
+            count_down.innerHTML = "01:00";
+            for(i=0; i<2; i++) {
+                switch(hide[i]) {
+                    case 0:
+                        question0.className = "";
+                        break;
+                    case 1:
+                        question1.className = "";
+                        break;
+                    case 2:
+                        question2.className = "";
+                        break;
+                    case 3:
+                        question3.className = "";
+                        break;
+                    case 4:
+                        question4.className = "";
+                        break;
+                    case 5:
+                        question5.className = "";
+                        break;
+                    case 6:
+                        question6.className = "";
+                        break;
+                    case 7:
+                        question7.className = "";
+                        break;
+                }
+            }
         }
 
     </script>
