@@ -49,7 +49,7 @@
 
                 }
 
-                sp1 = setInterval(loopup1, 120);
+                sp1 = setInterval(loopup1, 150);
 
                 var loopup2 = function () {
 
@@ -61,7 +61,7 @@
 
                 }
 
-                sp2 = setInterval(loopup2, 90);
+                sp2 = setInterval(loopup2, 150);
 
                 var loopup3 = function () {
                     document.getElementById('img3').src = img[cg3++];
@@ -70,7 +70,7 @@
                         cg3 = 0;
                     }
                 }
-                sp3 = setInterval(loopup3, 60);
+                sp3 = setInterval(loopup3, 150);
             //}
         }
 
@@ -84,7 +84,7 @@
                     let element = document.getElementById('hanteii');
                     element.value = '~WIN!!~';
                     if (cg1==1) {
-                        coincnt = 
+                        console.log("100");
                         postCoin(100);
                     }
 
@@ -92,6 +92,7 @@
                     let element = document.getElementById('hanteii');
                     element.value = '~lose(´ω`)~';
                     postCoin(-50);
+                    console.log("-50");
                 }
             }
             sw = 0;
