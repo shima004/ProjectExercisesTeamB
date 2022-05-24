@@ -5,14 +5,15 @@
 <!-- ナビバー -->
 <nav class="navbar navbar-light bg-light">
   <div class="container-fluid">
-    <div class="navbar-header">
+    <div class="navbar-header" id="nav-header">
       <a class="navbar-brand" href="/">BGamesプロジェクト {{ .Title }}</a>
-      <div class="navbar-brand" id="coin"></div>
+      <div class="navbar-brand info" style="font-family: monospace" id="coin"></div>
     </div>
     <div class="navbar-brand">
       <a class="navbar-brand btn btn-outline-dark" style="display: none" href="/auth/signIn" id="signIn">Sign in</a>
       <a class="navbar-brand btn btn-outline-dark" style="display: none" href="/auth/signUp" id="signUp">Sign up</a>
       <a class="navbar-brand btn btn-outline-danger" style="display: none" id="signOut">Sign out</a>
+      <a class="navbar-brand btn btn-outline-danger" id="test">Test</a>
     </div>
   </div>
 </nav>

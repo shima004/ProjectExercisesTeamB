@@ -30,7 +30,7 @@ func (rm *RoomManager) AddPlayerToRoom(Player *Player) {
 	if len(rm.Rooms) == 0 {
 		rm.CreateNewRoom()
 	}
-	if len(rm.Rooms[len(rm.Rooms)-1].Players) < 2 {
+	if len(rm.Rooms[len(rm.Rooms)-1].Players) < 2 && rm.Rooms[len(rm.Rooms)-1].Battle == nil {
 		rm.Rooms[len(rm.Rooms)-1].Register <- Player
 	} else {
 		rm.CreateNewRoom()
@@ -50,7 +50,7 @@ func (rm *RoomManager) RemovePlayerFromRoom(Player *Player) {
 	}
 }
 
-func (rm *RoomManager) Print() {
+func (rm *RoomManager) PrintRoomsInfo() {
 	for _, room := range rm.Rooms {
 		fmt.Println(room.Id)
 		for _, player := range room.Players {
@@ -61,6 +61,11 @@ func (rm *RoomManager) Print() {
 
 func (rm *RoomManager) Run(ctx context.Context) {
 	log.Printf("RoomManager started")
+	defer func() {
+		for _, room := range rm.Rooms {
+			close(room.close)
+		}
+	}()
 	for {
 		select {
 		case Player := <-rm.AddPlayer:

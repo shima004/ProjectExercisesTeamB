@@ -1,4 +1,4 @@
-package battle
+package Field
 
 type Input struct {
 	Time int64
