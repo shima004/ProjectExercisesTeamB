@@ -4,6 +4,8 @@
         var sw;
         stt = 0;
 
+        var coincnt;
+
         var sp1;
         var sp2;
         var sp3;
@@ -81,9 +83,15 @@
                 if (cg1 == cg2 && cg1 == cg3) {
                     let element = document.getElementById('hanteii');
                     element.value = '~WIN!!~';
+                    if (cg1==1) {
+                        coincnt = 
+                        ProcessingInstruction(100);
+                    }
+
                 } else {
                     let element = document.getElementById('hanteii');
                     element.value = '~lose(´ω`)~';
+                    ProcessingInstruction(-50);
                 }
             }
             sw = 0;
@@ -98,9 +106,11 @@
                 if (cg1 == cg2 && cg1 == cg3) {
                     let element = document.getElementById('hanteii');
                     element.value = '~WIN!!~';
+                    ProcessingInstruction(100);
                 } else {
                     let element = document.getElementById('hanteii');
                     element.value = '~lose(´ω`)~';
+                    ProcessingInstruction(-50);
                     
                 }
             }
@@ -116,9 +126,11 @@
                 if (cg1 == cg2 && cg1 == cg3) {
                     let element = document.getElementById('hanteii');
                     element.value = '~WIN!!~';
+                    ProcessingInstruction(100);
                 } else {
                     let element = document.getElementById('hanteii');
                     element.value = '~lose(´ω`)~';
+                    ProcessingInstruction(-50);
                 }
             }
             sw = 0;
