@@ -4,7 +4,7 @@ ws.onopen = function () {
   console.log("Connected");
 };
 
-ws.onmessage = function (evt) {
+ws.onmessage = async function (evt) {
   console.log("onmessage" + evt.data);
   var data = JSON.parse(evt.data);
   console.log(data.Event);
@@ -14,6 +14,7 @@ ws.onmessage = function (evt) {
     var field = JSON.parse(data.Mes);
     battle_field.init(field);
     battle_field.draw();
+    FPS = field.FPS;
     superInterval(send, 1000 / FPS);
   } else if (data.Event == "update") {
     var field = JSON.parse(data.Mes);
@@ -21,7 +22,7 @@ ws.onmessage = function (evt) {
     battle_field.update(field);
     battle_field.draw();
     sendflag = true;
-    document.getElementById("time").innerHTML = field.Time + "/ " + 60 * 60 * 1;
+    document.getElementById("time").innerHTML = field.Time + "/ " + field.TimeLimit;
     document.getElementById("score").innerHTML = field.Point.One + " : " + field.Point.Two;
     calc_fps();
   }
@@ -39,8 +40,12 @@ ws.onmessage = function (evt) {
     user_info.innerHTML = user.Name;
     header.appendChild(user_info);
   } else if (data.Event == "win" || data.Event == "lose") {
-    updateUserData();
-    console.log(data.Event);
+    var result = JSON.parse(data.Mes);
+    var user = await getUser();
+    if (user == undefined) {
+      return;
+    }
+    addCoinAnimation(user.name, user.coin, user.coin + parseInt(result.bet));
   }
 };
 
@@ -60,7 +65,6 @@ const superInterval = (cb, interval = 1000, ...args) => {
 
 canvas = document.getElementById("canvas");
 ctx = canvas.getContext("2d");
-const FPS = 30;
 const Input = new InputData(Date.now(), false, false, 0);
 document.addEventListener("keydown", getKeyDown);
 document.addEventListener("keyup", getKeyUp);

@@ -20,7 +20,7 @@ type Battle struct {
 
 func OpenBattle(ctx context.Context, room *Room) *Battle {
 	Field := &Battle{
-		Field:       Field.NewField(FIELD_SIZE, PADDLE_SIZE, PADDLE_VELOCITY, BALL_SIZE, BALL_VELOCITY),
+		Field:       Field.NewField(int64(GAME_TIME), int64(CLIENT_FPS), FIELD_SIZE, PADDLE_SIZE, PADDLE_VELOCITY, BALL_SIZE, BALL_VELOCITY),
 		PlayerInput: make(chan Field.Input),
 		FieldUpdate: make(chan bool),
 		PlayerOne:   make([]Field.Input, 0),
@@ -95,7 +95,7 @@ func (b *Battle) initBattle() {
 func (b *Battle) RunBattle(ctx context.Context) {
 	b.initBattle()
 	log.Println("Battle:", "Battle started"+b.Room.Id)
-	tiker := time.NewTicker(time.Second / 60)
+	tiker := time.NewTicker(time.Second / time.Duration(SERVER_FPS))
 	for {
 		select {
 		case <-ctx.Done():
@@ -112,7 +112,7 @@ func (b *Battle) RunBattle(ctx context.Context) {
 					Event: "win",
 				}
 				lose := OutputMessage{
-					Mes:   "{\"bet\": \"10\"}",
+					Mes:   "{\"bet\": \"-10\"}",
 					Event: "lose",
 				}
 				if b.Field.Point.One > b.Field.Point.Two {
