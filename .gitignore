@@ -2,3 +2,4 @@ backend/mysql/data
 .env
 .DS_Store
 .test.go
+.vscode
