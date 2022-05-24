@@ -3,3 +3,4 @@ backend/mysql/data
 .DS_Store
 .test.go
 .vscode
+.jshintrc
