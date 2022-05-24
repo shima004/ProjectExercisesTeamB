@@ -84,6 +84,7 @@
                     let element = document.getElementById('hanteii');
                     element.value = '~WIN!!~';
                     if (cg1==1) {
+                        fruitRadio[0].checked = true;
                         console.log("100");
                         postCoin(100);
                     }
