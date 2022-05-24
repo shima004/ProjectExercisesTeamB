@@ -67,7 +67,7 @@
   text-decoration :none;
   background: #ffbf4b;
   transition: .4s;
-	box-shadow: 0px 0px #b90bde;
+	box-shadow: 10px 10px #b90bde;
 }
 
 .btn-style4:hover {
