@@ -48,6 +48,7 @@ func main() {
 	e.Static("/static/img", "./static/img")
 	e.Static("/static/css", "./static/css")
 	e.Static("/static/js", "./static/js")
+	e.Static("/static/font", "./static/font")
 
 	// setting middleware
 	e.Use(middleware.Logger())
