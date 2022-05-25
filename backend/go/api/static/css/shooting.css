@@ -42,8 +42,9 @@ section span {
   line-height: 50px;
   text-align: center;
   margin: 30px auto;
-  cursor: url(../img/hammer.png), auto;
   background-color: #e95646;
+  cursor: url(../img/hammer.png), auto;
+  
 }
 /* header */
 header {
