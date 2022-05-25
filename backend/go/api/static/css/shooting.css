@@ -43,6 +43,7 @@ section span {
   text-align: center;
   margin: 30px auto;
   cursor: url(../img/hammer.png), auto;
+  background-color: #222324;
 }
 /* header */
 header {
