@@ -3,6 +3,7 @@
 
         var sw;
         stt = 0;
+        var chec;
 
         var flag;
         var coincnt;
@@ -80,26 +81,35 @@
             clearInterval(sp1);
             stop1 = 1;
 
+            if (elements[0].checked == true) {
+                chec = 20;
+            } else if (elements[1].checked == true) {
+                chec = 50;
+            } else if (elements[2].checked == true) {
+                chec = 100;
+            } else if (elements[3].checked == true) {
+                chec = 150;
+            }
+
+
             if (stop1 == 1 && stop2 == 1 && stop3 == 1) {
                 if (cg1 == cg2 && cg1 == cg3) {
                     let element = document.getElementById('hanteii');
                     element.value = '~WIN!!~';
-                    if (cg1==1 || cg1 == 2 || cg == 3 || cg == 4 || cg == 5) {
-                           //　ラジオボタンの数だけ判定を繰り返す（ボタンを表すインプットタグがあるので１引く）
-                        for(var i=0; i<document.COIN.bet.length-1;i++){
- 
-                            // i番目のラジオボタンがチェックされているかを判定
-                            if(document.COIN.bet[i].checked){
-                            flag = i;
-                            }
-
-                        }   
-
-                        if (flag == 0) {
-                            coincnt = 20 * 2
-                        } else if (flag==1) {
-                            coincnt = 50 * 2;
-                        }
+                    if (cg1==1) {
+                        coincnt = chec * 1.2;
+                        console.log(coincnt);
+                        postCoin(coincnt);
+                    } else if (cg==2) {
+                        coincnt = chec * 1.5;
+                        console.log(coincnt);
+                        postCoin(coincnt);
+                    } else if (cg==3) {
+                        coincnt = chec * 1.7;
+                        console.log(coincnt);
+                        postCoin(coincnt);
+                    } else if (cg==4) {
+                        coincnt = chec * 2.0;
                         console.log(coincnt);
                         postCoin(coincnt);
                     }
@@ -107,8 +117,8 @@
                 } else {
                     let element = document.getElementById('hanteii');
                     element.value = '~lose(´ω`)~';
-                    postCoin(-50);
-                    console.log("-50");
+                    postCoin(chec);
+                    console.log(chec);
                 }
             }
             sw = 0;
@@ -119,32 +129,43 @@
             clearInterval(sp2);
             stop2 = 1;
 
+            if (elements[0].checked == true) {
+                chec = 20;
+            } else if (elements[1].checked == true) {
+                chec = 50;
+            } else if (elements[2].checked == true) {
+                chec = 100;
+            } else if (elements[3].checked == true) {
+                chec = 150;
+            }
+
             if (stop1 == 1 && stop2 == 1 && stop3 == 1) {
                 if (cg1 == cg2 && cg1 == cg3) {
                     let element = document.getElementById('hanteii');
                     element.value = '~WIN!!~';
-                        //　ラジオボタンの数だけ判定を繰り返す（ボタンを表すインプットタグがあるので１引く）
-                     for(var i=0; i<document.COIN.bet.length-1;i++){
+                    if (cg1==1) {
+                        coincnt = chec * 1.2;
+                        console.log(coincnt);
+                        postCoin(coincnt);
+                    } else if (cg==2) {
+                        coincnt = chec * 1.5;
+                        console.log(coincnt);
+                        postCoin(coincnt);
+                    } else if (cg==3) {
+                        coincnt = chec * 1.7;
+                        console.log(coincnt);
+                        postCoin(coincnt);
+                    } else if (cg==4) {
+                        coincnt = chec * 2.0;
+                        console.log(coincnt);
+                        postCoin(coincnt);
+                    }
 
-                         // i番目のラジオボタンがチェックされているかを判定
-                         if(document.COIN.bet[i].checked){ 
-                         flag = i;
-                         }  
-
-                     }  
-                    
-
-                     if (flag == 0) {
-                         coincnt = 20 * 2
-                     } else if (flag==1) {
-                         coincnt = 50 * 2;
-                     }
-                     console.log(coincnt);
-                     postCoin(coincnt);
                 } else {
                     let element = document.getElementById('hanteii');
                     element.value = '~lose(´ω`)~';
-                    postCoin(-50);
+                    postCoin(chec);
+                    console.log(chec);
                     
                 }
             //sw = 0;
@@ -156,30 +177,43 @@
             clearInterval(sp3);
             stop3 = 1;
 
+            if (elements[0].checked == true) {
+                chec = 20;
+            } else if (elements[1].checked == true) {
+                chec = 50;
+            } else if (elements[2].checked == true) {
+                chec = 100;
+            } else if (elements[3].checked == true) {
+                chec = 150;
+            }
+
             if (stop1 == 1 && stop2 == 1 && stop3 == 1) {
                 if (cg1 == cg2 && cg1 == cg3) {
                     let element = document.getElementById('hanteii');
                     element.value = '~WIN!!~';
-                        //　ラジオボタンの数だけ判定を繰り返す（ボタンを表すインプットタグがあるので１引く）
-                        for(var i=0; i<document.COIN.bet.length-1;i++){
-
-                            // i番目のラジオボタンがチェックされているかを判定
-                            if(document.COIN.bet[i].checked){ 
-                                flag = i;
-                            }  
-
-                        }
-                    if (flag == 0) {
-                        coincnt = 20 * 2
-                     } else if (flag==1) {
-                        coincnt = 50 * 2;
-                     }
-                     console.log(coincnt);
-                     postCoin(coincnt);
+                    if (cg1==1) {
+                        coincnt = chec * 1.2;
+                        console.log(coincnt);
+                        postCoin(coincnt);
+                    } else if (cg==2) {
+                        coincnt = chec * 1.5;
+                        console.log(coincnt);
+                        postCoin(coincnt);
+                    } else if (cg==3) {
+                        coincnt = chec * 1.7;
+                        console.log(coincnt);
+                        postCoin(coincnt);
+                    } else if (cg==4) {
+                        coincnt = chec * 2.0;
+                        console.log(coincnt);
+                        postCoin(coincnt);
+                    }
+                    
                 } else {
                     let element = document.getElementById('hanteii');
                     element.value = '~lose(´ω`)~';
-                    postCoin(-50);
+                    postCoin(chec);
+                    console.log(chec);
                 }
             //sw = 0;
             }
