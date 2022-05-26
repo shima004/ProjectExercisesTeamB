@@ -411,8 +411,7 @@ function draw() {
             }
             /*if(a==1){
                 document.location.reload();
-            }*/
-
+             }*/
             else {
                 x = canvas.width/2;
                 y = canvas.height-30;
