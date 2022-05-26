@@ -291,7 +291,9 @@ function GameStart(){
     gamestart = 1;
 }
 function GameReset(){
-    document.location.reload();
+    if(gamestart==-1){
+        document.location.reload();
+    }
 }
 
 function collisionDetection() {//衝突判定
