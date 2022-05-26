@@ -222,7 +222,6 @@
 // //起動時のイベント
 // window.onload=function(){
 //     start();
-
 //     requestAnimationFrame(onPaint);
 // }
 
