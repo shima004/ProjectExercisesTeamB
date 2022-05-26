@@ -409,9 +409,9 @@ function draw() {
                 postCoin(score);
                 a=-1;
             }
-            /*if(a==1){
-                document.location.reload();
-             }*/
+            //if(a==1){
+                //document.location.reload();
+            //}
             else {
                 x = canvas.width/2;
                 y = canvas.height-30;
