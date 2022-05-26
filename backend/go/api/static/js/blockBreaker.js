@@ -290,6 +290,9 @@ function keyUpHandler(e) {
 function GameStart(){
     gamestart = 1;
 }
+function GameReset(){
+    document.location.reload();
+}
 
 function collisionDetection() {//衝突判定
     for(var c=0; c<brickColumnCount; c++) {
@@ -386,6 +389,11 @@ function draw() {
         x += dx;
         y += dy;
     }
+    else if(gamestart==-1){
+        ctx.font = "32px Arial";
+        ctx.fillStyle = "#ff0000";
+        ctx.fillText("GAME OVER", 8, 40);
+    }
     if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
         dx = -dx;
     }
@@ -400,11 +408,12 @@ function draw() {
             if(!lives) {
                 alert("GAME OVER");
                 postCoin(score);
-                a=1;
+                a=-1;
             }
-            if(a==1){
+            /*if(a==1){
                 document.location.reload();
-            }
+            }*/
+
             else {
                 x = canvas.width/2;
                 y = canvas.height-30;
