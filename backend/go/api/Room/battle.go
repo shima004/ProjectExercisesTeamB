@@ -6,6 +6,7 @@ import (
 	"context"
 	"encoding/json"
 	"log"
+	"strconv"
 	"time"
 )
 
@@ -20,7 +21,7 @@ type Battle struct {
 
 func OpenBattle(ctx context.Context, room *Room) *Battle {
 	Field := &Battle{
-		Field:       Field.NewField(int64(GAME_TIME), int64(CLIENT_FPS), FIELD_SIZE, PADDLE_SIZE, PADDLE_VELOCITY, BALL_SIZE, BALL_VELOCITY),
+		Field:       Field.NewField(int64(GAME_TIME), int64(CLIENT_FPS), FIELD_SIZE, PADDLE_SIZE, PADDLE_VELOCITY, BALL_SIZE, BALL_VELOCITY, BALL_MAX_VELOCITY),
 		PlayerInput: make(chan Field.Input),
 		FieldUpdate: make(chan bool),
 		PlayerOne:   make([]Field.Input, 0),
@@ -108,21 +109,21 @@ func (b *Battle) RunBattle(ctx context.Context) {
 		case <-tiker.C:
 			if b.Field.Time == int64(GAME_TIME) {
 				win := OutputMessage{
-					Mes:   "{\"bet\": \"10\"}",
+					Mes:   "{\"bet\": \"" + strconv.Itoa(BET) + "\"}",
 					Event: "win",
 				}
 				lose := OutputMessage{
-					Mes:   "{\"bet\": \"-10\"}",
+					Mes:   "{\"bet\": \"" + strconv.Itoa(-BET) + "\"}",
 					Event: "lose",
 				}
 				if b.Field.Point.One > b.Field.Point.Two {
-					dbfunc.SetCoinFromUUID(b.Room.Players[0].UUID, 10)
-					dbfunc.SetCoinFromUUID(b.Room.Players[1].UUID, -10)
+					dbfunc.SetCoinFromUUID(b.Room.Players[0].UUID, BET)
+					dbfunc.SetCoinFromUUID(b.Room.Players[1].UUID, -BET)
 					b.Room.Players[0].Send <- []byte(win.ToJson())
 					b.Room.Players[1].Send <- []byte(lose.ToJson())
 				} else {
-					dbfunc.SetCoinFromUUID(b.Room.Players[0].UUID, -10)
-					dbfunc.SetCoinFromUUID(b.Room.Players[1].UUID, 10)
+					dbfunc.SetCoinFromUUID(b.Room.Players[0].UUID, -BET)
+					dbfunc.SetCoinFromUUID(b.Room.Players[1].UUID, BET)
 					b.Room.Players[0].Send <- []byte(lose.ToJson())
 					b.Room.Players[1].Send <- []byte(win.ToJson())
 				}

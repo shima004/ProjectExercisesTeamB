@@ -6,10 +6,11 @@ type Ball struct {
 	Position Point2D
 	Velocity Point2D
 	Radius   float64
+	MaxSpeed float64
 }
 
-func NewBall(position Point2D, velocity Point2D, radius float64) Ball {
-	return Ball{position, velocity, radius}
+func NewBall(position Point2D, velocity Point2D, radius float64, maxSpeed float64) Ball {
+	return Ball{position, velocity, radius, maxSpeed}
 }
 
 func (b *Ball) Move(fieldSize Point2D, paddle1 Paddle, paddle2 Paddle) int {

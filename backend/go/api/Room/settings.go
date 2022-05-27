@@ -12,6 +12,9 @@ var (
 	PADDLE_VELOCITY = Field.NewPoint2D(5.0, 0)
 	BALL_SIZE       = 20.0
 	BALL_VELOCITY   = Field.NewPoint2D(4.0, 4.0)
-	CLIENT_FPS      = 30
-	SERVER_FPS      = 60
+
+	BALL_MAX_VELOCITY = 10.0
+	CLIENT_FPS        = 30
+	SERVER_FPS        = 60
+	BET               = 300
 )

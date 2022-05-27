@@ -15,6 +15,8 @@ ws.onmessage = async function (evt) {
     battle_field.init(field);
     battle_field.draw();
     FPS = field.FPS;
+    canvas.width = parseInt(field.Size.X);
+    canvas.height = parseInt(field.Size.Y);
     superInterval(send, 1000 / FPS);
   } else if (data.Event == "update") {
     var field = JSON.parse(data.Mes);
@@ -45,6 +47,7 @@ ws.onmessage = async function (evt) {
     if (user == undefined) {
       return;
     }
+    console.log(result.Event);
     addCoinAnimation(user.name, user.coin, user.coin + parseInt(result.bet));
   }
 };

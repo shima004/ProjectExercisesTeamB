@@ -21,12 +21,12 @@ type Field struct {
 	Point      Point
 }
 
-func NewField(timeLimit int64, FPS int64, size Point2D, paddleSize Point2D, paddleVelocity Point2D, ballSize float64, ballVelocity Point2D) Field {
+func NewField(timeLimit int64, FPS int64, size Point2D, paddleSize Point2D, paddleVelocity Point2D, ballSize float64, ballVelocity Point2D, ballMaxVelocity float64) Field {
 	return Field{
 		Time:       0,
 		TimeLimit:  timeLimit,
 		FPS:        FPS,
-		Ball:       NewBall(NewPoint2D(size.X/2, size.Y/2), ballVelocity, ballSize),
+		Ball:       NewBall(NewPoint2D(size.X/2, size.Y/2), ballVelocity, ballSize, ballMaxVelocity),
 		Paddle_one: NewPaddle(NewPoint2D(size.X/2, 30), paddleSize, paddleVelocity),
 		Paddle_two: NewPaddle(NewPoint2D(size.X/2, size.Y-30), paddleSize, paddleVelocity),
 		Size:       size,
