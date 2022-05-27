@@ -1,4 +1,13 @@
-ws = new WebSocket("ws://localhost:8080/ws");
+uri = "";
+if (document.location.protocol == "http:") {
+  uri += "ws://";
+} else {
+  uri += "wss://";
+}
+uri += document.location.host;
+uri += "/ws";
+
+ws = new WebSocket(uri);
 
 ws.onopen = function () {
   console.log("Connected");
