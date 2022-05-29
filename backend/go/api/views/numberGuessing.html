@@ -584,6 +584,14 @@
         var Qnum = new Array(16); //格納される値
         var hide = new Array(2); //＊表示箇所
         var a = new Array(16); //B or W
+        var start_f = false; 
+        var interval;
+        const btn1 = document.querySelector("#start");
+        const btn2 = document.querySelector("#deci");
+        const btn3 = document.querySelector("#reset");
+
+        btn2.disabled = true;
+        btn3.disabled = true;
 
         function init() {
             document.getElementById("number").innerHTML="";
@@ -1024,6 +1032,8 @@
                 interval = setInterval(count_down,1000);
                 start_f = true;
             }
+            btn1.disabled = true;
+            btn2.disabled = false;
         }
 
         
@@ -1102,6 +1112,8 @@
                     score = 10;
                 }
                 alert("CLEAR!!!!\nSCORE: " + score);
+                btn2.disabled = true;
+                btn3.disabled = false;
             }
             
             if(correct[0] == 1) {
@@ -1166,8 +1178,6 @@
         var count   = 60;     //カウントダウンの数字を格納する変数  
         var min     = 0;       //残り時間「分」を格納する変数
         var sec     = 0;       //残り時間「秒」を格納する変数
-        var start_f = false; 
-        var interval;
 
         function count_start() {
             if (start_f === false) {
@@ -1232,6 +1242,8 @@
                         break;
                 }
             }
+            btn1.disabled = false;
+            btn3.disabled = true;
         }
 
     </script>
