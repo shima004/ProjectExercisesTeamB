@@ -404,6 +404,7 @@ function draw() {
             lives--;
             if(!lives) {
                 postCoin(score);
+                drawLives();
                 alert("GAMEOVER")
                 a=1;
             }
