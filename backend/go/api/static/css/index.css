@@ -19,49 +19,27 @@
 .container {
   text-align: center;
 }
-  body {
-    margin: 0;
-    height: 100vh;
-    background-color:#d50000;
-    background-image: 
-      linear-gradient( 
-        90deg, 
-        #000000F0, 
-        #FF0000A0 var(--lpos), 
-        #000000C0),
-      repeating-linear-gradient(
-        45deg,
-        rgba(0,0,0,0.8),
-        rgba(0,0,0,0.8) 100px,
-        transparent 0px,
-        transparent 200px
-      ),
-      repeating-linear-gradient(
-        -45deg,
-        rgba(0,0,0,0.5),
-        rgba(0,0,0,0.5) 100px,
-        transparent 0px,
-        transparent 200px
-      );
-    background-size: 100%;
-    animation: move 10s infinite both;
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.link {
+  padding: 0 10px;
+}
+
+.container {
+  width: 100%;
+  height: 32.6vw;
+  background: url('https://raw.githubusercontent.com/Yousuke777/bg/main/sample-bg.png') repeat-x;
+  background-size: 50%;
+  animation: scroll-anim 5s linear infinite;
+}
+
+@keyframes scroll-anim {
+  100% {
+    background-position: -100% 0;
   }
-  
-  @keyframes move{
-    0% {
-      --lpos: 0%;
-    }
-    25% {
-      --lpos: 75%;
-    }
-    50% {
-      --lpos: 50%;
-    }
-    75% {
-      --lpos: 25%;
-    }
-    100% {
-      --lpos: 100%;
-    }
-  }
+}
 
