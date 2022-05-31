@@ -24,7 +24,7 @@ body{
   background-color:#e37676;
 }
 
-col{
+row text-center mb-4{
   border: solid 2px rgb(243, 38, 38);
   background-color: #7c75e7;
   padding: 15px;
