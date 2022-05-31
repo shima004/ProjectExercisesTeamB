@@ -22,7 +22,7 @@ type Battle struct {
 
 func OpenBattle(ctx context.Context, room *Room) *Battle {
 	Field := &Battle{
-		Field:       Field.NewField(int64(GAME_TIME), int64(CLIENT_FPS), FIELD_SIZE, PADDLE_SIZE, PADDLE_VELOCITY, BALL_SIZE, BALL_VELOCITY, BALL_MAX_VELOCITY),
+		Field:       Field.NewField(int64(GAME_TIME), int64(CLIENT_FPS), FIELD_SIZE, PADDLE_SIZE, PADDLE_VELOCITY, BALL_SIZE, BALL_VELOCITY, BALL_MAX_VELOCITY, BALL_INIT_VELOCITY),
 		PlayerInput: make(chan Field.Input),
 		FieldUpdate: make(chan bool),
 		PlayerOne:   make([]Field.Input, 0),

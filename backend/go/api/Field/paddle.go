@@ -20,7 +20,7 @@ func (p *Paddle) Collide(b *Ball) bool {
 		X: b.Position.X + b.Velocity.X,
 		Y: b.Position.Y + b.Velocity.Y,
 	}
-	ball := NewBall(fp, b.Velocity, b.Radius, 0)
+	ball := NewBall(fp, b.Velocity, NewPoint2D(0, 0), b.Radius, 0)
 	// 円と矩形の衝突判定
 	//　矩形の上下
 	if p.Position.X-(p.Size.X/2) < ball.Position.X && p.Position.X+(p.Size.X/2) > ball.Position.X {
