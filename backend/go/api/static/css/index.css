@@ -18,5 +18,17 @@
 
 .container {
   text-align: center;
-  background-color:#ef9393;
+}
+
+body{
+  background-color:#e37676;
+  color:#93f4ee;
+}
+
+btn-secondary{
+  border: solid 2px rgb(243, 38, 38);
+  background-color: #7c75e7;
+  padding: 15px;
+  border-radius: 20px;
+  margin: 10px;
 }
