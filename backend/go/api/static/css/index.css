@@ -8,7 +8,6 @@
   display: inline-block;
   height: 400px;
   width: 300px;
-  background-color:#ef9393;
 }
 .green {
   background-color: #3cb371;
@@ -19,4 +18,5 @@
 
 .container {
   text-align: center;
+  background-color:#ef9393;
 }
