@@ -288,7 +288,7 @@ function keyUpHandler(e) {
     }
 }
 function GameStart(){
-    if(life>0){
+    if(gamestart!=-1){
         gamestart = 1;
     }
 }
