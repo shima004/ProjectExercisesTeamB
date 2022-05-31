@@ -87,7 +87,7 @@ func main() {
 	// html routes
 	e.GET("/", apifunc.GetIndex)
 	e.GET("/blockBreaker", apifunc.GetBlockBreaker)
-	e.GET("/hockey", apifunc.GetHockey)
+	requiredAuth.GET("/hockey", apifunc.GetHockey)
 	e.GET("/numberGuessing", apifunc.GetNumberGuessing)
 	e.GET("/shooting", apifunc.GetShooting)
 	e.GET("/slot", apifunc.GetSlot)

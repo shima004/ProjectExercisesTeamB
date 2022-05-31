@@ -1,5 +1,10 @@
 package Field
 
+import (
+	"log"
+	"math"
+)
+
 type Paddle struct {
 	Position Point2D
 	Size     Point2D
@@ -15,12 +20,13 @@ func (p *Paddle) Collide(b *Ball) bool {
 		X: b.Position.X + b.Velocity.X,
 		Y: b.Position.Y + b.Velocity.Y,
 	}
-	ball := NewBall(fp, b.Velocity, b.Radius)
+	ball := NewBall(fp, b.Velocity, NewPoint2D(0, 0), b.Radius, 0)
 	// 円と矩形の衝突判定
 	//　矩形の上下
 	if p.Position.X-(p.Size.X/2) < ball.Position.X && p.Position.X+(p.Size.X/2) > ball.Position.X {
 		if p.Position.Y-(p.Size.Y/2)-(ball.Radius) < ball.Position.Y && p.Position.Y+(p.Size.Y/2)+(ball.Radius) > ball.Position.Y {
 			b.Velocity.Y *= -1
+			b.Velocity.X += p.Velocity.X
 			return true
 		}
 	}
@@ -47,15 +53,19 @@ func (p *Paddle) Collide(b *Ball) bool {
 
 func (p *Paddle) Move(input Input, fieldSize Point2D) {
 	if input.Key.Left {
-		p.Position.X -= p.Velocity.X
+		p.Velocity.X = math.Max(p.Velocity.X-0.3, -10)
 	}
 	if input.Key.Right {
-		p.Position.X += p.Velocity.X
+		p.Velocity.X = math.Min(p.Velocity.X+0.3, 10)
 	}
+	log.Println(math.Round(p.Velocity.X))
+	p.Position.X += math.Round(p.Velocity.X)
 	if p.Position.X < p.Size.X/2 {
 		p.Position.X = p.Size.X / 2
+		p.Velocity.X *= -0.5
 	}
 	if p.Position.X > fieldSize.X-p.Size.X/2 {
 		p.Position.X = fieldSize.X - p.Size.X/2
+		p.Velocity.X *= -0.5
 	}
 }

@@ -16,15 +16,38 @@
   </head>
   <body>
     {{ template "navibar" . }}
-    <div id="container">
+    <div id="container" width="5000">
       <!-- この下にコンテンツを作成してください -->
-      <div>
+      <div style="background-color: white">
         <div style="display: inline-block" id="fps"></div>
         <div style="display: inline-block" id="time"></div>
         <div style="display: inline-block" id="score"></div>
       </div>
       <canvas id="canvas" width="800" height="600"></canvas>
-      <!-- <canvas id="chart" width="200" height="200"></canvas> -->
+      <div style="display: none" id="util-button">
+        <a href="/hockey">
+          <div
+            style="
+              display: inline-block;
+              text-decoration: none;
+              font-size: 36px;
+            "
+          >
+            続ける
+          </div>
+        </a>
+        <a href="/">
+          <div
+            style="
+              display: inline-block;
+              text-decoration: none;
+              font-size: 36px;
+            "
+          >
+            戻る
+          </div>
+        </a>
+      </div>
     </div>
   </body>
 </html>
