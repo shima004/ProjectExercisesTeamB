@@ -344,6 +344,11 @@ function drawLives() {
     ctx.fillStyle = "#00ff00";
     ctx.fillText("Lives: "+lives, canvas.width-150, 40);
 }
+function drawGameover() {
+    ctx.font = "64px Arial";
+    ctx.fillStyle = "#ff0000";
+    ctx.fillText("Game Over", 8, 40);
+}
 
 function drawBall() {
     ctx.beginPath();
@@ -380,6 +385,9 @@ function drawBricks() {
 }
 
 function draw() {
+    if(a=1){
+        drawGameover();
+    }
     if(gamestart == 1){
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         drawBricks();
@@ -405,6 +413,7 @@ function draw() {
             if(!lives) {
                 postCoin(score);
                 gamestart=-1;
+                a=1;
             }
             
             else {
