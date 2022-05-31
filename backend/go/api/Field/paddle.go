@@ -62,8 +62,10 @@ func (p *Paddle) Move(input Input, fieldSize Point2D) {
 	p.Position.X += math.Round(p.Velocity.X)
 	if p.Position.X < p.Size.X/2 {
 		p.Position.X = p.Size.X / 2
+		p.Velocity.X *= -0.5
 	}
 	if p.Position.X > fieldSize.X-p.Size.X/2 {
 		p.Position.X = fieldSize.X - p.Size.X/2
+		p.Velocity.X *= -0.5
 	}
 }

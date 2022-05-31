@@ -14,9 +14,17 @@ ws.onopen = function () {
 };
 
 ws.onmessage = async function (evt) {
-  console.log("onmessage" + evt.data);
   var data = JSON.parse(evt.data);
   console.log(data.Event);
+  if (data.Event == "side") {
+    console.log(data);
+    var side = JSON.parse(data.Mes);
+    if (side.Side == 0) {
+      document.getElementById("container").style.backgroundColor = "blue";
+    } else if (side.Side == 1) {
+      document.getElementById("container").style.backgroundColor = "red";
+    }
+  }
   if (data.Event == "start") {
     sendflag = true;
     last = new Date();

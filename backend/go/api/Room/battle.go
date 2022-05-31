@@ -5,6 +5,7 @@ import (
 	"ProjectExercises/TeamB/dbfunc"
 	"context"
 	"encoding/json"
+	"fmt"
 	"log"
 	"strconv"
 	"time"
@@ -86,6 +87,18 @@ func (b *Battle) initBattle() {
 	if err != nil {
 		log.Println("Battle:", err)
 	}
+	for _, v := range b.Room.Players {
+		s_m := OutputMessage{
+			Mes:   "{\"Side\": \"" + fmt.Sprint(v.Side) + "\"}",
+			Event: "side",
+		}
+		send_msg, err := json.Marshal(s_m)
+		if err != nil {
+			log.Println("Battle_init:", err)
+		}
+		v.Send <- send_msg
+	}
+
 	m := OutputMessage{
 		Mes:   string(field),
 		Event: "start",
