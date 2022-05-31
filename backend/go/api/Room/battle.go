@@ -5,7 +5,9 @@ import (
 	"ProjectExercises/TeamB/dbfunc"
 	"context"
 	"encoding/json"
+	"fmt"
 	"log"
+	"strconv"
 	"time"
 )
 
@@ -20,7 +22,7 @@ type Battle struct {
 
 func OpenBattle(ctx context.Context, room *Room) *Battle {
 	Field := &Battle{
-		Field:       Field.NewField(FIELD_SIZE, PADDLE_SIZE, PADDLE_VELOCITY, BALL_SIZE, BALL_VELOCITY),
+		Field:       Field.NewField(int64(GAME_TIME), int64(CLIENT_FPS), FIELD_SIZE, PADDLE_SIZE, PADDLE_VELOCITY, BALL_SIZE, BALL_VELOCITY, BALL_MAX_VELOCITY, BALL_INIT_VELOCITY),
 		PlayerInput: make(chan Field.Input),
 		FieldUpdate: make(chan bool),
 		PlayerOne:   make([]Field.Input, 0),
@@ -85,6 +87,18 @@ func (b *Battle) initBattle() {
 	if err != nil {
 		log.Println("Battle:", err)
 	}
+	for _, v := range b.Room.Players {
+		s_m := OutputMessage{
+			Mes:   "{\"Side\": \"" + fmt.Sprint(v.Side) + "\"}",
+			Event: "side",
+		}
+		send_msg, err := json.Marshal(s_m)
+		if err != nil {
+			log.Println("Battle_init:", err)
+		}
+		v.Send <- send_msg
+	}
+
 	m := OutputMessage{
 		Mes:   string(field),
 		Event: "start",
@@ -95,7 +109,7 @@ func (b *Battle) initBattle() {
 func (b *Battle) RunBattle(ctx context.Context) {
 	b.initBattle()
 	log.Println("Battle:", "Battle started"+b.Room.Id)
-	tiker := time.NewTicker(time.Second / 60)
+	tiker := time.NewTicker(time.Second / time.Duration(SERVER_FPS))
 	for {
 		select {
 		case <-ctx.Done():
@@ -108,21 +122,21 @@ func (b *Battle) RunBattle(ctx context.Context) {
 		case <-tiker.C:
 			if b.Field.Time == int64(GAME_TIME) {
 				win := OutputMessage{
-					Mes:   "{\"bet\": \"10\"}",
+					Mes:   "{\"bet\": \"" + strconv.Itoa(BET) + "\"}",
 					Event: "win",
 				}
 				lose := OutputMessage{
-					Mes:   "{\"bet\": \"-10\"}",
+					Mes:   "{\"bet\": \"" + strconv.Itoa(-BET) + "\"}",
 					Event: "lose",
 				}
 				if b.Field.Point.One > b.Field.Point.Two {
-					dbfunc.SetCoinFromUUID(b.Room.Players[0].UUID, 10)
-					dbfunc.SetCoinFromUUID(b.Room.Players[1].UUID, -10)
+					dbfunc.SetCoinFromUUID(b.Room.Players[0].UUID, BET)
+					dbfunc.SetCoinFromUUID(b.Room.Players[1].UUID, -BET)
 					b.Room.Players[0].Send <- []byte(win.ToJson())
 					b.Room.Players[1].Send <- []byte(lose.ToJson())
 				} else {
-					dbfunc.SetCoinFromUUID(b.Room.Players[0].UUID, -10)
-					dbfunc.SetCoinFromUUID(b.Room.Players[1].UUID, 10)
+					dbfunc.SetCoinFromUUID(b.Room.Players[0].UUID, -BET)
+					dbfunc.SetCoinFromUUID(b.Room.Players[1].UUID, BET)
 					b.Room.Players[0].Send <- []byte(lose.ToJson())
 					b.Room.Players[1].Send <- []byte(win.ToJson())
 				}

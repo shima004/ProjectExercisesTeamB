@@ -1,19 +1,39 @@
-ws = new WebSocket("ws://localhost:8080/ws");
+uri = "";
+if (document.location.protocol == "http:") {
+  uri += "ws://";
+} else {
+  uri += "wss://";
+}
+uri += document.location.host;
+uri += "/ws";
+
+ws = new WebSocket(uri);
 
 ws.onopen = function () {
   console.log("Connected");
 };
 
 ws.onmessage = async function (evt) {
-  console.log("onmessage" + evt.data);
   var data = JSON.parse(evt.data);
   console.log(data.Event);
+  if (data.Event == "side") {
+    console.log(data);
+    var side = JSON.parse(data.Mes);
+    if (side.Side == 0) {
+      document.getElementById("container").style.backgroundColor = "blue";
+    } else if (side.Side == 1) {
+      document.getElementById("container").style.backgroundColor = "red";
+    }
+  }
   if (data.Event == "start") {
     sendflag = true;
     last = new Date();
     var field = JSON.parse(data.Mes);
     battle_field.init(field);
     battle_field.draw();
+    FPS = field.FPS;
+    canvas.width = parseInt(field.Size.X);
+    canvas.height = parseInt(field.Size.Y);
     superInterval(send, 1000 / FPS);
   } else if (data.Event == "update") {
     var field = JSON.parse(data.Mes);
@@ -21,11 +41,10 @@ ws.onmessage = async function (evt) {
     battle_field.update(field);
     battle_field.draw();
     sendflag = true;
-    document.getElementById("time").innerHTML = field.Time + "/ " + 60 * 60 * 1;
+    document.getElementById("time").innerHTML = field.Time + "/ " + field.TimeLimit;
     document.getElementById("score").innerHTML = field.Point.One + " : " + field.Point.Two;
     calc_fps();
-  }
-  if (data.Event == "join") {
+  } else if (data.Event == "join") {
     var user = JSON.parse(data.Mes);
     console.log(user);
     var header = document.getElementById("nav-header");
@@ -41,10 +60,24 @@ ws.onmessage = async function (evt) {
   } else if (data.Event == "win" || data.Event == "lose") {
     var result = JSON.parse(data.Mes);
     var user = await getUser();
+    document.getElementById("util-button").style.display = "block";
     if (user == undefined) {
       return;
     }
-    addCoinAnimation(user.name, user.coin, user.coin + result.bet);
+    if (data.Event == "win") {
+      ctx.font = "148px Arial";
+      var text = "WIN";
+      var text_width = ctx.measureText(text).width;
+      ctx.fillStyle = "red";
+      ctx.fillText(text, canvas.width / 2 - text_width / 2, canvas.height / 2);
+    } else {
+      ctx.font = "148px Arial";
+      var text = "LOSE";
+      var text_width = ctx.measureText(text).width;
+      ctx.fillStyle = "blue";
+      ctx.fillText(text, canvas.width / 2 - text_width / 2, canvas.height / 2);
+    }
+    addCoinAnimation(user.name, user.coin, user.coin + parseInt(result.bet));
   }
 };
 
@@ -64,7 +97,6 @@ const superInterval = (cb, interval = 1000, ...args) => {
 
 canvas = document.getElementById("canvas");
 ctx = canvas.getContext("2d");
-const FPS = 30;
 const Input = new InputData(Date.now(), false, false, 0);
 document.addEventListener("keydown", getKeyDown);
 document.addEventListener("keyup", getKeyUp);
