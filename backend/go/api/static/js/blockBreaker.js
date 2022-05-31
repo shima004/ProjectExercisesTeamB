@@ -230,13 +230,11 @@ var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 var x = canvas.width/2;
 var y = canvas.height-30;
-//var dx = Math.random()*2+2;
-//var dy = (Math.random()*2+2)*-1;
-var dx = 15;
-var dy = 15;
+var dx = Math.random()*2+2;
+var dy = (Math.random()*2+2)*-1;
 var ballRadius = 10;
 var paddleHeight = 10;
-var paddleWidth = 75000000;
+var paddleWidth = 75;
 var paddleX = (canvas.width-paddleWidth)/2;
 var rightPressed = false;
 var leftPressed = false;
@@ -318,14 +316,14 @@ function collisionDetection() {//衝突判定
                             paddleWidth=paddleWidth-5;
                         }
                         level++;
-                        if(dx>=0){
+                        if(dx>=0&&dx+1<=15){
                             dx++;
-                        } else {
+                        } else if(dx-1>=-15){
                             dx--;
                         }
-                        if(dy>=0){
+                        if(dy>=0&&dy+1<=15){
                             dy++;
-                        } else {
+                        } else if(dy-1<=-15){
                             dy--;
                         }
                     }
