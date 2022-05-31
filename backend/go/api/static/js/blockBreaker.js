@@ -347,7 +347,7 @@ function drawLives() {
 function drawGameover() {
     ctx.font = "64px Arial";
     ctx.fillStyle = "#ff0000";
-    ctx.fillText("Game Over", 8, 40);
+    ctx.fillText("Game Over", canvas.width/2, canvas.height-150);
 }
 
 function drawBall() {
@@ -385,7 +385,7 @@ function drawBricks() {
 }
 
 function draw() {
-    if(a=1){
+    if(a==1){
         drawGameover();
     }
     if(gamestart == 1){
