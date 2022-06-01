@@ -132,13 +132,15 @@ class Field {
       field.Paddle_one.Position.X,
       field.Paddle_one.Position.Y,
       field.Paddle_one.Size.X,
-      field.Paddle_one.Size.Y
+      field.Paddle_one.Size.Y,
+      field.Paddle_one.Velocity.X
     );
     this.bar2.update(
       field.Paddle_two.Position.X,
       field.Paddle_two.Position.Y,
       field.Paddle_two.Size.X,
-      field.Paddle_two.Size.Y
+      field.Paddle_two.Size.Y,
+      field.Paddle_two.Velocity.X
     );
     this.time = field.Time;
   }
@@ -164,12 +166,37 @@ class HockeyBar {
   draw() {
     ctx.fillStyle = this.color;
     ctx.fillRect(this.x - this.width / 2, this.y - this.height / 2, this.width, this.height);
+    if (this.dx != 0) {
+      ctx.beginPath();
+      if (this.dx > 0) {
+        console.log("right");
+        ctx.arrow(
+          this.x + this.width / 2,
+          this.y,
+          this.x + this.width / 2 + this.dx * 3,
+          this.y,
+          [0, 3, -10, 3, -10, 5]
+        );
+      }
+      if (this.dx < 0) {
+        console.log("left");
+        ctx.arrow(
+          this.x - this.width / 2,
+          this.y,
+          this.x - this.width / 2 + this.dx * 3,
+          this.y,
+          [0, 3, -10, 3, -10, 5]
+        );
+      }
+      ctx.fill();
+    }
   }
-  update(x, y, w, h) {
+  update(x, y, w, h, dx) {
     this.x = x;
     this.y = y;
     this.width = w;
     this.height = h;
+    this.dx = dx;
   }
 }
 
