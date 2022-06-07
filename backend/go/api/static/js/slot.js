@@ -193,8 +193,8 @@
                 } else {
                     let element = document.getElementById('hanteii');
                     element.value = '~lose(´ω`)~';
-                    const win = document.getElementById('win');
-                    win.play();
+                    const lose = document.getElementById('lose');
+                    lose.play();
                     let element2 = document.getElementById('betkoinn');
                     element2.value = "0枚";
                     postCoin(-chec);
@@ -262,8 +262,8 @@
                 } else {
                     let element = document.getElementById('hanteii');
                     element.value = '~lose(´ω`)~';
-                    const win = document.getElementById('win');
-                    win.play();
+                    const lose = document.getElementById('lose');
+                    lose.play();
                     let element2 = document.getElementById('betkoinn');
                     element2.value = "0枚";
                     postCoin(-chec);
@@ -330,8 +330,8 @@
                 } else {
                     let element = document.getElementById('hanteii');
                     element.value = '~lose(´ω`)~';
-                    const win = document.getElementById('win');
-                    win.play();
+                    const lose = document.getElementById('lose');
+                    lose.play();
                     let element2 = document.getElementById('betkoinn');
                     element2.value = "0枚";
                     postCoin(-chec);
