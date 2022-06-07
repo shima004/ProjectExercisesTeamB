@@ -1,7 +1,6 @@
 package Field
 
 import (
-	"log"
 	"math"
 )
 
@@ -53,19 +52,18 @@ func (p *Paddle) Collide(b *Ball) bool {
 
 func (p *Paddle) Move(input Input, fieldSize Point2D) {
 	if input.Key.Left {
-		p.Velocity.X = math.Max(p.Velocity.X-0.3, -10)
+		p.Velocity.X = math.Max(p.Velocity.X-1, -10)
 	}
 	if input.Key.Right {
-		p.Velocity.X = math.Min(p.Velocity.X+0.3, 10)
+		p.Velocity.X = math.Min(p.Velocity.X+1, 10)
 	}
-	log.Println(math.Round(p.Velocity.X))
 	p.Position.X += math.Round(p.Velocity.X)
 	if p.Position.X < p.Size.X/2 {
 		p.Position.X = p.Size.X / 2
-		p.Velocity.X *= -0.5
+		p.Velocity.X *= -1
 	}
 	if p.Position.X > fieldSize.X-p.Size.X/2 {
 		p.Position.X = fieldSize.X - p.Size.X/2
-		p.Velocity.X *= -0.5
+		p.Velocity.X *= -1
 	}
 }
