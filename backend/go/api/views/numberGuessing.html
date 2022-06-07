@@ -530,33 +530,51 @@
     
     <body>
         {{ template "navibar" . }}
-        <p>詰めアルゴ</p>
+        <h1>詰めアルゴ</h1>
         <hr>
-        <div id="number"></div>
-        <hr>↓Drag &amp; Drop
         <div>
-            <p id="question0"></p>
-            <p id="question1"></p>
-            <p id="question2"></p>
-            <p id="question3"></p>
-            <p id="question4"></p>
-            <p id="question5"></p>
-            <p id="question6"></p>
-            <p id="question7"></p>
+            ＜ルール＞<br>
+            黒のカード(0〜11)と白のカード(0~11)の計24枚のカードがある。<br>
+            同じカードは存在しない。<br>
+            スタートをクリックすると、上下8枚ずつ、計16枚のカードが表示される。<br>
+            下の数字は昇順、上の数字は降順に並んでいる。<br>
+            白と黒で同じ数字の場合は「黒の方が小さい」とする。<br>
+            上にある空いたマス(*)を以上のルールに沿って埋めていく。<br>
+            <hr>
+            <input type="button" value="スタート" onclick="init()" id="start">
+            <input type="button" value="判定" onclick="check()" id="deci">
+            <input type="button" value="リセット" onclick="count_reset()" id="reset">
+            <hr>
         </div>
-        <div>
-            <p id="question8"></p>
-            <p id="question9"></p>
-            <p id="question10"></p>
-            <p id="question11"></p>
-            <p id="question12"></p>
-            <p id="question13"></p>
-            <p id="question14"></p>
-            <p id="question15"></p>
+        <div style="background-color: #CCC;">
+            <form>
+                <h2 id="default">01:00</h2>
+                <hr>
+                <div id="number"></div>
+                <hr>↓Drag &amp; Drop
+                <div>
+                    <p id="question0"></p>
+                    <p id="question1"></p>
+                    <p id="question2"></p>
+                    <p id="question3"></p>
+                    <p id="question4"></p>
+                    <p id="question5"></p>
+                    <p id="question6"></p>
+                    <p id="question7"></p>
+                </div>
+                <div>
+                    <p id="question8"></p>
+                    <p id="question9"></p>
+                    <p id="question10"></p>
+                    <p id="question11"></p>
+                    <p id="question12"></p>
+                    <p id="question13"></p>
+                    <p id="question14"></p>
+                    <p id="question15"></p>
+                </div>
+                <hr>
+            </form>
         </div>
-        <hr>
-        <input type="button" value="判定" onclick="check()">
-        <hr>
     </body>
     <script>
         function getRandomInt(min, max) {
@@ -566,8 +584,16 @@
         var Qnum = new Array(16); //格納される値
         var hide = new Array(2); //＊表示箇所
         var a = new Array(16); //B or W
+        var start_f = false; 
+        var interval;
+        const btn1 = document.querySelector("#start");
+        const btn2 = document.querySelector("#deci");
+        const btn3 = document.querySelector("#reset");
 
-        //function init() {
+        btn2.disabled = true;
+        btn3.disabled = true;
+
+        function init() {
             document.getElementById("number").innerHTML="";
             for(var i=0;i<12;i++) {
                 var number = document.createElement("span");
@@ -897,6 +923,7 @@
                         document.getElementById("question7").appendChild(question7);
                         break;
                 }
+
             }
 
             for(i=8; i<16; i++) {
@@ -1001,7 +1028,13 @@
                         break;
                 }
             }
-        //}
+            if (start_f === false) {
+                interval = setInterval(count_down,1000);
+                start_f = true;
+            }
+            btn1.disabled = true;
+            btn2.disabled = false;
+        }
 
         
 
@@ -1055,16 +1088,35 @@
                     correct[i] = 1;
                 }
             }
+            
+            var score;
             //出力
             if(correct[0] == 1 && correct[1] == 1) {
-                alert("OKOK");
+                count_stop();
+                if(count < 60 && count >= 51) {
+                    score = 100;
+                }
+                else if(count < 51 && count >= 41) {
+                    score = 50;
+                }
+                else if(count < 41 && count >= 31) {
+                    score = 40;
+                }
+                else if(count < 31 && count >= 21) {
+                    score = 30;
+                }
+                else if(count < 21 && count >= 11) {
+                    score = 20;
+                }
+                else if(count < 11 && count >= 1) {
+                    score = 10;
+                }
+                alert("CLEAR!!!!\nSCORE: " + score);
+                postCoin(score);
+                btn2.disabled = true;
+                btn3.disabled = false;
             }
-            else if(correct[0] == 1) {
-                alert("OK");
-            }
-            else if(correct[1] == 1) {
-                alert("OK");
-            }
+            
             if(correct[0] == 1) {
                 switch(hide[0]) {
                     case 0:
@@ -1089,7 +1141,7 @@
                         question6.className = "green";
                         break;
                     case 7:
-                        question7.className = "grren";
+                        question7.className = "green";
                         break;
                 }
             }
@@ -1117,11 +1169,83 @@
                         question6.className = "green";
                         break;
                     case 7:
-                        question7.className = "grren";
+                        question7.className = "green";
                         break;
                 }
             }
         }
+
+        var count   = 60;     //カウントダウンの数字を格納する変数  
+        var min     = 0;       //残り時間「分」を格納する変数
+        var sec     = 0;       //残り時間「秒」を格納する変数
+
+        function count_start() {
+            if (start_f === false) {
+                interval = setInterval(count_down,1000);
+                start_f = true;
+            }
+        }
+
+        function count_down() {
+            if(count === 1){
+                var display = document.getElementById("default");
+                display.style.color = 'red';
+                display.innerHTML = "TIME UP!";
+                clearInterval(interval);
+            } 
+            else {
+                count--;
+                min = Math.floor(count / 60);
+                sec = count % 60;
+                var count_down = document.getElementById("default");
+                count_down.innerHTML = ("0"+min) +"：" + ("0"+sec).slice(-2);
+            }
+        }
+
+        function count_stop() {
+            clearInterval(interval);
+            start_f = false;
+        }
+
+        function count_reset(){
+            clearInterval(interval);
+            count = 60;
+            start_f = false;
+            var count_down = document.getElementById("default");
+            count_down.style.color = 'black';
+            count_down.innerHTML = "01:00";
+            for(i=0; i<2; i++) {
+                switch(hide[i]) {
+                    case 0:
+                        question0.className = "";
+                        break;
+                    case 1:
+                        question1.className = "";
+                        break;
+                    case 2:
+                        question2.className = "";
+                        break;
+                    case 3:
+                        question3.className = "";
+                        break;
+                    case 4:
+                        question4.className = "";
+                        break;
+                    case 5:
+                        question5.className = "";
+                        break;
+                    case 6:
+                        question6.className = "";
+                        break;
+                    case 7:
+                        question7.className = "";
+                        break;
+                }
+            }
+            btn1.disabled = false;
+            btn3.disabled = true;
+        }
+
     </script>
      <style>
         span {
@@ -1148,8 +1272,6 @@
         #question13 {font-size: 50px;}
         #question14 {font-size: 50px;}
         #question15 {font-size: 50px;}
-        .black {background-color: #000000;}
-        .white {background-color: #FFFFFF;}
         .green {background-color: green;}
     </style>
 </html>
