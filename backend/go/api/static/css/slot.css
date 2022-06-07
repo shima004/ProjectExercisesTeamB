@@ -5,7 +5,7 @@ body {
 h1 {
   padding: 0.1em;/*文字周りの余白*/
   color: #010101;/*文字色*/
-  background: #eaf3ff;/*背景色*/
+  /*background: #eaf3ff;/*背景色*/
   border-bottom: solid 2px #516ab6;/*下線*/
   text-align: center;
 
