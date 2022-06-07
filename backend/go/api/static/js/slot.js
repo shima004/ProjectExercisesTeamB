@@ -341,6 +341,17 @@
                     console.log(-chec);
                 }
             }
+
+            if (document.COIN.bet[0].checked == true) {
+                document.COIN.bet[0].checked == false
+            } else if (document.COIN.bet[1].checked == true) {
+                document.COIN.bet[1].checked == false
+            } else if (document.COIN.bet[2].checked == true) {
+                document.COIN.bet[2].checked == false
+            } else if (document.COIN.bet[3].checked == true) {
+                document.COIN.bet[3].checked == false
+            }
+
         }
 
 
