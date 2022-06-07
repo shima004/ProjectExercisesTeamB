@@ -8,42 +8,42 @@ import (
 
 func GetIndex(c echo.Context) error {
 	data := map[string]interface{}{
-		"Title": "Index",
+		"Title": "ホーム",
 	}
 	return c.Render(http.StatusOK, "index", data)
 }
 
 func GetBlockBreaker(c echo.Context) error {
 	data := map[string]interface{}{
-		"Title": "BlockBreaker",
+		"Title": "ブロック崩し",
 	}
 	return c.Render(http.StatusOK, "blockBreaker", data)
 }
 
 func GetHockey(c echo.Context) error {
 	data := map[string]interface{}{
-		"Title": "Hockey",
+		"Title": "ホッケー",
 	}
 	return c.Render(http.StatusOK, "hockey", data)
 }
 
 func GetNumberGuessing(c echo.Context) error {
 	data := map[string]interface{}{
-		"Title": "NumberGuessing",
+		"Title": "アルゴ",
 	}
 	return c.Render(http.StatusOK, "numberGuessing", data)
 }
 
 func GetShooting(c echo.Context) error {
 	data := map[string]interface{}{
-		"Title": "Shooting",
+		"Title": "パネルたたき",
 	}
 	return c.Render(http.StatusOK, "shooting", data)
 }
 
 func GetSlot(c echo.Context) error {
 	data := map[string]interface{}{
-		"Title": "Slot",
+		"Title": "スロット",
 	}
 	return c.Render(http.StatusOK, "slot", data)
 }
