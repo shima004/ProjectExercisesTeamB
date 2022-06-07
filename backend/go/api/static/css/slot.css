@@ -31,8 +31,8 @@ h1 {
 .hantei {
     text-align: center;
     margin:  auto;
-    width:  240px;               /* 幅指定 */
-    height: 40px;                /* 高さ指定 */
+    width:  250px;               /* 幅指定 */
+    height: 50px;                /* 高さ指定 */
     padding: 0.4em;/*文字周りの余白*/
     font-size: 28px;
     color: red;
@@ -51,28 +51,116 @@ h1 {
 }
   
 
-.start{
+.startt{               /*.start からstarttに変更*/
     text-align: center;
 
     margin:  auto;
 
-    width:  180px;               /* 幅指定 */
-    height: 50px;                /* 高さ指定 */
+    width:  210px;               /* 幅指定 */
+    height: 90px;                /* 高さ指定 */
 
     font-size:30px;
 
     padding:0;
 
-    border-radius:8px;
+    border-radius:30px;
 
-    padding:0.3em 0.3em;
+    padding:0.5em 0.5em;
 
     top:  0;                     /* 位置指定 */
     bottom:  0;                  /* 位置指定 */
-    left:  0;                    /* 位置指定 */
+    /*left:  0; */                   /* 位置指定 */
     right:  0;                   /* 位置指定 */
+
+    /*text-align: center;*/
+    /*padding: 0.5em;/*文字周りの余白*/
+    /*font-size: 20px;*/
+    border-color: #000000 #fff #fff #000000;
+    /*bottom: 0;
+    right: 0;*/
+}
+
+/*.startt{
+    text-align: center;
+    padding: 0.5em;/*文字周りの余白*/
+    /*font-size: 20px;*/
+    /*border-color: #000000 #fff #fff #000000;
+    bottom: 0;
+    right: 0;
+}*/
+
+
+.top{
+    text-align: center;
+}
+
+div {
+    width: 200px;
+    /*background: rgb(255, 255, 255);*/
+}
+
+.coin {
+    margin-left: auto;
+    text-align: center; 
+    width:  100px;               /* 幅指定 */
+    height: 35px;                /* 高さ指定 */
+    font-size: 14px;
+}
+
+/*.temoti {
+    margin-left: auto;
+    text-align: center; 
+    width:  110px;               /* 幅指定 */
+   /* height: 35px;                /* 高さ指定 */
+   /* font-size: 14px;
+}*/
+
+
+.hann {
+    text-align: center;
+    padding: 0.5em;       /*文字周りの余白*/
+    font-size: 22px;
+    border-color: #000000 #fff #fff #000000;
+    bottom: 0;
+    right: 0;
+}
+
+/*.hantei{
+
+}*/
+/*hantei*/
+
+.koin{
+    width:  100px;               /* 幅指定 */
+    height: 35px;                /* 高さ指定 */
+    font-size: 14px;
+}
+
+
+.button {
+     font-size:20px;
+     margin:0;
+     padding:0;
+     border-radius:8px;
+     padding:0.3em 0.3em;
+     text-align: center;
 }
 
 .top{
     text-align: center;
+}
+
+.bet {
+    text-align: center;
+    padding: 0.5em;/*文字周りの余白*/
+    font-size: 27px;
+    border-color: #000000 #fff #fff #000000;
+    bottom: 0;
+    right: 0;
+
+}
+
+
+.Bet {
+    color: red;
 }
