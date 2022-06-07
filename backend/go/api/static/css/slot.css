@@ -401,6 +401,6 @@ div {
     text-align: center;
 }
 
-#win {
+.win {
     display: none;
 }
