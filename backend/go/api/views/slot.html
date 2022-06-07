@@ -5,8 +5,12 @@
 
 <head>
     <meta charset="utf-8">
+
     <link rel="stylesheet" type="text/css" href="../static/css/slot.css">
     <script src="../static/js/slot.js" defer></script>
+
+    <link rel="stylesheet" type="text/css" href="static/css/slot.css">
+    <script src="static/js/slot.js" defer></script>
     {{ template "header" . }}
     <title>スロット</title>
 
@@ -225,13 +229,12 @@ div {
         〜コインを 大量GET しよう！！！〜
     </h1>
 
+
     <div class="coin">
         <input type="text" class="temoti" id="temotii" value="手持ちコイン" readonly />
-        <input type="text" class="koin" id="temotikoinn" value="100" readonly />
-        <input type="text" class="betgaku" id="temotii" value="ベット額" readonly />
-        <input type="text" class="gaku" id="betkoinn" value="" readonly />
-
+        <input type="text" class="koin" id="koinn" value="" readonly />
     </div>
+
     <p id="han" class="hann">
         <input type="text" class="hantei" id="hanteii" value="S T A N D B Y" readonly />
     </p>
@@ -250,25 +253,30 @@ div {
         <input type="button" class="button" value="  STOP２  " onClick="slot2_stop()">
 
         <input type="button" class="button" value="  STOP３  " onClick="slot3_stop()">
+
     </p>
 
+    <div class="coin">
+        <input type="text" class="betgaku" id="temotii" value="ベット額" readonly />
+        <input type="text" class="gaku" id="betkoinn" value="" readonly />
+
+    </div>
+
     <p id="bet" class="bet">ベット額:
-        <form id="COIN">
+        <form name="COIN">
         <br>
         <input type="radio" name="bet" value="20"> 20
         <input type="radio" name="bet" value="50"> 50
         <input type="radio" name="bet" value="100"> 100
         <input type="radio" name="bet" value="150"> 150
-        <br>
-        <input type="button" class="Bet" value="  BET  " onClick="slot_bet()">
+        <br>       
         </form>
+        <input type="button" class="Bet" value="  BET  " onClick="slot_bet()">
     </p>
 
-    <p id="star" class="startt">
-        <input type="button" value="START" id="srt" onClick="setImage()" style = "text-align: center;
-        ">
+    <p id="start" calss="startt">
+        <input type="button" value="START" class="start" onClick="setImage()">
     </p>
-
 
 </body>
 
