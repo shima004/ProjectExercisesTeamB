@@ -95,3 +95,27 @@
   background: #ffa500;
 	box-shadow: 0px 0px #900dfa;
 }
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.link {
+  padding: 0 10px;
+}
+
+.container {
+  width: 100%;
+  height: 32.6vw;
+  background: url('https://raw.githubusercontent.com/Yousuke777/bg/main/sample-bg.png') repeat-x;
+  background-size: 50%;
+  animation: scroll-anim 5s linear infinite;
+}
+
+@keyframes scroll-anim {
+  100% {
+    background-position: -100% 0;
+  }
+}
+
