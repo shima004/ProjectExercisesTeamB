@@ -285,7 +285,9 @@ function keyUpHandler(e) {
   }
 }
 function GameStart() {
-  gamestart = 1;
+  if (gamestart != -1) {
+    gamestart = 1;
+  }
 }
 function GameReset() {
   if (gamestart == -1) {
@@ -316,14 +318,14 @@ function collisionDetection() {
               paddleWidth = paddleWidth - 5;
             }
             level++;
-            if (dx >= 0) {
+            if (dx >= 0 && dx + 1 <= 15) {
               dx++;
-            } else {
+            } else if (dx - 1 >= -15) {
               dx--;
             }
-            if (dy >= 0) {
+            if (dy >= 0 && dy + 1 <= 15) {
               dy++;
-            } else {
+            } else if (dy - 1 <= -15) {
               dy--;
             }
           }
@@ -343,6 +345,11 @@ function drawLives() {
   ctx.font = "32px Arial";
   ctx.fillStyle = "#00ff00";
   ctx.fillText("Lives: " + lives, canvas.width - 150, 40);
+}
+function drawGameover() {
+  ctx.font = "64px Arial";
+  ctx.fillStyle = "#ff0000";
+  ctx.fillText("Game Over", canvas.width / 2 - 150, canvas.height - 150);
 }
 
 function drawBall() {
@@ -380,6 +387,9 @@ function drawBricks() {
 }
 
 function draw() {
+  if (a == 1) {
+    drawGameover();
+  }
   if (gamestart == 1) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBricks();
@@ -403,10 +413,8 @@ function draw() {
       lives--;
       if (!lives) {
         postCoin(score);
+        gamestart = -1;
         a = 1;
-      }
-      if (a == 1) {
-        document.location.reload();
       } else {
         x = canvas.width / 2;
         y = canvas.height - 30;
@@ -416,6 +424,7 @@ function draw() {
         paddleX = (canvas.width - paddleWidth) / 2;
       }
     }
+    paddleX = (canvas.width - paddleWidth) / 2;
   }
 }
 
