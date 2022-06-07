@@ -5,6 +5,9 @@
         stt = 0;
         var chec=0;
 
+        var stt;
+        stt = 0;
+
         var flag;
         var coincnt;
 
@@ -25,8 +28,9 @@
 
 
         function setImage() {
-            const win = document.getElementById('win');
-            win.play();
+            stt = 1;
+            const button = document.getElementById("ボタンのID");
+            button.disabled = true
             //if (sw==1) {
                 cg1 = 0;
                 cg2 = 0;
