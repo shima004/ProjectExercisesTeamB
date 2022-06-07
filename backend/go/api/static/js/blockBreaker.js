@@ -351,6 +351,11 @@ function drawGameover() {
     ctx.fillStyle = "#ff0000";
     ctx.fillText("Game Over", (canvas.width/2)-150, canvas.height-150);
 }
+function drawAnnouncement() {
+    ctx.font = "64px Arial";
+    ctx.fillStyle = "#ff0000";
+    ctx.fillText("スタートボタンを押してください", (canvas.width/2)-150, canvas.height-150);
+}
 
 function drawBall() {
     ctx.beginPath();
@@ -389,6 +394,9 @@ function drawBricks() {
 function draw() {
     if(a==1){
         drawGameover();
+    }
+    if(gamestart == 0){
+        drawAnnouncement();
     }
     if(gamestart == 1){
         ctx.clearRect(0, 0, canvas.width, canvas.height);
