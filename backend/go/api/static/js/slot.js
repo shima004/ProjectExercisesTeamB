@@ -11,6 +11,9 @@
         var flag;
         var coincnt;
 
+        var ataricnt;
+        ataricnt = 0;
+
         var sp1;
         var sp2;
         var sp3;
@@ -153,6 +156,10 @@
                 if (cg1 == cg2 && cg1 == cg3) {
                     let element = document.getElementById('hanteii');
                     element.value = '~WIN!!~';
+                    ataricnt = ataricnt + 1;
+                    if (ataricnt >= 2) {
+                        check = check * 1.5;
+                    }
                     const win = document.getElementById('win');
                     win.play();
                     let element2 = document.getElementById('betkoinn');
@@ -217,6 +224,10 @@
                 if (cg1 == cg2 && cg1 == cg3) {
                     let element = document.getElementById('hanteii');
                     element.value = '~WIN!!~';
+                    ataricnt = ataricnt + 1;
+                    if (ataricnt >= 2) {
+                        check = check * 1.5;
+                    }
                     const win = document.getElementById('win');
                     win.play();
                     let element2 = document.getElementById('betkoinn');
@@ -281,6 +292,10 @@
                 if (cg1 == cg2 && cg1 == cg3) {
                     let element = document.getElementById('hanteii');
                     element.value = '~WIN!!~';
+                    ataricnt = ataricnt + 1;
+                    if (ataricnt >= 2) {
+                        check = check * 1.5;
+                    }
                     const win = document.getElementById('win');
                     win.play();
                     let element2 = document.getElementById('betkoinn');
