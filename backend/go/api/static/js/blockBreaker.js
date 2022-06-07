@@ -354,7 +354,7 @@ function drawGameover() {
 function drawAnnouncement() {
     ctx.font = "32px Arial";
     ctx.fillStyle = "#ff0000";
-    ctx.fillText("スタートボタンを押してください", (canvas.width/2)-150, canvas.height-150);
+    ctx.fillText("スタートボタンを押してください", (canvas.width/2)-225, canvas.height-150);
 }
 
 function drawBall() {
