@@ -356,34 +356,6 @@ div {
 }*/
 
 
-.bet {
-    color: red;
-    text-align: center;
-
-    margin:  auto;
-
-    width:  210px;               /* 幅指定 */
-    height: 90px;                /* 高さ指定 */
-
-    font-size:30px;
-
-    border-radius:30px;
-
-    padding:0.5em 0.5em;
-
-    top:  0;                     /* 位置指定 */
-    bottom:  0;                  /* 位置指定 */
-    right:  0;                   /* 位置指定 */
-    border-color: #000000 #fff #fff #000000;
-
-    border-radius:8px;
-
-    padding:0.3em 0.3em;
-
-    top:  0;                     /* 位置指定 */
-    right:  0;                   /* 位置指定 */
-}
-
 .top{
     text-align: center;
 }
