@@ -25,6 +25,8 @@
 
 
         function setImage() {
+            const win = document.getElementById('win');
+            win.play();
             //if (sw==1) {
                 cg1 = 0;
                 cg2 = 0;
@@ -147,6 +149,8 @@
                 if (cg1 == cg2 && cg1 == cg3) {
                     let element = document.getElementById('hanteii');
                     element.value = '~WIN!!~';
+                    const win = document.getElementById('win');
+                    win.play();
                     let element2 = document.getElementById('betkoinn');
                     element2.value = "0枚";
                     if (cg1==0) {
@@ -178,6 +182,8 @@
                 } else {
                     let element = document.getElementById('hanteii');
                     element.value = '~lose(´ω`)~';
+                    const win = document.getElementById('win');
+                    win.play();
                     let element2 = document.getElementById('betkoinn');
                     element2.value = "0枚";
                     postCoin(-chec);
@@ -207,6 +213,8 @@
                 if (cg1 == cg2 && cg1 == cg3) {
                     let element = document.getElementById('hanteii');
                     element.value = '~WIN!!~';
+                    const win = document.getElementById('win');
+                    win.play();
                     let element2 = document.getElementById('betkoinn');
                     element2.value = "0枚";
                     if (cg1==0) {
@@ -239,6 +247,8 @@
                 } else {
                     let element = document.getElementById('hanteii');
                     element.value = '~lose(´ω`)~';
+                    const win = document.getElementById('win');
+                    win.play();
                     let element2 = document.getElementById('betkoinn');
                     element2.value = "0枚";
                     postCoin(-chec);
@@ -267,6 +277,8 @@
                 if (cg1 == cg2 && cg1 == cg3) {
                     let element = document.getElementById('hanteii');
                     element.value = '~WIN!!~';
+                    const win = document.getElementById('win');
+                    win.play();
                     let element2 = document.getElementById('betkoinn');
                     element2.value = "0枚";
                     if (cg1==0) {
@@ -299,6 +311,8 @@
                 } else {
                     let element = document.getElementById('hanteii');
                     element.value = '~lose(´ω`)~';
+                    const win = document.getElementById('win');
+                    win.play();
                     let element2 = document.getElementById('betkoinn');
                     element2.value = "0枚";
                     postCoin(-chec);
