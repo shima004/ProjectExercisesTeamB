@@ -1,5 +1,8 @@
 * { padding: 0; margin: 0; }
 canvas { background: #000; display: block; margin: 0 auto; }
+body{
+    background-color: rgb(125, 231, 158);
+}
 .startbutton{
     text-align: center;
     background-size: auto;
