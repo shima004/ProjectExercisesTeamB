@@ -400,3 +400,7 @@ div {
 .Bet{ 
     text-align: center;
 }
+
+#win {
+    display: none;
+}
