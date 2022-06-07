@@ -1113,23 +1113,26 @@
             //出力
             if(correct[0] == 1 && correct[1] == 1) {
                 count_stop();
-                if(count < 60 && count >= 51) {
+                if(count <= 60 && count > 55) {
                     score = 50;
                 }
+                else if(count <= 55 && count >= 51) {
+                    score = 30;
+                }
                 else if(count < 51 && count >= 41) {
-                    score = 25;
-                }
-                else if(count < 41 && count >= 31) {
-                    score = 20;
-                }
-                else if(count < 31 && count >= 21) {
                     score = 15;
                 }
+                else if(count < 41 && count >= 31) {
+                    score = 12;
+                }
+                else if(count < 31 && count >= 21) {
+                    score = 9;
+                }
                 else if(count < 21 && count >= 11) {
-                    score = 10;
+                    score = 6;
                 }
                 else if(count < 11 && count >= 1) {
-                    score = 5;
+                    score = 3;
                 }
                 alert("CLEAR!!!!\nSCORE: " + score);
                 postCoin(score);
