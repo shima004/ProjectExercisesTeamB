@@ -595,6 +595,23 @@
         btn2.disabled = true;
         btn3.disabled = true;
 
+        const p1 = document.getElementById("p1");
+        p1.style.display = "none";
+        const btn_rule = document.getElementById("btn_rule");
+
+        function clickbtn_rule() {
+            if(p1.style.display == "block") {
+                p1.style.display = "none";
+            } else {
+                p1.style.display = "block";
+            }
+            if(btn_rule.textContent == "∨") {
+                btn_rule.textContent = "∧";
+            } else {
+                btn_rule.textContent = "∨";
+            }
+        }
+
         function init() {
             document.getElementById("number").innerHTML="";
             for(var i=0;i<12;i++) {
@@ -1259,7 +1276,7 @@
         body {
             background-color:rgb(125, 231, 158);
         }
-        .let {
+        #let {
             line-height: 0;
             font-weight: bold;
             font-size: 50px;
