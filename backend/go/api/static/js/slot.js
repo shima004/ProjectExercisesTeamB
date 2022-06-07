@@ -5,6 +5,9 @@
         stt = 0;
         var chec;
 
+        var ataricnt;
+        ataricnt = 0;
+
         var flag;
         var coincnt;
 
@@ -96,27 +99,32 @@
                 if (cg1 == cg2 && cg1 == cg3) {
                     let element = document.getElementById('hanteii');
                     element.value = '~WIN!!~';
-                    if (cg1==1) {
-                        coincnt = chec * 1.2;
-                        console.log(coincnt);
-                        postCoin(coincnt);
-                    } else if (cg==2) {
-                        coincnt = chec * 1.5;
-                        console.log(coincnt);
-                        postCoin(coincnt);
-                    } else if (cg==3) {
-                        coincnt = chec * 1.7;
-                        console.log(coincnt);
-                        postCoin(coincnt);
-                    } else if (cg==4) {
-                        coincnt = chec * 2.0;
-                        console.log(coincnt);
-                        postCoin(coincnt);
+                    ataricnt = ataricnt + 1;
+                    if (ataricnt >= 2) {
+                        check = check * 1.5;
                     }
+                        if (cg1==1) {
+                            coincnt = chec * 1.2;
+                            console.log(coincnt);
+                            postCoin(coincnt);
+                        } else if (cg==2) {
+                            coincnt = chec * 1.5;
+                            console.log(coincnt);
+                            postCoin(coincnt);
+                        } else if (cg==3) {
+                            coincnt = chec * 1.7;
+                            console.log(coincnt);
+                            postCoin(coincnt);
+                        } else if (cg==4) {
+                            coincnt = chec * 2.0;
+                            console.log(coincnt);
+                            postCoin(coincnt);
+                        }
 
                 } else {
                     let element = document.getElementById('hanteii');
                     element.value = '~lose(´ω`)~';
+                    ataricnt = 0;
                     postCoin(chec);
                     console.log(chec);
                 }
@@ -143,6 +151,10 @@
                 if (cg1 == cg2 && cg1 == cg3) {
                     let element = document.getElementById('hanteii');
                     element.value = '~WIN!!~';
+                    ataricnt = ataricnt + 1;
+                    if (ataricnt >= 2) {
+                        check = check * 1.5;
+                    }
                     if (cg1==1) {
                         coincnt = chec * 1.2;
                         console.log(coincnt);
@@ -164,6 +176,7 @@
                 } else {
                     let element = document.getElementById('hanteii');
                     element.value = '~lose(´ω`)~';
+                    ataricnt = 0;
                     postCoin(chec);
                     console.log(chec);
                     
@@ -191,6 +204,10 @@
                 if (cg1 == cg2 && cg1 == cg3) {
                     let element = document.getElementById('hanteii');
                     element.value = '~WIN!!~';
+                    ataricnt = ataricnt + 1;
+                    if (ataricnt >= 2) {
+                        check = check * 1.5;
+                    }
                     if (cg1==1) {
                         coincnt = chec * 1.2;
                         console.log(coincnt);
@@ -212,6 +229,7 @@
                 } else {
                     let element = document.getElementById('hanteii');
                     element.value = '~lose(´ω`)~';
+                    ataricnt = 0;
                     postCoin(chec);
                     console.log(chec);
                 }
