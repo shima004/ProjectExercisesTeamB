@@ -1,5 +1,5 @@
 body {
-    background-color:rgb(125, 231, 158);
+    background-color:rgb(130, 236, 164);
 }
 
 h1 {
@@ -13,14 +13,14 @@ h1 {
 
 .centering_parent {
     padding: 90px;              /* 余白指定 */
-    background-color:  #ddd;    /* 背景色指定 */
+    /*background-color:  #ddd;    /* 背景色指定 */
     height: 300px;              /* 高さ指定 */
     width: 640px;               /* 幅指定 */
     position: relative;         /* 位置指定の基準点にする */
 }
  
 .centering_item {
-   background-color: #2196F3;   /* 背景色指定 */
+   /*background-color: #2196F3;   /* 背景色指定 */
    position: absolute;          /* 位置指定 */
    top: 50%;                    /* 親要素の半分下にずらす */
    left: 50%;                   /* 親要素の半分右にずらす */
