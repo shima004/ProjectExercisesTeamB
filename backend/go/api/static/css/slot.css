@@ -176,8 +176,6 @@ div {
 
     font-size:30px;
 
-    padding:0;
-
     border-radius:30px;
 
     padding:0.5em 0.5em;
@@ -186,13 +184,6 @@ div {
     bottom:  0;                  /* 位置指定 */
     right:  0;                   /* 位置指定 */
     border-color: #000000 #fff #fff #000000;
-
-    border-radius:8px;
-
-    padding:0.3em 0.3em;
-
-    top:  0;                     /* 位置指定 */
-    right:  0;                   /* 位置指定 */
 }
 
 .top{

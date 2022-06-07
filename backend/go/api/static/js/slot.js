@@ -193,6 +193,7 @@
                 } else {
                     let element = document.getElementById('hanteii');
                     element.value = '~lose(´ω`)~';
+                    ataricnt = 0;
                     const lose = document.getElementById('lose');
                     lose.play();
                     let element2 = document.getElementById('betkoinn');
@@ -262,6 +263,7 @@
                 } else {
                     let element = document.getElementById('hanteii');
                     element.value = '~lose(´ω`)~';
+                    ataricnt = 0;
                     const lose = document.getElementById('lose');
                     lose.play();
                     let element2 = document.getElementById('betkoinn');
@@ -330,6 +332,7 @@
                 } else {
                     let element = document.getElementById('hanteii');
                     element.value = '~lose(´ω`)~';
+                    ataricnt = 0;
                     const lose = document.getElementById('lose');
                     lose.play();
                     let element2 = document.getElementById('betkoinn');
