@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Myfont';
+  src: url('/static/font/PixelMplus12-Regular.ttf') format('truetype');
+}
+
 .scroll {
   margin: auto;
   overflow-x: auto;
@@ -18,4 +23,75 @@
 
 .container {
   text-align: center;
+  font-family: 'Myfont';
+}
+
+.btn-style1 {
+  color: #333;
+  text-decoration :none;
+  background: #ffbf4b;
+  transition: .4s;
+  box-shadow: 10px 10px #fa190d;
+}
+
+.btn-style1:hover {
+  color: #333;
+  background: #ffa500;
+	box-shadow: 0px 0px #fa190d;
+}
+
+.btn-style2 {
+  color: #333;
+  text-decoration :none;
+  background: #ffbf4b;
+  transition: .4s;
+  box-shadow: 10px 10px #de0b4e;
+}
+
+.btn-style2:hover {
+  color: #333;
+  background: #ffa500;
+	box-shadow: 0px 0px #de0b4e;
+}
+
+.btn-style3 {
+  color: #333;
+  text-decoration :none;
+  background: #ffbf4b;
+  transition: .4s;
+  box-shadow: 10px 10px #f500c7;
+}
+
+.btn-style3:hover {
+  color: #333;
+  background: #ffa500;
+	box-shadow: 0px 0px #f500c7;
+}
+
+.btn-style4 {
+  color: #333;
+  text-decoration :none;
+  background: #ffbf4b;
+  transition: .4s;
+	box-shadow: 10px 10px #b90bde;
+}
+
+.btn-style4:hover {
+  color: #333;
+  background: #ffa500;
+	box-shadow: 0px 0px #b90bde;
+}
+
+.btn-style5 {
+  color: #333;
+  text-decoration :none;
+  background: #ffbf4b;
+  transition: .4s;
+  box-shadow: 10px 10px #900dfa;
+}
+
+.btn-style5:hover {
+  color: #333;
+  background: #ffa500;
+	box-shadow: 0px 0px #900dfa;
 }
