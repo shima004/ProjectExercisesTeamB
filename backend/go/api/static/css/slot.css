@@ -182,7 +182,7 @@ div {
 
     top:  0;                     /* 位置指定 */
     bottom:  0;                  /* 位置指定 */
-    right:  0;                   /* 位置指定 */
+    /*right:  0;                   /* 位置指定 */
     border-color: #000000 #fff #fff #000000;
 }
 
