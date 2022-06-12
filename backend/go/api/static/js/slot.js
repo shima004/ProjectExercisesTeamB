@@ -32,7 +32,15 @@
             stt = 1;
             const button = document.getElementById("ボタンのID");
             button.disabled = true
-            //if (sw==1) {
+            if (sw==0) {
+                const stop1 = document.getElementById("stopp1");
+                stop1.disabled = false;
+                const stop2 = document.getElementById("stopp2");
+                stop2.disabled = false;
+                const stop2 = document.getElementById("stopp3");
+                stop2.disabled = false;
+            }
+
                 cg1 = 0;
                 cg2 = 0;
                 cg3 = 0;
@@ -58,7 +66,7 @@
 
                 }
 
-                sp1 = setInterval(loopup1, 80);
+                sp1 = setInterval(loopup1, 130);
 
                 var loopup2 = function () {
 
@@ -70,7 +78,7 @@
 
                 }
 
-                sp2 = setInterval(loopup2, 100);
+                sp2 = setInterval(loopup2, 90);
 
                 var loopup3 = function () {
                     document.getElementById('img3').src = img[cg3++];
@@ -79,64 +87,64 @@
                         cg3 = 0;
                     }
                 }
-                sp3 = setInterval(loopup3, 140);
+                sp3 = setInterval(loopup3, 70);
         }
 
 
-        function setImage() {
+        //unction setImage() {
 
-            cg1 = 0;
-            cg2 = 0;
-            cg3 = 0;
+            //cg1 = 0;
+            //cg2 = 0;
+            //cg3 = 0;
 
-            stop1 = 0;
-            stop2 = 0;
-            stop3 = 0;
+            //stop1 = 0;
+            //stop2 = 0;
+            //stop3 = 0;
 
-            var img = ["../static/img/pt1.png", "../static/img/pt2.png", "../static/img/pt3.png", "../static/img/pt4.png", "../static/img/pt5.png"];
+            //var img = ["../static/img/pt1.png", "../static/img/pt2.png", "../static/img/pt3.png", "../static/img/pt4.png", "../static/img/pt5.png"];
 
-            let element = document.getElementById('hanteii');
-            element.value = 'SPINNING';
-
-
-            var loopup1 = function () {
-
-                document.getElementById('img1').src = img[cg1++];
-
-                if (cg1 > 4) {
-                    cg1 = 0;
-                }
-
-            }
-
-            sp1 = setInterval(loopup1, 130);
-
-            var loopup2 = function () {
-
-                document.getElementById('img2').src = img[cg2++];
-
-                if (cg2 > 4) {
-                    cg2 = 0;
-                }
-
-            }
+            //let element = document.getElementById('hanteii');
+            //element.value = 'SPINNING';
 
 
-            sp2 = setInterval(loopup2, 90);
+            //var loopup1 = function () {
 
-            var loopup3 = function () {
-                document.getElementById('img3').src = img[cg3++];
+                //document.getElementById('img1').src = img[cg1++];
 
-                if (cg3 > 4) {
-                    cg3 = 0;
-                }
-            }
-            sp3 = setInterval(loopup3, 70);
-        }
+                //if (cg1 > 4) {
+                  //  cg1 = 0;
+               // }
+
+            //}
+
+            //sp1 = setInterval(loopup1, 130);
+
+            //var loopup2 = function () {
+
+              //  document.getElementById('img2').src = img[cg2++];
+
+                //if (cg2 > 4) {
+                  //  cg2 = 0;
+                //}
+
+            //}
+
+
+            //sp2 = setInterval(loopup2, 90);
+
+            //var loopup3 = function () {
+              //  document.getElementById('img3').src = img[cg3++];
+
+                //if (cg3 > 4) {
+                  //  cg3 = 0;
+                //}
+            //}
+            //sp3 = setInterval(loopup3, 70);
+        //}
 
 
         function slot1_stop() {
-            clearInterval(sp1);
+           clearInterval(sp1);
             stop1 = 1;
             /*if (document.COIN.bet[0].checked == true) {
                 chec = 20;
@@ -200,7 +208,7 @@
                     console.log(-chec);
                 }
             }
-            sw = 0;
+
         }
 
 
@@ -366,7 +374,6 @@
         }
 
         function slot_bet() {
-            sw = 1;
             if (document.COIN.bet[0].checked == true) {
                 chec = 20;
             } else if (document.COIN.bet[1].checked == true) {
