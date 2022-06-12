@@ -180,8 +180,8 @@ h1 {
 
     padding:0.5em 0.5em;
 
-    top:  0;                     /* 位置指定 */
-    bottom:  0;                  /* 位置指定 */
+    top:  50%;                     /* 位置指定 */
+    bottom:  50%;                  /* 位置指定 */
     /*right:  0;                   /* 位置指定 */
     border-color: #000000 #fff #fff #000000;
 }
