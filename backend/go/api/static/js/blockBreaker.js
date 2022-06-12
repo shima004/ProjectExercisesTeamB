@@ -438,8 +438,8 @@ function draw() {
     paddleX = (canvas.width - paddleWidth) / 2;
   }
 }
-paddleX = (canvas.width - paddleWidth) / 2;
-  }
-}
+
+
+
 
 var interval = setInterval(draw, 10);
