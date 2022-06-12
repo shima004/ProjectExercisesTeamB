@@ -1,6 +1,4 @@
 
-        alert("~ARE YOU READY???~")   //alert
-
         var sw;
         stt = 0;
         var chec=0;
