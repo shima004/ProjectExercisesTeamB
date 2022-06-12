@@ -60,7 +60,7 @@
 
                 }
 
-                sp1 = setInterval(loopup1, 150);
+                sp1 = setInterval(loopup1, 80);
 
                 var loopup2 = function () {
 
@@ -72,7 +72,7 @@
 
                 }
 
-                sp2 = setInterval(loopup2, 150);
+                sp2 = setInterval(loopup2, 100);
 
                 var loopup3 = function () {
                     document.getElementById('img3').src = img[cg3++];
@@ -81,7 +81,7 @@
                         cg3 = 0;
                     }
                 }
-                sp3 = setInterval(loopup3, 150);
+                sp3 = setInterval(loopup3, 140);
         }
 
 
