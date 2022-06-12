@@ -530,16 +530,19 @@
     
     <body>
         {{ template "navibar" . }}
-        <h1>詰めアルゴ</h1>
+        <br>
+        <p id="let">詰めアルゴ</p>
         <hr>
         <div>
-            ＜ルール＞<br>
-            黒のカード(0〜11)と白のカード(0~11)の計24枚のカードがある。<br>
-            同じカードは存在しない。<br>
-            スタートをクリックすると、上下8枚ずつ、計16枚のカードが表示される。<br>
-            下の数字は昇順、上の数字は降順に並んでいる。<br>
-            白と黒で同じ数字の場合は「黒の方が小さい」とする。<br>
-            上にある空いたマス(*)を以上のルールに沿って埋めていく。<br>
+            ＜ルール＞<button type="button" id="btn_rule" onclick="clickbtn_rule()">∨</button>
+            <p id="p1">
+                黒のカード(0〜11)と白のカード(0~11)の計24枚のカードがある。<br>
+                同じカードは存在しない。<br>
+                スタートをクリックすると、上下8枚ずつ、計16枚のカードが表示される。<br>
+                下の数字は昇順、上の数字は降順に並んでいる。<br>
+                白と黒で同じ数字の場合は「黒の方が小さい」とする。<br>
+                上にある空いたマス(*)を以上のルールに沿って埋めていく。<br>
+            </p>
             <hr>
             <input type="button" value="スタート" onclick="init()" id="start">
             <input type="button" value="判定" onclick="check()" id="deci">
@@ -551,7 +554,7 @@
                 <h2 id="default">01:00</h2>
                 <hr>
                 <div id="number"></div>
-                <hr>↓Drag &amp; Drop
+                <hr><p id="Dfont">↓Drag &amp; Drop</p>
                 <div>
                     <p id="question0"></p>
                     <p id="question1"></p>
@@ -592,6 +595,23 @@
 
         btn2.disabled = true;
         btn3.disabled = true;
+
+        const p1 = document.getElementById("p1");
+        p1.style.display = "none";
+        const btn_rule = document.getElementById("btn_rule");
+
+        function clickbtn_rule() {
+            if(p1.style.display == "block") {
+                p1.style.display = "none";
+            } else {
+                p1.style.display = "block";
+            }
+            if(btn_rule.textContent == "∨") {
+                btn_rule.textContent = "∧";
+            } else {
+                btn_rule.textContent = "∨";
+            }
+        }
 
         function init() {
             document.getElementById("number").innerHTML="";
@@ -1093,25 +1113,30 @@
             //出力
             if(correct[0] == 1 && correct[1] == 1) {
                 count_stop();
-                if(count < 60 && count >= 51) {
-                    score = 100;
-                }
-                else if(count < 51 && count >= 41) {
+                if(count <= 60 && count > 55) {
                     score = 50;
                 }
-                else if(count < 41 && count >= 31) {
-                    score = 40;
-                }
-                else if(count < 31 && count >= 21) {
+                else if(count <= 55 && count >= 51) {
                     score = 30;
                 }
+                else if(count < 51 && count >= 41) {
+                    score = 15;
+                }
+                else if(count < 41 && count >= 31) {
+                    score = 12;
+                }
+                else if(count < 31 && count >= 21) {
+                    score = 9;
+                }
                 else if(count < 21 && count >= 11) {
-                    score = 20;
+                    score = 6;
                 }
                 else if(count < 11 && count >= 1) {
-                    score = 10;
+                    score = 3;
                 }
-                alert("CLEAR!!!!\nSCORE: " + score);
+                var display = document.getElementById("default");
+                display.style.color = 'green';
+                display.innerHTML = "CLEAR!!! SCORE: "+ score;
                 postCoin(score);
                 btn2.disabled = true;
                 btn3.disabled = false;
@@ -1192,13 +1217,15 @@
                 display.style.color = 'red';
                 display.innerHTML = "TIME UP!";
                 clearInterval(interval);
+                btn2.disabled = true;
+                btn3.disabled = false;
             } 
             else {
                 count--;
                 min = Math.floor(count / 60);
                 sec = count % 60;
                 var count_down = document.getElementById("default");
-                count_down.innerHTML = ("0"+min) +"：" + ("0"+sec).slice(-2);
+                count_down.innerHTML = ("0"+min) +":" + ("0"+sec).slice(-2);
             }
         }
 
@@ -1248,31 +1275,133 @@
 
     </script>
      <style>
+        @font-face {
+            font-family: 'number_font';
+            src: url('/static/font/bettynoir.ttf') format('truetype');
+        }
+        body {
+            background-color:rgb(125, 231, 158);
+        }
+        #let {
+            line-height: 0;
+            font-weight: bold;
+            font-size: 50px;
+            color: rgba(228, 54, 245, 0.3);
+            text-shadow: 3px 3px 0 #2BC2FA;
+            padding: 0;
+            display  : inline-block;
+            animation: rollkAnime 2s linear infinite;
+        }
+        @keyframes rollkAnime{
+            50% {
+                    color    : #66ff66;
+                    transform: rotateX(180deg);
+                }
+            100% {
+                    color    : #6666ff;
+                    transform: rotateX(360deg);
+                }
+        }
+        #start {
+            background: #FBCA1F;
+            font-family: inherit;
+            padding: 0.3em;
+            font-weight: 900;
+            font-size: 18px;
+            border: 3px solid black;
+            border-radius: 0.4em;
+            box-shadow: 0.1em 0.1em;
+        }
+
+        #start:hover {
+            transform: translate(-0.05em, -0.05em);
+            box-shadow: 0.15em 0.15em;
+        }
+
+        #start:active {
+            transform: translate(0.05em, 0.05em);
+            box-shadow: 0.05em 0.05em;
+        }
+        #deci {
+            background: #FBCA1F;
+            font-family: inherit;
+            padding: 0.3em;
+            font-weight: 900;
+            font-size: 18px;
+            border: 3px solid black;
+            border-radius: 0.4em;
+            box-shadow: 0.1em 0.1em;
+        }
+
+        #deci:hover {
+            transform: translate(-0.05em, -0.05em);
+            box-shadow: 0.15em 0.15em;
+        }
+
+        #deci:active {
+            transform: translate(0.05em, 0.05em);
+            box-shadow: 0.05em 0.05em;
+        }
+        #reset {
+            background: #FBCA1F;
+            font-family: inherit;
+            padding: 0.3em;
+            font-weight: 900;
+            font-size: 18px;
+            border: 3px solid black;
+            border-radius: 0.4em;
+            box-shadow: 0.1em 0.1em;
+        }
+
+        #reset:hover {
+            transform: translate(-0.05em, -0.05em);
+            box-shadow: 0.15em 0.15em;
+        }
+
+        #reset:active {
+            transform: translate(0.05em, 0.05em);
+            box-shadow: 0.05em 0.05em;
+        }
         span {
             margin: 5px;
             padding: 0px 10px;
             border: thin solid #CCCCCC;
+            box-shadow: 0.1em 0.1em #2BC2FA;
+        }
+        #btn_rule {
+            background-color: rgba(0, 0, 0, 0);
+            outline: none;
+            border: none;
         }
         div p {
             display: inline-block;
         }
-        #question0 {font-size: 50px;}
-        #question1 {font-size: 50px;}
-        #question2 {font-size: 50px;}
-        #question3 {font-size: 50px;}
-        #question4 {font-size: 50px;}
-        #question5 {font-size: 50px;}
-        #question6 {font-size: 50px;}
-        #question7 {font-size: 50px;}
-        #question8 {font-size: 50px;}
-        #question9 {font-size: 50px;}
-        #question10 {font-size: 50px;}
-        #question11 {font-size: 50px;}
-        #question12 {font-size: 50px;}
-        #question13 {font-size: 50px;}
-        #question14 {font-size: 50px;}
-        #question15 {font-size: 50px;}
-        .green {background-color: green;}
+        #default {
+            font-family: 'number_font';
+            font-size: 30px;
+        }
+        #Dfont {
+            font-family: 'number_font';
+            font-size: 30px;
+        }
+        #number {font-size: 20px; font-family: 'number_font';}
+        #question0 {font-size: 50px; font-family: 'number_font';}
+        #question1 {font-size: 50px; font-family: 'number_font';}
+        #question2 {font-size: 50px; font-family: 'number_font';}
+        #question3 {font-size: 50px; font-family: 'number_font';}
+        #question4 {font-size: 50px; font-family: 'number_font';}
+        #question5 {font-size: 50px; font-family: 'number_font';}
+        #question6 {font-size: 50px; font-family: 'number_font';}
+        #question7 {font-size: 50px; font-family: 'number_font';}
+        #question8 {font-size: 50px; font-family: 'number_font';}
+        #question9 {font-size: 50px; font-family: 'number_font';}
+        #question10 {font-size: 50px; font-family: 'number_font';}
+        #question11 {font-size: 50px; font-family: 'number_font';}
+        #question12 {font-size: 50px; font-family: 'number_font';}
+        #question13 {font-size: 50px; font-family: 'number_font';}
+        #question14 {font-size: 50px; font-family: 'number_font';}
+        #question15 {font-size: 50px; font-family: 'number_font';}
+        .green {background-color: palevioletred;}
     </style>
 </html>
 {{ end }}
