@@ -18,21 +18,52 @@
   <body>
     {{ template "navibar" . }}
     <div id="container" width="5000">
-      <!-- この下にコンテンツを作成してください -->
       <div style="background-color: white">
-        <div style="display: inline-block" id="fps"></div>
-        <div style="display: inline-block" id="time"></div>
-        <div style="display: inline-block" id="score"></div>
+        <div
+          class="navbar-brand info"
+          style="display: inline-block"
+          id="fps"
+        ></div>
+        <div
+          class="navbar-brand info"
+          style="display: inline-block"
+          id="time"
+        ></div>
+        <div
+          class="navbar-brand info"
+          style="display: inline-block"
+          id="score"
+        ></div>
       </div>
       <canvas id="canvas" width="800" height="600"></canvas>
-      <div style="display: none" id="util-button">
-        <a href="/hockey">
-          <div style="display: inline-block; text-decoration: none; font-size: 36px">続ける</div>
-        </a>
-        <a href="/">
-          <div style="display: inline-block; text-decoration: none; font-size: 36px">戻る</div>
-        </a>
-      </div>
+    </div>
+    <div
+      style="display: none; text-align: center; padding: 2em"
+      id="util-button"
+    >
+      <!-- <a href="/hockey">
+        <div
+          style="display: inline-block; text-decoration: none; font-size: 36px"
+        >
+          続ける
+        </div>
+      </a>
+      <a href="/">
+        <div
+          style="display: inline-block; text-decoration: none; font-size: 36px"
+        >
+          戻る
+        </div>
+      </a> -->
+      <a
+        class="navbar-brand btn btn-outline-dark"
+        style="width: 5em"
+        href="/hockey"
+        >続ける</a
+      >
+      <a class="navbar-brand btn btn-outline-dark" style="width: 5em" href="/"
+        >戻る</a
+      >
     </div>
   </body>
 </html>

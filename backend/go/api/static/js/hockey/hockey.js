@@ -9,6 +9,8 @@ uri += "/ws";
 
 ws = new WebSocket(uri);
 
+side = -1;
+
 ws.onopen = function () {
   console.log("Connected");
 };
@@ -18,10 +20,11 @@ ws.onmessage = async function (evt) {
   console.log(data.Event);
   if (data.Event == "side") {
     console.log(data);
-    var side = JSON.parse(data.Mes);
-    if (side.Side == 0) {
+    var s = JSON.parse(data.Mes);
+    side = s.Side;
+    if (side == 0) {
       document.getElementById("container").style.backgroundColor = "blue";
-    } else if (side.Side == 1) {
+    } else if (side == 1) {
       document.getElementById("container").style.backgroundColor = "red";
     }
   }
@@ -42,7 +45,11 @@ ws.onmessage = async function (evt) {
     battle_field.draw();
     sendflag = true;
     document.getElementById("time").innerHTML = field.Time + "/ " + field.TimeLimit;
-    document.getElementById("score").innerHTML = field.Point.One + " : " + field.Point.Two;
+    if (side == 0) {
+      document.getElementById("score").innerHTML = "You: " + field.Point.One + " : Opponent" + field.Point.Two;
+    } else {
+      document.getElementById("score").innerHTML = "You: " + field.Point.Two + " : Opponent" + field.Point.One;
+    }
     calc_fps();
   } else if (data.Event == "join") {
     var user = JSON.parse(data.Mes);
