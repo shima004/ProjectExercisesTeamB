@@ -351,6 +351,11 @@ function drawGameover() {
   ctx.fillStyle = "#ff0000";
   ctx.fillText("Game Over", canvas.width / 2 - 150, canvas.height - 150);
 }
+function drawAnnouncement() {
+  ctx.font = "32px Arial";
+  ctx.fillStyle = "#ff0000";
+  ctx.fillText("スタートボタンを押してください", (canvas.width / 2) - 225, canvas.height - 150);
+}
 
 function drawBall() {
   ctx.beginPath();
@@ -390,6 +395,9 @@ function draw() {
   if (a == 1) {
     drawGameover();
   }
+  if (gamestart == 0) {
+    drawAnnouncement();
+  }
   if (gamestart == 1) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBricks();
@@ -409,13 +417,16 @@ function draw() {
   } else if (y + dy > canvas.height - ballRadius) {
     if (x > paddleX && x < paddleX + paddleWidth) {
       dy = -dy;
-    } else {
+    }
+    else {
       lives--;
       if (!lives) {
         postCoin(score);
         gamestart = -1;
         a = 1;
-      } else {
+      }
+
+      else {
         x = canvas.width / 2;
         y = canvas.height - 30;
         if (dy >= 0) {
@@ -427,5 +438,8 @@ function draw() {
     paddleX = (canvas.width - paddleWidth) / 2;
   }
 }
+
+
+
 
 var interval = setInterval(draw, 10);
