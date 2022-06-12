@@ -288,7 +288,7 @@ h1 {
     text-align: center;
 }
 
-div {
+#container > div {
     width: 200px;
     /*background: rgb(255, 255, 255);*/
 }
