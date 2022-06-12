@@ -7,28 +7,35 @@
     <script src="/static/js/index.js" defer></script>
   </head>
   <body>
+    <div class="wrapper">
     {{ template "navibar" . }}
     <div class="container">
       <!-- create 5 button -->
       <div class="container">
+        
         <div class="col">
           <div class="row text-center mb-4">
-            <a class="btn btn-secondary btn-style1" href="./blockBreaker">BlockBreaker</a>
+            <a class="btn btn-secondary btn-style1" href="./blockBreaker">ブロック崩し</a>
           </div>
           <div class="row text-center mb-4">
-            <a class="btn btn-secondary btn-style2" href="./hockey">Hockey</a>
+            <a class="btn btn-secondary btn-style2" href="./hockey">ホッケー</a>
           </div>
           <div class="row text-center mb-4">
-            <a class="btn btn-secondary btn-style3" href="./numberGuessing">NumberGuessing</a>
+            <a class="btn btn-secondary btn-style3" href="./numberGuessing">アルゴ</a>
           </div>
           <div class="row text-center mb-4">
-            <a class="btn btn-secondary btn-style4" href="./shooting">Shooting</a>
+            <a class="btn btn-secondary btn-style4" href="./shooting">パネルたたき</a>
           </div>
           <div class="row text-center mb-4">
-            <a class="btn btn-secondary btn-style5" href="./slot">Slot</a>
+            <a class="btn btn-secondary btn-style5" href="./slot">スロット</a>
           </div>
         </div>
       </div>
+      </div>
+
+
+
+      
       <!-- <div class="scroll">
         <div class="box green"></div>
         <div class="box orange"></div>
@@ -36,14 +43,11 @@
         <div class="box orange"></div>
         <div class="box green"></div>
       </div> -->
+      
     </div>
-    <p class="link">
-      <a
-        href="https://1-notes.com/css-infinite-scrolling-of-background-image-animation/"
-        target="_blank"
-        rel="noopener"
-      ></a>
-    </p>
+
+    
+    <!--<p class="link"><a href="https://1-notes.com/css-infinite-scrolling-of-background-image-animation/" target="_blank" rel="noopener"></a></p>-->
   </body>
 </html>
 {{ end }}

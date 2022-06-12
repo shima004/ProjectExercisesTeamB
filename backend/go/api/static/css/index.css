@@ -3,6 +3,10 @@
   src: url('/static/font/PixelMplus12-Regular.ttf') format('truetype');
 }
 
+.container{
+  padding: 64px;
+}
+
 .scroll {
   margin: auto;
   overflow-x: auto;
@@ -96,26 +100,39 @@
 	box-shadow: 0px 0px #900dfa;
 }
 
-body {
-  padding: 0;
-  margin: 0;
-}
+.wrapper { 
+  height: 100%;
+   width: 100%;
+  left:0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
+background-size: 1800% 1800%;
 
-.link {
-  padding: 0 10px;
-}
+-webkit-animation: rainbow 18s ease infinite;
+-z-animation: rainbow 18s ease infinite;
+-o-animation: rainbow 18s ease infinite;
+  animation: rainbow 18s ease infinite;}
 
-.container {
-  width: 100%;
-  height: 32.6vw;
-  background: url('https://raw.githubusercontent.com/Yousuke777/bg/main/sample-bg.png') repeat-x;
-  background-size: 50%;
-  animation: scroll-anim 5s linear infinite;
+@-webkit-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
 }
-
-@keyframes scroll-anim {
-  100% {
-    background-position: -100% 0;
-  }
+@-moz-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
 }
-
+@-o-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@keyframes rainbow { 
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
