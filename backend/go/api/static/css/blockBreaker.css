@@ -1,15 +1,11 @@
-* {
-  padding: 0;
-  margin: 0;
+* { padding: 0; margin: 0; }
+body{
+    background-color: rgb(125, 231, 158);
 }
-canvas {
-  background: #000;
-  display: block;
-  margin: 0 auto;
-}
-.startbutton {
-  text-align: center;
-  background-size: auto;
+canvas { background: #000; display: block; margin: 0 auto; }
+.startbutton{
+    text-align: center;
+    background-size: auto;
 }
 .resetbutton{
     text-align: center;
