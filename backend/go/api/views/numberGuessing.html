@@ -1134,7 +1134,9 @@
                 else if(count < 11 && count >= 1) {
                     score = 3;
                 }
-                alert("CLEAR!!!!\nSCORE: " + score);
+                var display = document.getElementById("default");
+                display.style.color = 'green';
+                display.innerHTML = "CLEAR!!! SCORE: "+ score;
                 postCoin(score);
                 btn2.disabled = true;
                 btn3.disabled = false;
