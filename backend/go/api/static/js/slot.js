@@ -32,14 +32,14 @@
             stt = 1;
             const button = document.getElementById("ボタンのID");
             button.disabled = true
-            if (sw==0) {
-                const stop1 = document.getElementById("stopp1");
-                stop1.disabled = false;
-                const stop2 = document.getElementById("stopp2");
-                stop2.disabled = false;
-                const stop2 = document.getElementById("stopp3");
-                stop2.disabled = false;
-            }
+            //if (sw==0) {
+                //const stop1 = document.getElementById("stopp1");
+                //stop1.disabled = false;
+                //const stop2 = document.getElementById("stopp2");
+                //stop2.disabled = false;
+                //const stop2 = document.getElementById("stopp3");
+                //stop2.disabled = false;
+            //}
 
                 cg1 = 0;
                 cg2 = 0;
