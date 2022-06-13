@@ -536,12 +536,12 @@
         <div>
             ＜ルール＞<button type="button" id="btn_rule" onclick="clickbtn_rule()">∨</button>
             <p id="p1">
-                黒のカード(0〜11)と白のカード(0~11)の計24枚のカードがある。<br>
+                黒のカード(0〜7)と白のカード(0~7)の計16枚のカードがある。<br>
                 同じカードは存在しない。<br>
                 スタートをクリックすると、上下8枚ずつ、計16枚のカードが表示される。<br>
                 下の数字は昇順、上の数字は降順に並んでいる。<br>
                 白と黒で同じ数字の場合は「黒の方が小さい」とする。<br>
-                上にある空いたマス(*)を以上のルールに沿って埋めていく。<br>
+                上にある空いたマス(*)を以上のルールに従って埋めていく。<br>
             </p>
             <hr>
             <input type="button" value="スタート" onclick="init()" id="start">
@@ -615,7 +615,7 @@
 
         function init() {
             document.getElementById("number").innerHTML="";
-            for(var i=0;i<12;i++) {
+            for(var i=0;i<8;i++) {
                 var number = document.createElement("span");
                 number.innerText = i;
                 number.className = "white";
@@ -636,8 +636,8 @@
                     }
                 }
             }
-            var Bnum = [0,1,2,3,4,5,6,7,8,9,10,11]; //黒数字
-            var Wnum = [0,1,2,3,4,5,6,7,8,9,10,11]; //白数字
+            var Bnum = [0,1,2,3,4,5,6,7]; //黒数字
+            var Wnum = [0,1,2,3,4,5,6,7]; //白数字
             var rand1 = [];
             var rand2 = [];
             //Qnumの配列(16個)にBnum or　Wnumを格納
@@ -648,7 +648,7 @@
                 if(a[i] % 2 == 0) {
                     //乱数生成
                     while(true) {
-                        var b = getRandomInt(0,11); //0-11の乱数
+                        var b = getRandomInt(0,7); //0-7の乱数
                         //重複確認
                         if(!rand1.includes(b)) {
                             //rand1にbを格納
@@ -662,7 +662,7 @@
                 //White(1だった場合)
                 else if(a[i] % 2 == 1){
                     while(true) {
-                        var w = getRandomInt(0,11); //0-11の乱数
+                        var w = getRandomInt(0,7); //0-7の乱数
                         //重複確認
                         if(!rand2.includes(w)) {
                             //rand2にwを格納
@@ -727,7 +727,7 @@
                 }
             }
             for(i=0; i<8; i++) {
-                //question0-3 id取得
+                //question0-7 id取得
                 document.getElementById("question"+i).innerHTML = "";
                 switch(i) {
                     case 0:
