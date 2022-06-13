@@ -30,8 +30,8 @@
 
         function setImage() {
             stt = 1;
-            const button = document.getElementById("ボタンのID");
-            button.disabled = true
+            //const button = document.getElementById("ボタンのID");
+            //button.disabled = true
             //if (sw==0) {
                 //const stop1 = document.getElementById("stopp1");
                 //stop1.disabled = false;
