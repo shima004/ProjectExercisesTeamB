@@ -37,7 +37,7 @@
                 //stop1.disabled = false;
                 //const stop2 = document.getElementById("stopp2");
                 //stop2.disabled = false;
-                //const stop2 = document.getElementById("stopp3");
+                //const stop3 = document.getElementById("stopp3");
                 //stop2.disabled = false;
             //}
 
