@@ -78,7 +78,7 @@
 
                 }
 
-                sp2 = setInterval(loopup2, 100);
+                sp2 = setInterval(loopup2, 110);
 
                 var loopup3 = function () {
                     document.getElementById('img3').src = img[cg3++];
@@ -87,7 +87,7 @@
                         cg3 = 0;
                     }
                 }
-                sp3 = setInterval(loopup3, 70);
+                sp3 = setInterval(loopup3, 100);
         }
 
 
