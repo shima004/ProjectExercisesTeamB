@@ -78,7 +78,7 @@
 
                 }
 
-                sp2 = setInterval(loopup2, 90);
+                sp2 = setInterval(loopup2, 100);
 
                 var loopup3 = function () {
                     document.getElementById('img3').src = img[cg3++];
