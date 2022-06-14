@@ -34,6 +34,7 @@ ws.onmessage = async function (evt) {
     var field = JSON.parse(data.Mes);
     battle_field.init(field);
     battle_field.draw();
+    document.getElementById("info").style.display = "block";
     FPS = field.FPS;
     canvas.width = parseInt(field.Size.X);
     canvas.height = parseInt(field.Size.Y);

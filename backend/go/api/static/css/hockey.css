@@ -1,5 +1,8 @@
 #container {
   text-align: center;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(125, 231, 158);
 }
 
 canvas {
