@@ -5,8 +5,10 @@
 
 <head>
     <meta charset="utf-8">
+
     <link rel="stylesheet" type="text/css" href="../static/css/slot.css">
     <script src="../static/js/slot.js" defer></script>
+    <script src="static/js/slot.js" defer></script>
     {{ template "header" . }}
     <title>スロット</title>
 
@@ -218,59 +220,81 @@ div {
 
 </head>
 
-<body>
+<body style = "background-color:rgb(135, 238, 168);">
     {{ template "navibar" . }}
     <h1>スロットゲームへようこそ！！！
         <br>
         〜コインを 大量GET しよう！！！〜
     </h1>
 
-    <div class="coin">
-        <input type="text" class="temoti" id="temotii" value="手持ちコイン" readonly />
-        <input type="text" class="koin" id="temotikoinn" value="100" readonly />
-        <input type="text" class="betgaku" id="temotii" value="ベット額" readonly />
-        <input type="text" class="gaku" id="betkoinn" value="" readonly />
 
-    </div>
     <p id="han" class="hann">
         <input type="text" class="hantei" id="hanteii" value="S T A N D B Y" readonly />
     </p>
 
+    <audio id ="win" class = "win1"
+        controls
+        src="../static/img/sounds_win.mp3">
+    </audio>
+    
+    <audio id ="lose" class = "lose1"
+    controls
+    src="../static/img/sounds_lose.mp3">
+    </audio>
 
-    <p class="top">
+    <div id="container">
+        <p class="top">
 
-        <img src="../static/img/pt0-1.png" id="img1" class="img1">
-        <img src="../static/img/pt0-2.png" id="img2" class="img2">
-        <img src="../static/img/pt0-3.png" id="img3" class="img3">
+            <img src="../static/img/pt0-1.png" id="img1" class="img1">
+            <img src="../static/img/pt0-2.png" id="img2" class="img2">
+            <img src="../static/img/pt0-3.png" id="img3" class="img3">
 
-        <br><br>
+            <br><br>
 
-        <input type="button" class="button" value="  STOP１  " onClick="slot1_stop()">
+            <!-- <input type="button" class="button" value="  STOP１  " onClick="slot1_stop()"> -->
 
-        <input type="button" class="button" value="  STOP２  " onClick="slot2_stop()">
+        <input type="button" class="button1" id="stopp1" value="  STOP１  " onClick="slot1_stop()">
 
-        <input type="button" class="button" value="  STOP３  " onClick="slot3_stop()">
-    </p>
+        <input type="button" class="button2" id="stopp2" value="  STOP２  " onClick="slot2_stop()">
+
+        <input type="button" class="button3" id="stopp3" value="  STOP３  " onClick="slot3_stop()">
+        </p>
+
+        <p class="coin">
+            <input type="text" class="betgaku" id="temotii" value="ベット額" readonly />
+            <input type="text" class="gaku" id="betkoinn" value="" readonly />
+        </p>
+
+        <p id="bet" class="bet">ベット額:
+            <form name="COIN">
+            <br>
+            <input type="radio" name="bet" value="20"> 20
+            <input type="radio" name="bet" value="50"> 50
+            <input type="radio" name="bet" value="100"> 100
+            <input type="radio" name="bet" value="150"> 150
+            <br>       
+            </form>
+            <a class="btn btn-outline-dark" style="display: inline-block" onclick="slot_bet()">  BET  </a>
+            
+            <!-- <input type="button" class="Bet" value="  BET  " onClick="slot_bet()"> -->
+        </p>
 
     <p id="bet" class="bet">ベット額:
-        <form id="COIN">
-        <br>
+        <form name="COIN" class="gakuu">
         <input type="radio" name="bet" value="20"> 20
         <input type="radio" name="bet" value="50"> 50
         <input type="radio" name="bet" value="100"> 100
         <input type="radio" name="bet" value="150"> 150
-        <br>
-        <input type="button" class="Bet" value="  BET  " onClick="slot_bet()">
+        <br>       
         </form>
+        <input type="button" class="Bet" value="  BET  " onClick="slot_bet()">
     </p>
 
-    <p id="star" class="startt">
-        <input type="button" value="START" id="srt" onClick="setImage()" style = "text-align: center;
-        ">
+    <p id="start" calss="startt" sytle="margin-left: 2000px;">
+        <input type="button" value="START" class="start" onClick="setImage()">
     </p>
-
 
 </body>
 
 </html>
-{{end}}
+{{end}}slot

@@ -3,6 +3,10 @@
   src: url('/static/font/PixelMplus12-Regular.ttf') format('truetype');
 }
 
+.container{
+  padding: 64px;
+}
+
 .scroll {
   margin: auto;
   overflow-x: auto;
