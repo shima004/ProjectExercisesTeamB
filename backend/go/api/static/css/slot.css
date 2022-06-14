@@ -108,7 +108,7 @@ h1 {
 .coin {
     margin-left: 680px;
     text-align: center; 
-    width:  100px;               /* 幅指定 */
+    width:  80px;               /* 幅指定 */
     height: 35px;                /* 高さ指定 */
     font-size: 14px;
 }
