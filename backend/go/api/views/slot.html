@@ -15,15 +15,117 @@
 
     <!-- <style type="text/css">
 
-div {
-    width: 200px;
-    /*background: rgb(255, 255, 255);*/
+body {
+    background-color:rgb(135, 238, 168);
 }
 
+h1 {
+  padding: 0.1em;/*文字周りの余白*/
+  color: #010101;/*文字色*/
+  background: #eaf3ff;/*背景色*/
+  border-bottom: solid 2px #516ab6;/*下線*/
+  text-align: center;
+
+}
+
+.centering_parent {
+    padding: 90px;              /* 余白指定 */
+    /*background-color:  #ddd;    /* 背景色指定 */
+    height: 300px;              /* 高さ指定 */
+    width: 640px;               /* 幅指定 */
+    position: relative;         /* 位置指定の基準点にする */
+}
+ 
+.centering_item {
+   /*background-color: #2196F3;   /* 背景色指定 */
+   position: absolute;          /* 位置指定 */
+   top: 50%;                    /* 親要素の半分下にずらす */
+   left: 50%;                   /* 親要素の半分右にずらす */
+   transform: translateY(-50%) translateX(-50%);    /* 要素自体の半分、上と左にずらす */
+   padding: 20px;               /* 余白指定 */
+}
+
+.hantei {
+    text-align: center;
+    margin-left: 80px;
+    /*margin:  auto;*/
+    width:  250px;               /* 幅指定 */
+    height: 50px;                /* 高さ指定 */
+    width:  240px;               /* 幅指定 */
+    height: 40px;                /* 高さ指定 */
+    padding: 0.4em;/*文字周りの余白*/
+    font-size: 28px;
+    color: red;
+    border-color: #000000 rgb(0, 0, 0) rgb(0, 0, 0) #000000;
+}
+
+
+.button{
+    background:rgb(255, 77, 0);
+    padding:0.5em 0.5em;
+    border:black 2px solid;
+    text-decoration:none;
+    color:black;
+    font-size:1.2em;
+    font-family:sans-serif;
+}
+  
+
+.startt{               /*.start からstarttに変更*/
+    text-align: center;
+
+    /*margin:  auto;*/
+
+    width:  210px;               /* 幅指定 */
+    height: 90px;                /* 高さ指定 */
+    width:  180px;               /* 幅指定 */
+    height: 50px;                /* 高さ指定 */
+
+    font-size:30px;
+
+
+    border-radius:30px;
+
+    padding:0.5em 0.5em;
+
+    /*top:  50%;                     /* 位置指定 */
+    /*bottom:  0;                  /* 位置指定 */
+    /*left:  0; */                   /* 位置指定 */
+    /*right:  50%;                   /* 位置指定 */
+
+    /*text-align: center;*/
+    /*padding: 0.5em;/*文字周りの余白*/
+    /*font-size: 20px;*/
+    border-color: #000000 #fff #fff #000000;
+    /*bottom: 0;
+    right: 0;*/
+}
+
+/*.startt{
+    text-align: center;
+    padding: 0.5em;/*文字周りの余白*/
+    /*font-size: 20px;*/
+    /*border-color: #000000 #fff #fff #000000;
+    bottom: 0;
+    right: 0;
+}*/
+
+
+.top{
+    /*text-align: center;*/
+    margin-left: 480px;
+    /*margin: px;*/
+}
+
+/*div {
+    width: 200px;
+    /*background: rgb(255, 255, 255);*/
+/*}*/
+
 .coin {
-    margin-left: auto;
+    margin-left: 680px;
     text-align: center; 
-    width:  100px;               /* 幅指定 */
+    width:  80px;               /* 幅指定 */
     height: 35px;                /* 高さ指定 */
     font-size: 14px;
 }
@@ -39,12 +141,204 @@ div {
 
 .hann {
     text-align: center;
+    margin-left: 80px;
+    padding: 0.5em;       /*文字周りの余白*/
+    font-size: 22px;
+    border-color: #000000 #fff #fff #000000;
+    /*bottom: 0;
+    right: 0;*/
+}
+
+/*.hantei{
+
+}*/
+/*hantei*/
+
+.koin{
+    width:  100px;               /* 幅指定 */
+    height: 35px;                /* 高さ指定 */
+    font-size: 14px;
+}
+
+
+.button {
+     font-size:20px;
+     margin:0;
+     padding:0;
+     border-radius:8px;
+     padding:0.3em 0.3em;
+     text-align: center;
+     margin-right: 30px;
+}
+
+
+/*.bet {
+    text-align: center;
     padding: 0.5em;/*文字周りの余白*/
-    font-size: 20px;
+    /*font-size: 27px;
     border-color: #000000 #fff #fff #000000;
     bottom: 0;
     right: 0;
+
+}*/
+
+
+.bet {
+    color: red;
+    text-align: center;
+
+    margin-left: 750px;
+
+    /*margin:  auto;*/
+
+    width:  100px;               /* 幅指定 */
+    height: 40px;                /* 高さ指定 */
+
+    font-size:20px;
+
+    border-radius:30px;
+
+    padding:0.5em 0.5em;
+
+    top:  50%;                     /* 位置指定 */
+    bottom:  50%;                  /* 位置指定 */
+    /*right:  0;                   /* 位置指定 */
+    border-color: #000000 #fff #fff #000000;
 }
+
+body {
+    background-color:rgb(125, 231, 158);
+}
+
+h1 {
+  padding: 0.1em;/*文字周りの余白*/
+  color: #010101;/*文字色*/
+  background: #eaf3ff;/*背景色*/
+  border-bottom: solid 2px #516ab6;/*下線*/
+  text-align: center;
+
+}
+
+.centering_parent {
+    padding: 90px;              /* 余白指定 */
+    background-color:  #ddd;    /* 背景色指定 */
+    height: 300px;              /* 高さ指定 */
+    width: 640px;               /* 幅指定 */
+    position: relative;         /* 位置指定の基準点にする */
+}
+ 
+.centering_item {
+   background-color: #2196F3;   /* 背景色指定 */
+   position: absolute;          /* 位置指定 */
+   top: 50%;                    /* 親要素の半分下にずらす */
+   left: 50%;                   /* 親要素の半分右にずらす */
+   transform: translateY(-50%) translateX(-50%);    /* 要素自体の半分、上と左にずらす */
+   padding: 20px;               /* 余白指定 */
+}
+
+.hantei {
+    text-align: center;
+    margin-left: 80px;
+    /*margin:  auto;*/
+    width:  250px;               /* 幅指定 */
+    height: 50px;                /* 高さ指定 */
+    width:  240px;               /* 幅指定 */
+    height: 40px;                /* 高さ指定 */
+    padding: 0.4em;/*文字周りの余白*/
+    font-size: 28px;
+    color: red;
+    border-color: #000000 rgb(0, 0, 0) rgb(0, 0, 0) #000000;
+}
+
+
+.button{
+    background:rgb(255, 77, 0);
+    padding:0.5em 0.5em;
+    border:black 2px solid;
+    text-decoration:none;
+    color:black;
+    font-size:1.0em;
+    font-family:sans-serif;
+}
+  
+
+.startt{               /*.start からstarttに変更*/
+    text-align: center;
+
+    /*margin:  auto;*/
+
+    width:  210px;               /* 幅指定 */
+    height: 90px;                /* 高さ指定 */
+    width:  180px;               /* 幅指定 */
+    height: 50px;                /* 高さ指定 */
+
+    font-size:30px;
+
+    /*padding:0;*/
+
+    border-radius:30px;
+
+    padding:0.5em 0.5em;
+
+    /*top:  0;                     /* 位置指定 */
+    /*bottom:  0;                  /* 位置指定 */
+    /*left:  0; */                   /* 位置指定 */
+    /*right:  0;                   /* 位置指定 */
+
+    /*text-align: center;*/
+    /*padding: 0.5em;/*文字周りの余白*/
+    /*font-size: 20px;*/
+    border-color: #000000 #fff #fff #000000;
+    /*bottom: 0;
+    right: 0;*/
+}
+
+/*.startt{
+    text-align: center;
+    padding: 0.5em;/*文字周りの余白*/
+    /*font-size: 20px;*/
+    /*border-color: #000000 #fff #fff #000000;
+    bottom: 0;
+    right: 0;
+}*/
+
+
+
+div {
+    width: 200px;
+    /*background: rgb(255, 255, 255);*/
+}
+
+.coin {
+    margin-left: 680px;
+    text-align: center; 
+    width:  100px;               /* 幅指定 */
+    height: 35px;                /* 高さ指定 */
+    font-size: 14px;
+}
+
+/*.temoti {
+    margin-left: auto;
+    text-align: center; 
+    width:  110px;               /* 幅指定 */
+   /* height: 35px;                /* 高さ指定 */
+   /* font-size: 14px;
+}*/
+
+.hann {
+    text-align: center;
+    margin-left: 80px;
+    padding: 0.5em;       /*文字周りの余白*/
+    font-size: 22px;
+    border-color: #000000 #fff #fff #000000;
+    /*bottom: 0;
+    right: 0;*/
+}
+
+/*.hantei{
+
+}*/
+/*hantei*/
 
 .koin{
     width:  100px;               /* 幅指定 */
@@ -62,26 +356,75 @@ div {
      text-align: center;
 }
 
-.top{
-    text-align: center;
-}
 
-.bet {
+/*.bet {
     text-align: center;
     padding: 0.5em;/*文字周りの余白*/
-    font-size: 20px;
+    /*font-size: 27px;
     border-color: #000000 #fff #fff #000000;
     bottom: 0;
     right: 0;
+
+}*/
+
+
+
+.Bet{ 
+    text-align: center;
+    bottom: 0;
+    right: 0;
+}
+
+.win1 {
+    display: none;
+}
+
+.lose1 {
+    display: none;
+}
+
+.button1{
+        /*text-align: center;*/
+        margin-left: 50px;
+        background:rgb(255, 77, 0);
+        padding:0.5em 0.5em;
+        border:black 2px solid;
+        text-decoration:none;
+        color:black;
+        font-size:1.2em;
+        font-family:sans-serif;
+}
+
+.button2{
+    /*text-align: center;*/
+    margin-left: 60px;
+    background:rgb(255, 77, 0);
+    padding:0.5em 0.5em;
+    border:black 2px solid;
+    text-decoration:none;
+    color:black;
+    font-size:1.2em;
+    font-family:sans-serif;
+}
+
+.button3{
+    /*text-align: center;*/
+    margin-left: 60px;
+    background:rgb(255, 77, 0);
+    padding:0.5em 0.5em;
+    border:black 2px solid;
+    text-decoration:none;
+    color:black;
+    font-size:1.2em;
+    font-family:sans-serif;
+}
+
+.gakuu{
+    margin-left: 680px;
 }
 
 .startt{
-    text-align: center;
-    padding: 0.5em;/*文字周りの余白*/
-    font-size: 20px;
-    border-color: #000000 #fff #fff #000000;
-    bottom: 0;
-    right: 0;
+    margin-left: 150px;
 }
 
 </style> -->
